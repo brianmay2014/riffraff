@@ -1,0 +1,49 @@
+.riff-cards {
+    width: 600px;
+    background-color: var(--darkestpurple);
+    margin: 30px auto;
+    border: var(--darkpurple) 1px solid;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card-user-img{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50px;
+    border: 1px solid var(--medpurple);
+    box-shadow: 1px 1px 7px var(--darkpurple), -1px -1px 7px var(--darkpurple), 1px -1px 7px var(--darkpurple), -1px 1px 7px var(--darkpurple);
+}
+
+.riff-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 12px;
+}
+.riff-header p{
+    margin-left: 15px;
+}
+
+.riff-player{
+    background-color: var(--darkestslate);
+    width: 100%;
+    height: 140px;
+    border-top: 2px solid var(--darkpurple);
+    border-bottom: 2px solid var(--darkpurple);
+}
+
+.card-caption{
+    display:flex;
+    margin: 15px;
+}
+.authorname{
+    font-weight: 700;
+}
+span {
+    font-weight: 300;
+    margin-left: 15px;
+}

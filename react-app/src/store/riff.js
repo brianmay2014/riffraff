@@ -18,7 +18,6 @@ const UPDATE_RIFF = 'riffs/updateRiff';
 // };
 
 const loadRiffs = (riffs) => {
-    console.log(riffs);
     return {
         type: LOAD_RIFFS,
         payload: riffs,
@@ -41,8 +40,6 @@ export const genRiffs = () => async (dispatch) => {
     const [riffs] = await Promise.all([
         riffsResponse.json(),
     ]);
-    console.log('riffsResponse', riffsResponse);
-    console.log('riffs', riffs)
     if (riffsResponse.ok) {
         dispatch(loadRiffs(riffs.riffs))
         return riffs;
@@ -50,8 +47,6 @@ export const genRiffs = () => async (dispatch) => {
 };
 
 const riffReducer = (state = {}, action) => {
-
-    console.log(action);
 
     switch (action.type) {
         case ADD_RIFF:

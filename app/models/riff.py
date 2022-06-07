@@ -35,6 +35,8 @@ class Riff(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at,
             'comment_ids': [comment.id for comment in self.comments],
+            'author_username': self.user.username,
+            'author_img': self.user.pic_url,
         }
 
     @staticmethod
