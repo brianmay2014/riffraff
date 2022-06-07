@@ -1,1 +1,85 @@
 /* TODO Add site wide styles */
+@import url("./theme.css");
+
+.btn {
+	background-color: var(--medslate);
+	color: var(--lightestslate);
+	padding: 5px;
+	border-radius: 2px;
+	border: 2px solid var(--darkslate);
+	transition: all 0.3s;
+}
+
+.btn-cancel {
+	background-color: var(--medpurple);
+	color: var(--lightestpurple);
+	padding: 5px;
+	border-radius: 2px;
+	border: 2px solid var(--darkpurple);
+	transition: all 0.3s;
+}
+
+.btn:hover:not(:disabled) {
+	background-color: var(--lightslate);
+	border: 2px solid var(--medslate);
+	box-shadow: 0 0 8px var(--lightslate);
+	color: var(--darkslate);
+}
+
+.btn-cancel:hover {
+	background-color: var(--lightpurple);
+	border: 2px solid var(--medpurple);
+	box-shadow: 0 0 8px var(--lightpurple);
+	color: var(--darkpurple);
+}
+
+.form-errors {
+	color: var(--error);
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.fake-body {
+}
+
+a:visited {
+	color: var(--visitedlink);
+}
+
+body {
+	margin: 0;
+}
+
+.header {
+}
+
+button {
+	cursor: pointer;
+	font-family: "Bai Jamjuree", sans-serif;
+}
+
+input {
+	font-family: "Bai Jamjuree", sans-serif;
+}
+
+/* input,
+select,
+textarea {
+	border: 0.2px var(--lightslate) solid;
+	border-radius: 2px;
+	box-shadow: 0px 0px 2px var(--medslate);
+}
+input:focus,
+select:focus,
+textarea:focus {
+	outline: none;
+	box-shadow: 2px 2px 6px var(--lightslate);
+} */
+
+button:disabled {
+	filter: grayscale(100%);
+	cursor: not-allowed;
+}

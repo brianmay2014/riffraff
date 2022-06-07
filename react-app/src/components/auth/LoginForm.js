@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
+import './Auth.css';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -74,17 +75,19 @@ const LoginForm = () => {
 			</div>
 			<div>
 				<div className="login-buttons-containers">
-					<button className="btn" type="submit">
+					<button className="btn auth-submit" type="submit">
 						Login
 					</button>
 					<button className="btn-cancel" onClick={demoSubmit}>
 						Demo Login
 					</button>
 				</div>
+        <div className='auth-page-links'>
 				<p>Don't have an account?</p>
 				<button id="to-sign-up" className="btn-auth-link" onClick={toSignup}>
 					Sign up!
 				</button>
+        </div>
 			</div>
 		</form>
   );

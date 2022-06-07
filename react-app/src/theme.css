@@ -1,0 +1,40 @@
+:root {
+    font-family: 'Bai Jamjuree', sans-serif;
+    background-color: var(--darkbg);
+    color: #f5f8fa;
+
+    --darkbg:  #0c0c10;
+    --footerbg: #b1616a;
+    --footergold: #644d33;
+    --error: #c3492b;
+    --miderror: #b54428;
+    --darkerror: #856361;
+
+    --visitedlink: #d9e2e8;
+
+    --lightestslate: #e0e8f0;
+    --lightestpurple: #e2e2ef;
+    --lightestgreen: #e4f0ec;
+
+    --lightslate: #b2c7da;
+    --lightpurple: #aeaed1;
+    --lightgreen: #b0d5c9;
+
+    --medslate: #7B95AD;
+    --medpurple: #616185;
+    --medgreen: #6f9e8f;
+
+    --middarkslate: #677787;
+    --middarkpurple: #444463;
+    --middarkgreen: #3e695b;
+
+    --darkslate: #3B4F61;
+    --darkpurple: #33334e;
+    --darkgreen: #2b453c;
+
+    --darkestslate: #172129;
+    --darkestpurple: #141422;
+    --darkestgreen: #11211c;
+
+
+}
