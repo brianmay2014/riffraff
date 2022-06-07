@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './Auth.css';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -47,12 +48,15 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/riffs' />;
   }
 
   return (
-		<form onSubmit={onSignUp}>
-			<div className="auth-header"></div>
+		<form id="sign-up-form" onSubmit={onSignUp}>
+			<div className="auth-header">
+				<h1>riff raff</h1>
+				<h3>Sign up to start collaborating with your friends.</h3>
+			</div>
 			<div>
 				{errors.map((error, ind) => (
 					<div key={ind}>{error}</div>
@@ -64,6 +68,7 @@ const SignUpForm = () => {
 					type="text"
 					name="username"
 					onChange={updateUsername}
+					placeholder="Username"
 					value={username}
 				></input>
 			</div>
@@ -72,6 +77,7 @@ const SignUpForm = () => {
 				<input
 					type="text"
 					name="email"
+					placeholder="Email"
 					onChange={updateEmail}
 					value={email}
 				></input>
@@ -81,29 +87,33 @@ const SignUpForm = () => {
 				<input
 					type="password"
 					name="password"
+					placeholder="Password"
 					onChange={updatePassword}
 					value={password}
 				></input>
 			</div>
 			<div className="auth-fields">
-				<label>Repeat Password</label>
+				<label>Confirm Password</label>
 				<input
 					type="password"
 					name="repeat_password"
+					placeholder="Confirm Password"
 					onChange={updateRepeatPassword}
 					value={repeatPassword}
 					required={true}
 				></input>
 			</div>
 			<div id="signup-button">
-				<button className="btn" type="submit">
+				<button className="btn auth-submit" type="submit">
 					Sign Up
 				</button>
 			</div>
-			<p>Don't have an account?</p>
+      <div className='auth-page-links'>
+			<p>Already have an account?</p>
 			<button id="to-log-in" className="btn-auth-link" onClick={toLogin}>
 				Log in!
 			</button>
+      </div>
 		</form>
   );
 };
