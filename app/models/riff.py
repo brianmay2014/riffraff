@@ -33,7 +33,8 @@ class Riff(db.Model):
             'user_id': self.user_id,
             'note': self.note,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'comment_ids': [comment.id for comment in self.comments],
         }
 
     @staticmethod
