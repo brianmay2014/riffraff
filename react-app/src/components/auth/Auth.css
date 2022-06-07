@@ -1,4 +1,4 @@
-#sign-up-form, #login-form{
+#sign-up-form, #login-form {
     width: 350px;
     background-color: var(--darkestpurple);
     margin: 0 auto;
@@ -7,6 +7,27 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+#home-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+#splash-auth-links {
+    background-color: var(--darkestpurple);
+    border: var(--medpurple) 1px solid;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#splash-logo, #splash-auth-links {
+    width: 350px;
+    height: 520px;
 }
 
 .btn-auth-link {
@@ -88,4 +109,9 @@ input:focus {
 .login-buttons-container button {
     margin-left: 20px;
     margin-right: 20px;
+}
+
+#home-demo-button {
+    width: 200px;
+    margin: 0 auto 40px;
 }
