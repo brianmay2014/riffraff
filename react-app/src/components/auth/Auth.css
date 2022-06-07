@@ -2,7 +2,7 @@
     width: 350px;
     background-color: var(--darkestpurple);
     margin: 0 auto;
-    border: var(--medpurple) 1px solid;
+    border: var(--darkpurple) 1px solid;
     border-radius: 2px;
     display: flex;
     justify-content: center;
