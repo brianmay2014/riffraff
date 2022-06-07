@@ -1,53 +1,56 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
-import { login } from '../../store/session';
-import './Auth.css';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
+import { login } from "../../store/session";
+import "./Auth.css";
 
 const LoginForm = () => {
-  const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const user = useSelector(state => state.session.user);
-  const dispatch = useDispatch();
-  const history = useHistory();
+	const [errors, setErrors] = useState([]);
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const user = useSelector((state) => state.session.user);
+	const dispatch = useDispatch();
+	const history = useHistory();
 
-  const onLogin = async (e) => {
-    e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    }
-  };
+	const onLogin = async (e) => {
+		e.preventDefault();
+		const data = await dispatch(login(email, password));
+		if (data) {
+			setErrors(data);
+		}
+	};
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
+	const updateEmail = (e) => {
+		setEmail(e.target.value);
+	};
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
+	const updatePassword = (e) => {
+		setPassword(e.target.value);
+	};
 
-  const demoSubmit = async (e) => {
+	const demoSubmit = async (e) => {
 		e.preventDefault();
 		const data = await dispatch(login("demo@demo.com", "password"));
 		if (data) {
 			setErrors(data);
 		}
-  };
+	};
 
-  const toSignup = async (e) => {
+	const toSignup = async (e) => {
 		e.preventDefault();
 		history.push("/sign-up");
-  };
+	};
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
+	if (user) {
+		return <Redirect to="/" />;
+	}
 
-  return (
-		<form onSubmit={onLogin}>
-			<div className="auth-header"></div>
+	return (
+		<form id="login-form" onSubmit={onLogin}>
+			<div className="auth-header">
+				<h1>riff raff</h1>
+				<h3>Log in to collaborate with your friends.</h3>
+			</div>
 			<div className="form-errors">
 				{errors.map((error, ind) => (
 					<div key={ind}>{error}</div>
@@ -73,24 +76,26 @@ const LoginForm = () => {
 					onChange={updatePassword}
 				/>
 			</div>
-			<div>
-				<div className="login-buttons-containers">
-					<button className="btn auth-submit" type="submit">
-						Login
-					</button>
-					<button className="btn-cancel" onClick={demoSubmit}>
-						Demo Login
-					</button>
-				</div>
-        <div className='auth-page-links'>
+			<div className="login-buttons-container">
+				<button className="btn auth-submit" type="submit">
+					Login
+				</button>
+				<button className="btn-cancel" onClick={demoSubmit}>
+					Demo Login
+				</button>
+			</div>
+			<div className="auth-page-links">
 				<p>Don't have an account?</p>
-				<button id="to-sign-up" className="btn-auth-link" onClick={toSignup}>
+				<button
+					id="to-sign-up"
+					className="btn-auth-link"
+					onClick={toSignup}
+				>
 					Sign up!
 				</button>
-        </div>
 			</div>
 		</form>
-  );
+	);
 };
 
 export default LoginForm;

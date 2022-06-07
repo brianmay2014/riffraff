@@ -1,4 +1,4 @@
-#sign-up-form{
+#sign-up-form, #login-form{
     width: 350px;
     background-color: var(--darkestpurple);
     margin: 0 auto;
@@ -24,8 +24,9 @@
 }
 
 .auth-submit{
-    margin-top: 16px;
+    margin-top: 18px;
 }
+
 .auth-page-links{
     margin: 12px auto 38px ;
     text-align: center;
@@ -45,13 +46,13 @@ input {
     outline: none;
 	border: 0.2px var(--darkslate) solid;
 	border-radius: 2px;
-	box-shadow: 0px 0px 2px var(--medslate);
+	/* box-shadow: 0px 0px 2px var(--medslate); */
 }
 input:focus {
 	outline: none;
     color: var(--lightestslate);
-	box-shadow: 2px 2px 6px var(--lightslate);
-    border: transparent;
+	box-shadow: 1px 1px 3px var(--darkslate), -1px -1px 3px var(--darkslate);
+    border: 0.2px var(--darkslate) solid;
 }
 
 .auth-fields {
@@ -77,4 +78,14 @@ input:focus {
 }
 .auth-fields label {
     font-size: 12px;
+}
+
+.login-buttons-container{
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.login-buttons-container button {
+    margin-left: 20px;
+    margin-right: 20px;
 }
