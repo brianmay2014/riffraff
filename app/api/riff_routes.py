@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Riff
+from app.models import db, Riff, Comment
 from app.utils.validutils import validation_errors_to_error_messages
+from app.forms.comment_form import CommentForm
 
 # will need to import forms
 # from app.forms.yadayada
@@ -16,6 +17,29 @@ def riffs():
     all_riffs = Riff.query.all()
     print(all_riffs)
     return {'riffs': [riff.to_dict() for riff in all_riffs]}
+
+
+@riff_routes.route('/<int:id>/comments', methods=["POST"])
+@login_required
+def post_comment(id):
+    riff = Riff.query.get(id)
+    if not riff:
+        return {'errors': f"No riff with id number {id} exists"}, 404
+    else:
+        form = CommentForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            comment = Comment()
+            form.populate_obj(comment)
+            db.session.add(comment)
+            db.session.commit()
+            
+            return comment.to_dict()
+        else:
+            return {"errors": form.errors}, 403
+
+
+
 
 # @riff_routes.route('/<int:id>/comments')
 # def comments(id):

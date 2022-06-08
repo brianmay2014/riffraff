@@ -3,12 +3,12 @@ const REMOVE_COMMENT = "comments/removeComment";
 const LOAD_COMMENTS = 'comments/loadComments';
 const CLEAR_COMMENTS = 'comments/clearComments';
 
-// const addComment = (comment) => {
-//     return {
-//         type: ADD_COMMENT,
-//         payload: comment,
-//     };
-// };
+const addComment = (comment) => {
+    return {
+        type: ADD_COMMENT,
+        payload: comment,
+    };
+};
 
 // const removeComment = (comment) => {
 //     return {
@@ -22,6 +22,27 @@ const loadComments = (comments) => {
         type: LOAD_COMMENTS, 
         payload: comments,
     };
+};
+
+export const makeComment = (comment) => async (dispatch) => {
+    
+    const riffId = comment.riff_id
+    const form = new FormData();
+    form.append("user_id", comment.user_id);
+    form.append("riff_id", riffId);
+    form.append("text", comment.text);
+
+    const response = await fetch(`/api/riffs/${riffId}/comments`,
+        {method: "POST", body:form});
+    
+    const commentData = await response.json();
+
+    if (response.ok) {
+        dispatch(addComment(commentData));
+        return commentData;
+    } else {
+        return commentData;
+    }
 };
 
 
