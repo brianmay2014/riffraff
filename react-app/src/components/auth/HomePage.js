@@ -35,7 +35,7 @@ const HomePage = () => {
 		<div id="home-body">
 			<div id="splash-logo">
 				{/* <img
-					src="react-app/public/logo-place-hold.png"
+					src="https://riff-raff.s3.us-west-1.amazonaws.com/images/demo.png"
 					alt="riff raff logo"
 				></img> */}
 				Root Logo will go here

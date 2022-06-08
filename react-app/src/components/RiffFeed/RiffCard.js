@@ -22,12 +22,17 @@ const RiffCard = ( {riff} ) => {
         return null;
     }
 
+	// if (riff.author_img === '') {
+	// 	riff.author_img =
+	// 		"https://images.pexels.com/photos/7899456/pexels-photo-7899456.png?auto=compress&cs=tinysrgb&w=126&h=75&dpr=1";
+	// }
+
 	return (
 		<div id={`riff-card-${riff.id}`} className="riff-cards">
 			<div className="riff-header">
 				<img
 					className="card-user-img"
-					src="https://images.pexels.com/photos/7899456/pexels-photo-7899456.png?auto=compress&cs=tinysrgb&w=126&h=75&dpr=1"
+					src={riff?.author_img}
 					alt="default-remove"
 				>
                 </img>
