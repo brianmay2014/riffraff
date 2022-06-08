@@ -45,6 +45,23 @@ export const makeComment = (comment) => async (dispatch) => {
     }
 };
 
+export const editComment = (comment) => async (dispatch) => {
+    const { id, text } = comment;
+
+    const form = new FormData();
+    form.append("text", text);
+
+    const response = await fetch(`api/comments/${id}`, {
+        method: "PATCH",
+        body: form,
+    });
+    const commentData = await response.json();
+    dispatch(addComment(commentData))
+    return { ...commentData }
+}
+
+
+
 export const deleteComment = (comment) => async (dispatch) => {
     const {id} = comment;
 

@@ -96,6 +96,8 @@ span {
 
 .user-edit-icon {
     cursor: pointer;
+    color: var(--darkslate);
+    transform: rotate(-90deg);
 }
 
 
