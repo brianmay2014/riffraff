@@ -13,3 +13,5 @@ log in
 sign up
 <i class="fa-solid fa-user-plus"></i>
 
+sliders [for edit modal]
+<i class="fa-solid fa-sliders"></i>

@@ -4,6 +4,7 @@
     color: #f5f8fa;
 
     --darkbg:  #0c0c10;
+    --modalbg: rgba(12, 16, 20, 0.8);
     --footerbg: #b1616a;
     --footergold: #644d33;
     --error: #c3492b;

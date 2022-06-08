@@ -53,7 +53,7 @@ span {
 }
 
 .comment-row-display .authorname {
-    margin-left: 55px;
+    margin-left: 15px;
 }
 
 .comment-display-container{
@@ -89,3 +89,57 @@ span {
     color: var(--medslate);
     border:none;   
 }
+
+.not-current-user, .user-edit-icon {
+    width: 18px;
+}
+
+.user-edit-icon {
+    cursor: pointer;
+}
+
+
+
+
+
+/* Edit Modal */
+.edit-comment-form{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.h3-edit-comment{
+    text-align: center;
+}
+
+.comment-modal-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    bottom: 0px;
+    height: fit-content;
+    width: 100%;
+    margin:0;
+    padding:0;
+}
+
+.edit-comment-input{
+    margin: 15px;
+}
+.edit-modal-btn {
+    width:100%;
+    background-color: transparent;
+}
+
+.comment-modal-buttons button{
+    color: var(--lightslate);
+    border:none;
+    width: 100%;
+    margin:0;
+    border-top: 1px solid var(--darkpurple);
+    padding:12px;
+}
+

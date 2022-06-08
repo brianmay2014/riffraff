@@ -7,8 +7,8 @@ import { genComments, makeComment } from "../../store/comment";
 import "./RiffFeed.css";
 // import { genRiffs } from "../../store/riff";
 
-const PostComment = ({ riff }) => {
-	const [text, setText] = useState("");
+const PostComment = ({ riff, text, setText }) => {
+	// const [text, setText] = useState("");
 	const [errors, setErrors] = useState([]);
 	const [disabled, setDisabled] = useState(true);
     const user = useSelector((state) => state.session.user);
@@ -43,8 +43,8 @@ const PostComment = ({ riff }) => {
 	}
 
 	return (
-		<div id={`${riff.id}-post-comment`} className="post-comment" onSubmit={handleSubmit}>
-			<form id={`${riff.id}-comment-form`} className="post-comment-form">
+		<div id={`${riff?.id}-post-comment`} className="post-comment" onSubmit={handleSubmit}>
+			<form id={`${riff?.id}-comment-form`} className="post-comment-form">
 				<input
 					className="post-comment-input"
 					type="text"

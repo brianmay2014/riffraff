@@ -60,7 +60,7 @@ const RiffFeed = () => {
 		return (
 			<div id="feed-body">
 			    {riffArr.map((riff) => {
-				        return <RiffCard key={`key-${riff.id}`} riff={riff} />;
+				        return <RiffCard key={`key-${riff?.id}`} riff={riff} />;
 				    })}
 			</div>
 				
