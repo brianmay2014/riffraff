@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import HomePage from './components/auth/HomePage';
 import RiffFeed from './components/RiffFeed/RiffFeed';
+import NewRiffForm from './components/NewRiff/NewRiffForm'
 import { authenticate } from './store/session';
 
 function App() {
@@ -44,6 +45,9 @@ function App() {
 				</ProtectedRoute>
 				<ProtectedRoute path="/users/:userId" exact={true}>
 					<User />
+				</ProtectedRoute>
+				<ProtectedRoute path="/riffs/new" exact={true}>
+					<NewRiffForm />
 				</ProtectedRoute>
 				<Route path="/" exact={true}>
 					<HomePage />
