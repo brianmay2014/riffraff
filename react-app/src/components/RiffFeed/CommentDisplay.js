@@ -54,7 +54,7 @@ const CommentDisplay = ({ riff }) => {
 					/>
 				);
 			})}
-			<PostComment riff={riff} text={text} setText={setText} />
+			<PostComment riff={riff}/>
 		</div>
 	);
 };

@@ -48,7 +48,10 @@ const CommentRow = ({ comment, text, setText }) => {
 				{/* <Modal /> */}
 
 				{showModal && (
-					<Modal onClose={() => setShowModal(false)}>
+					<Modal onClose={() => {
+						setShowModal(false)
+						setText('')
+					}}>
 						<CommentModal
 							comment={comment}
 							text={text}
