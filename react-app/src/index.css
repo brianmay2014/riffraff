@@ -35,6 +35,8 @@
 
 .form-errors {
 	color: var(--error);
+	text-align: center;
+	font-weight: 500;
 	list-style: none;
 }
 

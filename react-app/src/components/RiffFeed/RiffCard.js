@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
-import { login } from "../../store/session";
 import "./RiffFeed.css";
 import { genRiffs } from "../../store/riff";
 import CommentDisplay from "./CommentDisplay";
@@ -13,25 +11,6 @@ const RiffCard = ( {riff} ) => {
 
 
 	const dispatch = useDispatch();
-	// const history = useHistory();
-
-    // useEffect(() => {
-    //     dispatch(genRiffs());
-    // }, [dispatch]);
-
-
-	// const toSignup = async (e) => {
-	// 	e.preventDefault();
-	// 	history.push("/signup");
-	// };
-
-	// const demoSubmit = async (e) => {
-	// 	e.preventDefault();
-	// 	const data = await dispatch(login("demo@demo.com", "password"));
-	// 	if (data) {
-	// 		setErrors(data);
-	// 	}
-	// };
 
 	// if (user) {
 	// 	return <Redirect to="/" />;

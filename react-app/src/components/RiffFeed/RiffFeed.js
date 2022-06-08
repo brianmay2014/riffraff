@@ -4,6 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import "./RiffFeed.css";
 import { genRiffs } from "../../store/riff";
+import { genComments } from "../../store/comment";
 import RiffCard from "./RiffCard";
 
 const RiffFeed = () => {
@@ -17,7 +18,16 @@ const RiffFeed = () => {
 
     useEffect(() => {
         dispatch(genRiffs());
+		dispatch(genComments());
     }, [dispatch]);
+
+	// useEffect(() => {
+	// 	// console.log('in useEffect for generating comments');
+
+	
+	// 		dispatch(genComments());
+
+	// }, [riff, dispatch]);
 
 
 	// const toSignup = async (e) => {
@@ -41,19 +51,20 @@ const RiffFeed = () => {
     // null before riffs loads from the store
     if (!riffs) {
         return null;
-    }
-
-    // console.log(riffs);
-    const riffArr = Object.values(riffs)
-    // console.log(riffArr);
-
-	return (
-		<div id="feed-body">
-            {riffArr.map((riff) => {
-                return <RiffCard key={`key-${riff.id}`} riff={riff} />;
-            })}
-		</div>
+    } 		
+		// console.log(riffs);
+		const riffArr = Object.values(riffs)
+		// console.log(riffArr);
+		
+		return (
+			<div id="feed-body">
+			    {riffArr.map((riff) => {
+				        return <RiffCard key={`key-${riff.id}`} riff={riff} />;
+				    })}
+			</div>
+				
 	);
+
 };
 
 export default RiffFeed;

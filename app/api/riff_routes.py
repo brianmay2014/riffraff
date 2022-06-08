@@ -17,4 +17,15 @@ def riffs():
     print(all_riffs)
     return {'riffs': [riff.to_dict() for riff in all_riffs]}
 
+# @riff_routes.route('/<int:id>/comments')
+# def comments(id):
+#     print('============', id)
+#     riff = riff = Riff.query.get(id)
+#     print('-*/-*/-*/-*/-*/-*/', riff)
+#     if not riff:
+#         return {"errors": f"No riffs with id number {id} exists"}, 404
+#     else:
+#         comments = riff.comments
+#         print('comments-*//*-/*-*-/*-//*-/*-*-/*-/*-/-/*-/*-/*/*-*-/', comments)
+#         return {"comments" : [comment.to_dict() for comment in comments]}
 
