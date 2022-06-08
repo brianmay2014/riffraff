@@ -10,12 +10,12 @@ const addComment = (comment) => {
     };
 };
 
-// const removeComment = (comment) => {
-//     return {
-//         type: REMOVE_COMMENT,
-//         payload: comment,
-//     };
-// };
+const removeComment = (comment) => {
+    return {
+        type: REMOVE_COMMENT,
+        payload: comment,
+    };
+};
 
 const loadComments = (comments) => {
     return {
@@ -42,6 +42,18 @@ export const makeComment = (comment) => async (dispatch) => {
         return commentData;
     } else {
         return commentData;
+    }
+};
+
+export const deleteComment = (comment) => async (dispatch) => {
+    const {id} = comment;
+
+    const response = await fetch(`api/comments/${id}`, {
+        method: "DELETE",
+        body: JSON.stringify({ comment_id: comment.id })
+    });
+    if (response.ok) {
+        dispatch(removeComment(comment));
     }
 };
 

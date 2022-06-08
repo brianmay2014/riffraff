@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-import { genComments } from "../../store/comment";
+import { genComments, deleteComment } from "../../store/comment";
 import { Modal } from "../context/Modal";
 // import { login } from "../../store/session";
 import "./RiffFeed.css";
@@ -95,10 +95,11 @@ const CommentModal = ({ comment, text, setText, setShowModal }) => {
 
 	const handleDelete = async (e) => {
 		e.preventDefault();
-		
-		//delete goes here
 
-
+		const data = await dispatch(deleteComment(comment));
+		// if (data) {
+		// 	setErrors(data)
+		// }
 	}
 
 	return (
