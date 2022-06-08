@@ -34,14 +34,18 @@ const HomePage = () => {
 	return (
 		<div id="home-body">
 			<div id="splash-logo">
-                <img src='../../../public/logo-place-hold.png' alt='riff raff logo'></img>
-            </div>
-			<div id="splash-auth-links">
-			<div className="auth-header">
-				<h1>riff raff</h1>
-				<h3>A community for songwriters.</h3>
-				<h4>It all starts with one riff.</h4>
+				{/* <img
+					src="react-app/public/logo-place-hold.png"
+					alt="riff raff logo"
+				></img> */}
+				Root Logo will go here
 			</div>
+			<div id="splash-auth-links">
+				<div className="auth-header">
+					<h1>riff raff</h1>
+					<h3>A community for songwriters.</h3>
+					<h4>It all starts with one riff.</h4>
+				</div>
 				<div className="auth-page-links">
 					<p>Already have an account?</p>
 					<button
@@ -67,7 +71,11 @@ const HomePage = () => {
 						<div key={ind}>{error}</div>
 					))}
 				</div>
-				<button id='home-demo-button' className="btn-cancel" onClick={demoSubmit}>
+				<button
+					id="home-demo-button"
+					className="btn-cancel"
+					onClick={demoSubmit}
+				>
 					Demo Login
 				</button>
 			</div>

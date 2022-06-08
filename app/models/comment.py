@@ -24,7 +24,8 @@ class Comment(db.Model):
             'riff_id': self.riff_id,
             'text': self.text,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'author_username': self.user.username,
         }
 
     @staticmethod

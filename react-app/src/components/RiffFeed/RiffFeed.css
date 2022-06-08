@@ -36,7 +36,7 @@
     border-bottom: 2px solid var(--darkpurple);
 }
 
-.card-caption{
+.card-caption, .comment-row-display{
     display:flex;
     margin: 15px;
 }
@@ -46,4 +46,16 @@
 span {
     font-weight: 300;
     margin-left: 15px;
+}
+
+.comment-row-display span{
+    font-size: 0.9em;
+}
+
+.comment-row-display .authorname {
+    margin-left: 55px;
+}
+
+.comment-display-container{
+    background-color: var(--blackpurple);
 }
