@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-import { genComments, deleteComment } from "../../store/comment";
+import { genComments, deleteComment, editComment } from "../../store/comment";
 import { Modal } from "../context/Modal";
 // import { login } from "../../store/session";
 import "./RiffFeed.css";
@@ -44,9 +44,6 @@ const CommentRow = ({ comment, text, setText }) => {
 						<i class="fa-solid fa-sliders"></i>
 					</div>
 				)}
-
-				{/* <Modal /> */}
-
 				{showModal && (
 					<Modal onClose={() => {
 						setShowModal(false)
@@ -71,8 +68,9 @@ const CommentRow = ({ comment, text, setText }) => {
 
 const CommentModal = ({ comment, text, setText, setShowModal }) => {
 	const user = useSelector((state) => state.session.user);
+	const [editText, setEditText] = useState(comment.text);
 
-	setText(comment.text)
+	// setEditText(comment.text)
 
 	const dispatch = useDispatch();
 
@@ -81,19 +79,19 @@ const CommentModal = ({ comment, text, setText, setShowModal }) => {
 	const handleEdit = async (e) => {
 		e.preventDefault();
 		const updateComment = { ...comment };
-		updateComment.text = text;
+		updateComment.text = editText;
 
 		console.log('updated comment? - - - - - - - -- -', updateComment);
 
-		// const editConfirm = await dispatch(editComment(updateComment));
-		// if (editConfirm.errors) {
-		// 	setErrors(editConfirm.errors);
-		// 	return;
-		// } else {
-		// 	await dispatch(genComments());
-		// 	// await dispatch(genRiffs());
-		// 	setShowModal(false);
-		// }
+		const editConfirm = await dispatch(editComment(updateComment));
+		if (editConfirm.errors) {
+			setErrors(editConfirm.errors);
+			return;
+		} else {
+			await dispatch(genComments());
+			// await dispatch(genRiffs());
+			setShowModal(false);
+		}
 	};
 
 	const handleDelete = async (e) => {
@@ -111,9 +109,9 @@ const CommentModal = ({ comment, text, setText, setShowModal }) => {
 			<input
 			className='edit-comment-input'
 				type="text"
-				value={text}
+				value={editText}
 				required
-				onChange={(e) => setText(e.target.value)}
+				onChange={(e) => setEditText(e.target.value)}
 			/>
 			<div className="comment-modal-buttons">
 				<button type="submit" className="comment-edit edit-modal-btn">
