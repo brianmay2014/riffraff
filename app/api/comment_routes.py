@@ -18,4 +18,11 @@ def comments():
     return {'comments': [comment.to_dict() for comment in all_comments]}
 
 
+@comment_routes.route('/<int:id>', methods=["DELETE"])
+def delete_comment(id):
 
+    comment = Comment.query.get(id)
+    db.session.delete(comment)
+    db.session.commit()
+
+    return f'Comment id:{id} deleted'

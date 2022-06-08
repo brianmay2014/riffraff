@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { genComments } from "../../store/comment";
+import { genRiffs } from "../../store/riff";
 import CommentRow from "./CommentRow";
+import PostComment from "./PostComment";
+// import { genRiffs } from "../../store/riff";
 // import { login } from "../../store/session";
 import "./RiffFeed.css";
 // import { genRiffs } from "../../store/riff";
@@ -10,38 +13,28 @@ import "./RiffFeed.css";
 const CommentDisplay = ({ riff }) => {
 	// const user = useSelector((state) => state.session.user);
 	// const [errors, setErrors] = useState([]);
-	// const riffs = useSelector((state) => state.riffs);
+	const [text, setText] = useState("");
+	const dispatch = useDispatch();
 
-	// const dispatch = useDispatch();
-
-	// useEffect(() => {
-	// 	// console.log('in useEffect for generating comments');
-
-	// 	if (riff) {
-	// 		dispatch(genComments(riff))
-	// 	}
-
-	// }, [riff, dispatch]);
-
-	const riffId = riff.id
-	
 	const comments = useSelector((state) => state.comments);
-	const commentCount = Object.keys(comments).length;
+	console.log(Object.keys(comments).length);
+	const riffs = useSelector((state) => state.riffs);
+
+	useEffect(() => {
+		if (riff) {
+			dispatch(genRiffs());
+		}
+	}, [comments]);
+
 	// console.log(comments);
 	const commentArr = Object.values(comments);
 
 	let riffComments = [];
-	riff.comment_ids.forEach((comment_id) => {
+	riff?.comment_ids.forEach((comment_id) => {
 		riffComments.push(comments[comment_id]);
 	});
 
-	// console.log(riffComments);
-	// console.log(commentArr);
-	// const riffComments = 
-
-	// if (user) {
-	// 	return <Redirect to="/" />;
-	// }
+	const commentCount = riffComments.length
 
 	// null before riffs / riff prop loads from the store
 	if (!riff) {
@@ -50,9 +43,18 @@ const CommentDisplay = ({ riff }) => {
 
 	return (
 		<div id={`${riff?.id}-comments`} className="comment-display-container">
+			<p>{commentCount} comments</p>
 			{riffComments.map((comment) => {
-				return <CommentRow key={`key-${comment?.id}`} comment={comment} />;
+				return (
+					<CommentRow
+						key={`key-${comment?.id}`}
+						comment={comment}
+						text={text}
+						setText={setText}
+					/>
+				);
 			})}
+			<PostComment riff={riff} text={text} setText={setText} />
 		</div>
 	);
 };

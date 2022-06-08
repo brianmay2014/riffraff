@@ -11,6 +11,7 @@ const RiffFeed = () => {
 	// const user = useSelector((state) => state.session.user);
 	// const [errors, setErrors] = useState([]);
     const riffs = useSelector((state) => state.riffs);
+	const comments = useSelector((state) => state.comments);
 
 
 	const dispatch = useDispatch();
@@ -59,7 +60,7 @@ const RiffFeed = () => {
 		return (
 			<div id="feed-body">
 			    {riffArr.map((riff) => {
-				        return <RiffCard key={`key-${riff.id}`} riff={riff} />;
+				        return <RiffCard key={`key-${riff?.id}`} riff={riff} />;
 				    })}
 			</div>
 				
