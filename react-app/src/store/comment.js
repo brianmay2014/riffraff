@@ -57,7 +57,6 @@ export const deleteComment = (comment) => async (dispatch) => {
     }
 };
 
-
 export const genComments = () => async (dispatch) => {
     // can add more types of responses later
     
