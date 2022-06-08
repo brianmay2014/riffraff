@@ -7,8 +7,8 @@ import { genComments, makeComment } from "../../store/comment";
 import "./RiffFeed.css";
 // import { genRiffs } from "../../store/riff";
 
-const PostComment = ({ riff, text, setText }) => {
-	// const [text, setText] = useState("");
+const PostComment = ({ riff }) => {
+	const [addText, setAddText] = useState("");
 	const [errors, setErrors] = useState([]);
 	const [disabled, setDisabled] = useState(true);
     const user = useSelector((state) => state.session.user);
@@ -16,15 +16,15 @@ const PostComment = ({ riff, text, setText }) => {
     
 
     useEffect(() => {
-        setDisabled(text.length === 0);
-    }, [text]);
+        setDisabled(addText.length === 0);
+    }, [addText]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = {
             user_id: user.id,
             riff_id: riff.id,
-            text: text, 
+            text: addText, 
         };
         setErrors({});
         const comment = await dispatch(makeComment(data));
@@ -33,7 +33,7 @@ const PostComment = ({ riff, text, setText }) => {
             return;
         }
         if (comment && Object.keys(errors).length === 0) {
-            setText("");
+            setAddText("");
         }
     }
 
@@ -49,8 +49,8 @@ const PostComment = ({ riff, text, setText }) => {
 					className="post-comment-input"
 					type="text"
 					placeholder="Add a comment"
-					value={text}
-					onChange={(e) => setText(e.target.value)}
+					value={addText}
+					onChange={(e) => setAddText(e.target.value)}
 				></input>
 				<button
 					className="post-comment-button"
