@@ -90,6 +90,17 @@ def post_riff():
         return {"errors": form.errors}, 403
 
 
+@riff_routes.route('/<int:riff_id>/', methods=["DELETE"])
+@login_required
+def delete_riff(riff_id):
+    """
+    Deletes an estate from the database
+    """
+    riff = Riff.query.get(riff_id)
+    db.session.delete(riff)
+    db.session.commit()
+
+    return f'Riff id number {riff_id} has been deleted'
 
 
 

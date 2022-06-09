@@ -9,7 +9,7 @@ import "./RiffFeed.css";
 
 const CommentRow = ({ comment, text, setText }) => {
 	
-	const [showModal, setShowModal] = useState(false);
+	const [showCommentModal, setShowCommentModal] = useState(false);
 
 	const user = useSelector((state) => state.session.user);
 
@@ -39,21 +39,22 @@ const CommentRow = ({ comment, text, setText }) => {
 				{showEdit && (
 					<div
 						className="user-edit-icon"
-						onClick={() => setShowModal(true)}
+						title="Edit/Delete Comment"
+						onClick={() => setShowCommentModal(true)}
 					>
 						<i className="fa-solid fa-sliders"></i>
 					</div>
 				)}
-				{showModal && (
+				{showCommentModal && (
 					<Modal onClose={() => {
-						setShowModal(false)
+						setShowCommentModal(false)
 						setText('')
 					}}>
 						<CommentModal
 							comment={comment}
 							text={text}
 							setText={setText}
-							setShowModal={setShowModal}
+							setShowCommentModal={setShowCommentModal}
 						/>
 					</Modal>
 				)}
@@ -66,7 +67,7 @@ const CommentRow = ({ comment, text, setText }) => {
 	);
 };
 
-const CommentModal = ({ comment, text, setText, setShowModal }) => {
+const CommentModal = ({ comment, text, setText, setShowCommentModal }) => {
 	const user = useSelector((state) => state.session.user);
 	const [editText, setEditText] = useState(comment.text);
 
@@ -90,7 +91,7 @@ const CommentModal = ({ comment, text, setText, setShowModal }) => {
 		} else {
 			await dispatch(genComments());
 			// await dispatch(genRiffs());
-			setShowModal(false);
+			setShowCommentModal(false);
 		}
 	};
 

@@ -11,12 +11,12 @@ const addRiff = (riff) => {
     };
 };
 
-// const removeRiff = (riff) => {
-//     return {
-//         type: REMOVE_RIFF,
-//         payload: riff,
-//     };
-// };
+const removeRiff = (riff) => {
+    return {
+        type: REMOVE_RIFF,
+        payload: riff,
+    };
+};
 
 const loadRiffs = (riffs) => {
     return {
@@ -72,6 +72,18 @@ export const makeRiff = (riff, link) => async (dispatch) => {
         return riffData;
     }
 }
+
+export const deleteRiff = (riff) => async (dispatch) => {
+    // const { id } = riff;
+
+    const response = await fetch(`api/riffs/${riff.id}/`, {
+        method: "DELETE",
+        body: JSON.stringify({ riff_id: riff.id })
+    });
+    if (response.ok) {
+        dispatch(removeRiff(riff));
+    }
+};
 
 const riffReducer = (state = {}, action) => {
 

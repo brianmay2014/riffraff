@@ -21,11 +21,25 @@
 .riff-header{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     margin-left: 12px;
 }
 .riff-header p{
     margin-left: 15px;
+}
+
+.card-header-left{
+    width: 93%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.card-header-right{
+    width: 7%;
+}
+.car-header-right i {
+    margin-right: 15px;
 }
 
 .riff-player{
@@ -91,13 +105,30 @@ span {
 }
 
 .not-current-user, .user-edit-icon {
-    width: 18px;
+    width: 24px;
+    height: 24px;
 }
 
 .user-edit-icon {
     cursor: pointer;
-    color: var(--darkslate);
+    color: var(--medslate);
     transform: rotate(-90deg);
+    /* background-color: var(--darkslate); */
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    border-radius: 18px;
+    transition: 0.3s;
+    /* box-shadow: 0px 0px 8px var(--lightslate); */
+}
+
+.user-edit-icon:hover{
+    background-color: var(--darkslate);
+    box-shadow: 0px 0px 8px var(--lightslate);
+}
+
+.user-edit-icon i{
+    /* padding-top: 5px; */
 }
 
 
