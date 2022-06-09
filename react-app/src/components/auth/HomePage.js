@@ -34,11 +34,10 @@ const HomePage = () => {
 	return (
 		<div id="home-body">
 			<div id="splash-logo">
-				{/* <img
-					src="https://freesvg.org/img/dog-6117498.png"
+				<img
+					src="https://riff-raff.s3.us-west-1.amazonaws.com/transparentlogos/middarkslate-clear.png"
 					alt="riff raff logo"
-				></img> */}
-				<p>Root Logo will go here</p>
+				></img>
 			</div>
 			<div id="splash-auth-links">
 				<div className="auth-header">

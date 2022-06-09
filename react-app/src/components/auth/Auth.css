@@ -29,6 +29,12 @@
     width: 350px;
     height: 520px;
 }
+#splash-logo img{
+    height: 100%;
+    position: relative;
+    left: 150px;
+    /* margin: 0 auto; */
+}
 
 .btn-auth-link {
     background-color: var(--medgreen);
