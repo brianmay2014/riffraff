@@ -4,7 +4,7 @@ import "./RiffFeed.css";
 // import { genRiffs } from "../../store/riff";
 import CommentDisplay from "./CommentDisplay";
 import { Modal } from "../context/Modal";
-import { deleteRiff } from "../../store/riff";
+import { deleteRiff, editRiff } from "../../store/riff";
 
 const RiffCard = ( {riff} ) => {
 	const user = useSelector((state) => state.session.user);
@@ -72,6 +72,7 @@ const RiffCard = ( {riff} ) => {
 			</div>
 			<div className="riff-player">
 				Individual riff player will go here!
+				<p>{riff?.title}</p>
 			</div>
 			<div className="card-caption">
 				<span className="authorname"> {riff.author_username}</span>
@@ -98,20 +99,24 @@ const RiffModal = ({ riff, setShowRiffModal }) => {
 
 	const handleEdit = async (e) => {
 		e.preventDefault();
-		// const updateComment = { ...comment };
-		// updateComment.text = editText;
 
-		// console.log("updated comment? - - - - - - - -- -", updateComment);
+		console.log('title', title);
+		console.log("note", note);
+		const updateRiff = { ...riff };
+		updateRiff.title = title;
+		updateRiff.note = note;
 
-		// const editConfirm = await dispatch(editComment(updateComment));
-		// if (editConfirm.errors) {
-		// 	setErrors(editConfirm.errors);
-		// 	return;
-		// } else {
-		// 	await dispatch(genComments());
-		// 	// await dispatch(genRiffs());
-		// 	setShowCommentModal(false);
-		// }
+		console.log("updated comment? - - - - - - - -- -", updateRiff);
+
+		const editRiffConfirm = await dispatch(editRiff(updateRiff));
+		if (editRiffConfirm.errors) {
+			setErrors(editRiffConfirm.errors);
+			return;
+		} else {
+			// await dispatch(genComments());
+			// await dispatch(genRiffs());
+			setShowRiffModal(false);
+		}
 	};
 
 	const handleDelete = async (e) => {

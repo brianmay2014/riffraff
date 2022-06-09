@@ -85,6 +85,22 @@ export const deleteRiff = (riff) => async (dispatch) => {
     }
 };
 
+export const editRiff = (riff) => async (dispatch) => {
+    const {id, title, note} = riff;
+
+    const form = new FormData();
+    form.append('title', title);
+    form.append('note', note);
+
+    const response = await fetch(`/api/riffs/${id}`, {
+        method: "PATCH",
+        body: form,
+    });
+    const riffData = await response.json();
+    dispatch(addRiff(riffData))
+    return { ...riffData }
+}
+
 const riffReducer = (state = {}, action) => {
 
     switch (action.type) {
