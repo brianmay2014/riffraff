@@ -41,7 +41,7 @@ const CommentRow = ({ comment, text, setText }) => {
 						className="user-edit-icon"
 						onClick={() => setShowModal(true)}
 					>
-						<i class="fa-solid fa-sliders"></i>
+						<i className="fa-solid fa-sliders"></i>
 					</div>
 				)}
 				{showModal && (

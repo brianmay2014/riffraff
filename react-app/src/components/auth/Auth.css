@@ -115,3 +115,8 @@ input:focus {
     width: 200px;
     margin: 0 auto 40px;
 }
+
+#splash-logo p{
+    font-size:100px;
+    color: var(--blackpurple);
+}

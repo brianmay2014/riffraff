@@ -47,8 +47,12 @@ a {
 .fake-body {
 }
 
-a:visited {
+/* a:visited {
 	color: var(--visitedlink);
+} */
+
+a {
+	color: var(--medslate);
 }
 
 body {
