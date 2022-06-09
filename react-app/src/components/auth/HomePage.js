@@ -16,7 +16,7 @@ const HomePage = () => {
 	};
 	const toSignup = async (e) => {
 		e.preventDefault();
-		history.push("/signup");
+		history.push("/sign-up");
 	};
 
 	const demoSubmit = async (e) => {
