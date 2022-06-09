@@ -44,11 +44,42 @@ def post_comment(id):
 @riff_routes.route('/new', methods=["POST"])
 # @login_required
 def post_riff():
-    print('/*-/*-/*-*-//*-*/-/*-/*-*-/-/**-/*-/*-//*-*-/*/-*-/*-/-*/*-/*-/*-/*-/*/-*-/*/-*-/*-/*-/*-/*-/-*/*-/*-/*-/in-route')
+    # print('/*-/*-/*-*-//*-*/-/*-/*-*-/-/**-/*-/*-//*-*-/*/-*-/*-/-*/*-/*-/*-/*-/*/-*-/*/-*-/*-/*-/*-/*-/-*/*-/*-/*-/in-route')
+    if "link" not in request.files:
+        return {"errors": "Riff file is required"}, 400
+
+    link = request.files['link']
+
+    print('////////////////before///////////////////////', link)
+
+    if not allowed_file(link.filename):
+        return {"errors": "File type not permitted"}, 400
+
+    link.filename = get_unique_filename(link.filename)
+
+    print('////////////////after///////////////////////', link)
+
+    upload = upload_file_to_s3(link)
+
+    print('|||||||||||||||||||||||||||||||||||||||||', upload)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        print('=======upload messed up')
+        return upload, 400
+
+    url = upload['url']
+    
     form = RiffForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    form['link'].data = url
+
+    print('---------------------------', form)
+
     if form.validate_on_submit():
-        print('in validated form')
+        print('*-//*-*/-/*-/*-*-/-/**-/*-/*-//*-*-/*/-*-*-//*-*/-/*-/*-*-/-/**-/*-/*-//*-*-/*/-*-in validated form')
         riff = Riff()
         form.populate_obj(riff)
         db.session.add(riff)

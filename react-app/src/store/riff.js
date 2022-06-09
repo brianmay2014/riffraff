@@ -49,8 +49,8 @@ export const genRiffs = () => async (dispatch) => {
 
 export const makeRiff = (riff, link) => async (dispatch) => {
 
-    console.log ('inside thunk');
-    console.log('riff', riff)
+    // console.log ('inside thunk');
+    // console.log('riff', riff)
 
     const form = new FormData();
 	form.append("link", link);
@@ -58,9 +58,9 @@ export const makeRiff = (riff, link) => async (dispatch) => {
 	form.append("title", riff.title);
 	form.append("note", riff.note);
 
-    console.log('form', form);
+    // console.log('form', form);
 
-    const response = await fetch(`api/riffs/new`,
+    const response = await fetch(`/api/riffs/new`,
         {method: "POST", body: form});
 
     const riffData = await response.json();
