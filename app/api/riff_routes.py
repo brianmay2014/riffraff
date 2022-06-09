@@ -3,6 +3,8 @@ from flask_login import login_required
 from app.models import db, Riff, Comment
 from app.utils.validutils import validation_errors_to_error_messages
 from app.forms.comment_form import CommentForm
+from app.forms.riff_form import RiffForm
+from app.utils.s3utils import upload_file_to_s3, allowed_file, get_unique_filename
 
 # will need to import forms
 # from app.forms.yadayada
@@ -37,6 +39,26 @@ def post_comment(id):
             return comment.to_dict()
         else:
             return {"errors": form.errors}, 403
+
+
+@riff_routes.route('/new', methods=["POST"])
+# @login_required
+def post_riff():
+    print('/*-/*-/*-*-//*-*/-/*-/*-*-/-/**-/*-/*-//*-*-/*/-*-/*-/-*/*-/*-/*-/*-/*/-*-/*/-*-/*-/*-/*-/*-/-*/*-/*-/*-/in-route')
+    form = RiffForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        print('in validated form')
+        riff = Riff()
+        form.populate_obj(riff)
+        db.session.add(riff)
+        db.session.commit()
+        
+        return riff.to_dict()
+    else:
+        return {"errors": form.errors}, 403
+
+
 
 
 
