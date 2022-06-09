@@ -18,3 +18,15 @@ new post
 
 sliders [for edit modal]
 <i className="fa-solid fa-sliders"></i>
+
+
+
+
+logo links:
+
+https://riff-raff.s3.us-west-1.amazonaws.com/transparentlogos/blackpurple-clear.png
+https://riff-raff.s3.us-west-1.amazonaws.com/transparentlogos/middarkslate-clear.png
+https://riff-raff.s3.us-west-1.amazonaws.com/transparentlogos/medpurple-clear.png
+https://riff-raff.s3.us-west-1.amazonaws.com/transparentlogos/darkestslate-clear.png
+https://riff-raff.s3.us-west-1.amazonaws.com/transparentlogos/darkestpurple-clear.png
+https://riff-raff.s3.us-west-1.amazonaws.com/transparentlogos/blackslate-clear.png
