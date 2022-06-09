@@ -4,6 +4,7 @@ import "./RiffFeed.css";
 // import { genRiffs } from "../../store/riff";
 import CommentDisplay from "./CommentDisplay";
 import { Modal } from "../context/Modal";
+import { deleteRiff } from "../../store/riff";
 
 const RiffCard = ( {riff} ) => {
 	const user = useSelector((state) => state.session.user);
@@ -116,7 +117,7 @@ const RiffModal = ({ riff, setShowRiffModal }) => {
 	const handleDelete = async (e) => {
 		e.preventDefault();
 
-		// const data = await dispatch(deleteComment(comment));
+		const data = await dispatch(deleteRiff(riff));
 
 
 
