@@ -107,7 +107,7 @@ const CommentModal = ({ comment, text, setText, setShowCommentModal }) => {
 	return (
 		<form className="edit-comment-form" onSubmit={handleEdit}>
 			<h3 className='h3-edit-comment'>Edit Comment</h3>
-			<input
+			<textarea
 			className='edit-comment-input'
 				type="text"
 				value={editText}

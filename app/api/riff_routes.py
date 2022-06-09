@@ -94,7 +94,7 @@ def post_riff():
 @login_required
 def delete_riff(riff_id):
     """
-    Deletes an estate from the database
+    Deletes a riff from the database
     """
     riff = Riff.query.get(riff_id)
     db.session.delete(riff)
@@ -102,18 +102,23 @@ def delete_riff(riff_id):
 
     return f'Riff id number {riff_id} has been deleted'
 
-
-
-
-# @riff_routes.route('/<int:id>/comments')
-# def comments(id):
-#     print('============', id)
-#     riff = riff = Riff.query.get(id)
-#     print('-*/-*/-*/-*/-*/-*/', riff)
-#     if not riff:
-#         return {"errors": f"No riffs with id number {id} exists"}, 404
-#     else:
-#         comments = riff.comments
-#         print('comments-*//*-/*-*-/*-//*-/*-*-/*-/*-/-/*-/*-/*/*-*-/', comments)
-#         return {"comments" : [comment.to_dict() for comment in comments]}
-
+@riff_routes.route('/<int:riff_id>', methods=["PATCH"])
+@login_required
+def edit_riff(riff_id):
+    """
+    Performs an update on a riff in the database
+    """
+    riff = Riff.query.get(riff_id)
+    if not riff:
+        return {"errors": f"No riff with is {riff_id} exists"}, 404
+    else:
+        form = RiffForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        form['user_id'].data = riff.user_id
+        form['link'].data = riff.link
+        if form.validate_on_submit():
+            form.populate_obj(riff)
+            db.session.add(riff)
+            db.session.commit()
+            return riff.to_dict()
+        return {'errors': form.errors}, 403
