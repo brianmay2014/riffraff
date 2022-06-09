@@ -6,7 +6,7 @@ import "./NewRiffForm.css";
 // import UploadSong from "./UploadSong";
 
 const LoginForm = () => {
-	const [errors, setErrors] = useState([]);
+	const [errors, setErrors] = useState({});
 
 	const [link, setLink] = useState('');
 	const [title, setTitle] = useState("");
@@ -35,7 +35,7 @@ const LoginForm = () => {
 			setErrors(riff.errors);
 			return;
 		}
-		if (riff && Object.key(errors).length === 0) {
+		if (riff && Object.keys(errors).length === 0) {
 			setLink('');
 			setTitle('');
 			setNote('');
@@ -95,7 +95,6 @@ const LoginForm = () => {
 				/>
 			</div>
 			<div className="s3-song-upload">
-				S3 upload to go here lol
 				<input
 					type="file"
 					// accept="image/*"
