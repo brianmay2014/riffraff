@@ -20,7 +20,7 @@ def seed_users():
         username='demo',
         email='demo@demo.com',
         password='password',
-        pic_url='',
+        pic_url='https://riff-raff.s3.us-west-1.amazonaws.com/images/demo.png',
         bio='demo user for riffraff',
         created_at=datetime.now(),
         updated_at=datetime.now())
@@ -28,7 +28,7 @@ def seed_users():
         username='heavyriffer',
         email='heavy@heavy.com',
         password='thrasher',
-        pic_url='',
+        pic_url='https://riff-raff.s3.us-west-1.amazonaws.com/images/metal.png',
         bio='just here to write something to head bang to',
         created_at=datetime.now(),
         updated_at=datetime.now())
@@ -36,7 +36,7 @@ def seed_users():
         username='rocknriffer',
         email='rock@rock.com',
         password='rocker',
-        pic_url='',
+        pic_url='https://riff-raff.s3.us-west-1.amazonaws.com/images/rock.png',
         bio='love my distortion as much as the next guy',
         created_at=datetime.now(),
         updated_at=datetime.now())
@@ -44,7 +44,7 @@ def seed_users():
         username='spacedriffer',
         email='space@space.com',
         password='spacer',
-        pic_url='',
+        pic_url='https://riff-raff.s3.us-west-1.amazonaws.com/images/space.png',
         bio='i cannot seem to stop buying pedals, send help',
         created_at=datetime.now(),
         updated_at=datetime.now())

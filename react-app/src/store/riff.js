@@ -3,12 +3,13 @@ const REMOVE_RIFF = 'riffs/removeRiff';
 const LOAD_RIFFS = 'riffs/loadRiffs';
 const UPDATE_RIFF = 'riffs/updateRiff';
 
-// const addRiff = (riff) => {
-//     return {
-//         type: ADD_RIFF,
-//         payload: riff,
-//     };
-// };
+const addRiff = (riff) => {
+    console.log('inside action');
+    return {
+        type: ADD_RIFF,
+        payload: riff,
+    };
+};
 
 // const removeRiff = (riff) => {
 //     return {
@@ -45,6 +46,32 @@ export const genRiffs = () => async (dispatch) => {
         return riffs;
     }
 };
+
+export const makeRiff = (riff, link) => async (dispatch) => {
+
+    // console.log ('inside thunk');
+    // console.log('riff', riff)
+
+    const form = new FormData();
+	form.append("link", link);
+    form.append("user_id", riff.user_id);
+	form.append("title", riff.title);
+	form.append("note", riff.note);
+
+    // console.log('form', form);
+
+    const response = await fetch(`/api/riffs/new`,
+        {method: "POST", body: form});
+
+    const riffData = await response.json();
+
+    if (response.ok) {
+        dispatch(addRiff(riffData));
+        return riffData;
+    } else {
+        return riffData;
+    }
+}
 
 const riffReducer = (state = {}, action) => {
 

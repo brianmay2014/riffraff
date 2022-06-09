@@ -1,17 +1,20 @@
 log out icon
-<i class="fa-solid fa-arrow-right-from-bracket"></i>
+<i className="fa-solid fa-arrow-right-from-bracket"></i>
 
 user page
-<i class="fa-solid fa-user"></i>
+<i className="fa-solid fa-user"></i>
 
 home
-<i class="fa-solid fa-house"></i>
+<i className="fa-solid fa-house"></i>
 
 log in
-<i class="fa-solid fa-arrow-right-to-bracket"></i>
+<i className="fa-solid fa-arrow-right-to-bracket"></i>
 
 sign up
-<i class="fa-solid fa-user-plus"></i>
+<i className="fa-solid fa-user-plus"></i>
+
+new post
+<i className="fa-solid fa-plus"></i>
 
 sliders [for edit modal]
-<i class="fa-solid fa-sliders"></i>
+<i className="fa-solid fa-sliders"></i>

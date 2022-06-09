@@ -35,10 +35,10 @@ const HomePage = () => {
 		<div id="home-body">
 			<div id="splash-logo">
 				{/* <img
-					src="react-app/public/logo-place-hold.png"
+					src="https://freesvg.org/img/dog-6117498.png"
 					alt="riff raff logo"
 				></img> */}
-				Root Logo will go here
+				<p>Root Logo will go here</p>
 			</div>
 			<div id="splash-auth-links">
 				<div className="auth-header">

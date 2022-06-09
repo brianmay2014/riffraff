@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
-import { genComments } from "../../store/comment";
+// import { Redirect, useHistory } from "react-router-dom";
+// import { genComments } from "../../store/comment";
 import { genRiffs } from "../../store/riff";
 import CommentRow from "./CommentRow";
 import PostComment from "./PostComment";
 // import { genRiffs } from "../../store/riff";
 // import { login } from "../../store/session";
 import "./RiffFeed.css";
-// import { genRiffs } from "../../store/riff";
 
 const CommentDisplay = ({ riff }) => {
 	// const user = useSelector((state) => state.session.user);
@@ -24,10 +23,10 @@ const CommentDisplay = ({ riff }) => {
 		if (riff) {
 			dispatch(genRiffs());
 		}
-	}, [comments]);
+	}, [comments, dispatch]);
 
 	// console.log(comments);
-	const commentArr = Object.values(comments);
+	// const commentArr = Object.values(comments);
 
 	let riffComments = [];
 	riff?.comment_ids.forEach((comment_id) => {

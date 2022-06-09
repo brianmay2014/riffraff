@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./RiffFeed.css";
-import { genRiffs } from "../../store/riff";
+// import { genRiffs } from "../../store/riff";
 import CommentDisplay from "./CommentDisplay";
 
 const RiffCard = ( {riff} ) => {
 	// const user = useSelector((state) => state.session.user);
 	// const [errors, setErrors] = useState([]);
-    const riffs = useSelector((state) => state.riffs);
 
-
-	const dispatch = useDispatch();
-
-	// if (user) {
-	// 	return <Redirect to="/" />;
-	// }
-
+	//maybe to re-render the whole card??????
+    // const riffs = useSelector((state) => state.riffs);
+	// const dispatch = useDispatch();
     
     // null before riffs / riff prop loads from the store
     if (!riff) {
         return null;
     }
 
+	// if (riff.author_img === '') {
+	// 	riff.author_img =
+	// 		"https://images.pexels.com/photos/7899456/pexels-photo-7899456.png?auto=compress&cs=tinysrgb&w=126&h=75&dpr=1";
+	// }
+
 	return (
 		<div id={`riff-card-${riff.id}`} className="riff-cards">
 			<div className="riff-header">
 				<img
 					className="card-user-img"
-					src="https://images.pexels.com/photos/7899456/pexels-photo-7899456.png?auto=compress&cs=tinysrgb&w=126&h=75&dpr=1"
+					src={riff?.author_img}
 					alt="default-remove"
 				>
                 </img>

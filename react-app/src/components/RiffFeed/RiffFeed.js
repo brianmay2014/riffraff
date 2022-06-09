@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
-import { login } from "../../store/session";
+// import { Redirect, useHistory } from "react-router-dom";
+// import { login } from "../../store/session";
 import "./RiffFeed.css";
 import { genRiffs } from "../../store/riff";
 import { genComments } from "../../store/comment";
@@ -47,6 +47,8 @@ const RiffFeed = () => {
 	// if (user) {
 	// 	return <Redirect to="/" />;
 	// }
+
+	
 
     
     // null before riffs loads from the store

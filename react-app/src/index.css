@@ -47,8 +47,12 @@ a {
 .fake-body {
 }
 
-a:visited {
+/* a:visited {
 	color: var(--visitedlink);
+} */
+
+a {
+	color: var(--medslate);
 }
 
 body {
@@ -63,7 +67,7 @@ button {
 	font-family: "Bai Jamjuree", sans-serif;
 }
 
-input {
+input, textarea{
 	font-family: "Bai Jamjuree", sans-serif;
 }
 

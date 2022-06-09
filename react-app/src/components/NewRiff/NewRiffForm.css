@@ -1,4 +1,4 @@
-#sign-up-form, #login-form {
+#new-riff-form {
     width: 350px;
     background-color: var(--darkestpurple);
     margin: 0 auto;
@@ -8,14 +8,14 @@
     justify-content: center;
     flex-direction: column;
 }
-
+/* 
 #home-body {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin: 0 auto;
-}
-
+} */
+/* 
 #splash-auth-links {
     background-color: var(--darkestpurple);
     border: var(--medpurple) 1px solid;
@@ -23,44 +23,24 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-}
+} */
 
-#splash-logo, #splash-auth-links {
+/* #splash-logo, #splash-auth-links {
     width: 350px;
     height: 520px;
-}
+} */
 
-.btn-auth-link {
-    background-color: var(--medgreen);
-    color: var(--lightestgreen);
-    padding: 5px;
-    border-radius: 2px;
-    border: 2px solid var(--darkgreen);
-    transition: all 0.3s;
-}
 
-.auth-header {
+.new-riff-header {
     margin: 18px 24px;
     text-align: center;
 }
 
-.auth-submit{
+.riff-submit{
     margin-top: 18px;
 }
 
-.auth-page-links{
-    margin: 12px auto 38px ;
-    text-align: center;
-}
-
-.btn-auth-link:hover:not(:disabled) {
-    background-color: var(--lightgreen);
-    border: 2px solid var(--medgreen);
-    box-shadow: 0 0 8px var(--lightgreen);
-    color: var(--darkgreen);
-}
-
-input {
+input, textarea {
     background: transparent;
     color: var(--lightestslate);
     
@@ -69,14 +49,14 @@ input {
 	border-radius: 2px;
 	/* box-shadow: 0px 0px 2px var(--medslate); */
 }
-input:focus {
+input:focus, textarea:focus{
 	outline: none;
     color: var(--lightestslate);
 	box-shadow: 1px 1px 3px var(--darkslate), -1px -1px 3px var(--darkslate);
     border: 0.2px var(--darkslate) solid;
 }
 
-.auth-fields {
+.riff-fields {
     background: transparent;
     color: var(--lightestslate);
 	border-radius: 2px;
@@ -88,35 +68,21 @@ input:focus {
 
 }
 
-#signup-button {
-    margin: 0 auto;
-}
-
-.auth-fields:focus {
+.riff-fields:focus {
 	outline: none;
     color: var(--lightestslate);
 	box-shadow: 2px 2px 6px var(--lightslate);
 }
-.auth-fields label {
+.riff-fields label {
     font-size: 12px;
 }
 
-.login-buttons-container{
+.new-riff-submit-container{
     margin: 0 auto;
     width: fit-content;
 }
 
-.login-buttons-container button {
+.new-riff-submit-container button {
     margin-left: 20px;
     margin-right: 20px;
-}
-
-#home-demo-button {
-    width: 200px;
-    margin: 0 auto 40px;
-}
-
-#splash-logo p{
-    font-size:100px;
-    color: var(--blackpurple);
 }
