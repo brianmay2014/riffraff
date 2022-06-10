@@ -4,7 +4,7 @@ from app.models import db, Riff, Comment
 from app.utils.validutils import validation_errors_to_error_messages
 from app.forms.comment_form import CommentForm
 from app.forms.riff_form import RiffForm
-from app.utils.s3utils import upload_file_to_s3, allowed_file, get_unique_filename
+from app.utils.s3utils import upload_file_to_s3, allowed_riff_file, get_unique_filename
 
 # will need to import forms
 # from app.forms.yadayada
@@ -55,6 +55,7 @@ def post_comment(id):
             
             return comment.to_dict()
         else:
+            # print('-------*-*/-/*-*/-*/-*/-----/*/-*-/*-*/-*/-*/', form.errors)
             return {"errors": validation_errors_to_error_messages(form.errors)}, 403
 
 
@@ -62,12 +63,14 @@ def post_comment(id):
 # @login_required
 def post_riff():
     if "link" not in request.files:
-        return {"errors": "Riff file is required"}, 400
+        return {"errors": validation_errors_to_error_messages({'link.file': ["Riff file is required"]})}, 400
+        # return {"errors": "Riff file is required"}, 400
 
     link = request.files['link']
 
-    if not allowed_file(link.filename):
-        return {"errors": "File type not permitted"}, 400
+    if not allowed_riff_file(link.filename):
+        return {"errors": validation_errors_to_error_messages({'link.filename': ["File type not permitted"]})}, 400
+        # return {"errors": "File type not permitted"}, 400
 
     link.filename = get_unique_filename(link.filename)
 

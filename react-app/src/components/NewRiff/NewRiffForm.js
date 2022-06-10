@@ -6,7 +6,7 @@ import "./NewRiffForm.css";
 // import UploadSong from "./UploadSong";
 
 const LoginForm = () => {
-	const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState([]);
 
 	const [link, setLink] = useState('');
 	const [title, setTitle] = useState("");
@@ -29,10 +29,13 @@ const LoginForm = () => {
 		//loading message because aws can be a bit slow
 		setLinkLoading(true);
 		
-		setErrors({});
+		setErrors([]);
 		const riff = await dispatch(makeRiff(data, link))
 		if (riff.errors) {
+			// console.log([ ...riff.errors]);
 			setErrors(riff.errors);
+			// console.log(errors)
+			setLinkLoading(false);
 			return;
 		}
 		if (riff && Object.keys(errors).length === 0) {
@@ -42,6 +45,7 @@ const LoginForm = () => {
 			setLinkLoading(false);
 
 			// route to newly created riff?
+			history.push('/');
 
 		}
 	};
@@ -62,19 +66,22 @@ const LoginForm = () => {
 				<h3>Add your riffs to get collaborating</h3>
 			</div>
 			<div className="form-errors">
-				{/* {errors.map((error, ind) => (
+				{errors.map((error, ind) => (
 					<div key={ind}>{error}</div>
-				))} */}
-				{Object.keys(errors).length > 0 && (
+				))}
+				{/* {Object.keys(errors).length > 0 && (
 					<div className="form-errors">
 						{Object.keys(errors).map(
 							(key) => `${key.toUpperCase()}: ${errors[key]}`
 						)}
 					</div>
-				)}
+				)} */}
 			</div>
 			<div className="riff-fields">
-				<label>Title</label>
+				<div className="required-input-header">
+					<label for="file-input">Title</label>
+					<span className="required">required</span>
+				</div>
 				<input
 					name="title"
 					type="text"
@@ -94,11 +101,17 @@ const LoginForm = () => {
 					onChange={(e) => setNote(e.target.value)}
 				/>
 			</div>
-			<div className="s3-song-upload">
+			<div className="s3-song-upload riff-fields">
+				<div className="required-input-header">
+					<label for="file-input">Upload Riff</label>
+					<span className="required">required</span>
+				</div>
 				<input
 					type="file"
+					id="file-input"
 					// accept="image/*"
 					accept=".mp3,.m4a"
+					className="riff-file-input"
 					onChange={updateLink}
 				/>
 				{/* <button type="submit">Submit</button> */}
