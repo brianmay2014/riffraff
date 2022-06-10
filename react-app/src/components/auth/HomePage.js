@@ -6,8 +6,8 @@ import "./Auth.css";
 
 const HomePage = () => {
 	const user = useSelector((state) => state.session.user);
-    const [errors, setErrors] = useState([]);
-    const dispatch = useDispatch();
+	const [errors, setErrors] = useState([]);
+	const dispatch = useDispatch();
 	const history = useHistory();
 
 	const toLogin = async (e) => {
@@ -33,50 +33,61 @@ const HomePage = () => {
 
 	return (
 		<div id="home-body">
-			<div id="splash-logo">
-				<img
-					src="https://riff-raff.s3.us-west-1.amazonaws.com/transparentlogos/middarkslate-clear.png"
-					alt="riff raff logo"
-				></img>
+			<div id="home-guts">
+				<div id="splash-logo">
+					<img
+						src="https://riff-raff.s3.us-west-1.amazonaws.com/transparentlogos/middarkslate-clear.png"
+						alt="riff raff logo"
+					></img>
+				</div>
+				<div id="splash-auth-links">
+					<div className="auth-header">
+						<h1>riff raff</h1>
+						<h3>A community for songwriters.</h3>
+						<h4>It all starts with one riff.</h4>
+					</div>
+					<div className="auth-page-links">
+						<p>Already have an account?</p>
+						<button
+							id="to-log-in"
+							className="btn-auth-link"
+							onClick={toLogin}
+						>
+							Log in!
+						</button>
+					</div>
+					<div className="auth-page-links">
+						<p>Don't have an account?</p>
+						<button
+							id="to-sign-up"
+							className="btn-auth-link"
+							onClick={toSignup}
+						>
+							Sign up!
+						</button>
+					</div>
+					<div className="form-errors">
+						{errors.map((error, ind) => (
+							<div key={ind}>{error}</div>
+						))}
+					</div>
+					<button
+						id="home-demo-button"
+						className="btn-cancel"
+						onClick={demoSubmit}
+					>
+						Demo Login
+					</button>
+				</div>
 			</div>
-			<div id="splash-auth-links">
-				<div className="auth-header">
-					<h1>riff raff</h1>
-					<h3>A community for songwriters.</h3>
-					<h4>It all starts with one riff.</h4>
-				</div>
-				<div className="auth-page-links">
-					<p>Already have an account?</p>
-					<button
-						id="to-log-in"
-						className="btn-auth-link"
-						onClick={toLogin}
-					>
-						Log in!
-					</button>
-				</div>
-				<div className="auth-page-links">
-					<p>Don't have an account?</p>
-					<button
-						id="to-sign-up"
-						className="btn-auth-link"
-						onClick={toSignup}
-					>
-						Sign up!
-					</button>
-				</div>
-				<div className="form-errors">
-					{errors.map((error, ind) => (
-						<div key={ind}>{error}</div>
-					))}
-				</div>
-				<button
-					id="home-demo-button"
-					className="btn-cancel"
-					onClick={demoSubmit}
-				>
-					Demo Login
-				</button>
+			<div id='home-description'>
+				<h3>
+					riff raff is an online community to share riffs
+					</h3>
+				<h3>					
+					members can share their suggestions for backing chords, or accompanying riffs
+				</h3>
+				<h3>building songs together, one riff at a time</h3>
 			</div>
 		</div>
 	);
