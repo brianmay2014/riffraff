@@ -9,7 +9,7 @@
     flex-direction: column;
 }
 
-#home-body {
+#home-guts {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -23,17 +23,28 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+        width: 350px;
+    min-width:350px;
 }
 
-#splash-logo, #splash-auth-links {
-    width: 350px;
-    height: 520px;
-}
+
 #splash-logo img{
+    width: 160px;
+    min-width:160px;
     height: 100%;
     position: relative;
-    left: 150px;
-    /* margin: 0 auto; */
+    margin-right: 50px;
+}
+
+#home-description{
+    color: var(--medslate);
+    text-align: center;
+    margin-top: 18px;
+}
+
+#home-description h3{
+    margin: 0;
+    font-weight: 500;
 }
 
 .btn-auth-link {
