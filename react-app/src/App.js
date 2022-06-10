@@ -12,6 +12,7 @@ import RiffFeed from './components/RiffFeed/RiffFeed';
 import NewRiffForm from './components/NewRiff/NewRiffForm'
 import { authenticate } from './store/session';
 import Footer from './components/Footer';
+import FooterSpacer from './components/FooterSpacer'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,24 +35,31 @@ function App() {
 			<Switch>
 				<Route path="/login" exact={true}>
 					<LoginForm />
+					<FooterSpacer />
 				</Route>
 				<Route path="/sign-up" exact={true}>
 					<SignUpForm />
+					<FooterSpacer />
 				</Route>
 				<ProtectedRoute path="/riffs" exact={true}>
 					<RiffFeed />
+					<FooterSpacer />
 				</ProtectedRoute>
 				<ProtectedRoute path="/users" exact={true}>
 					<UsersList />
+					<FooterSpacer />
 				</ProtectedRoute>
 				<ProtectedRoute path="/users/:userId" exact={true}>
 					<User />
+					<FooterSpacer />
 				</ProtectedRoute>
 				<ProtectedRoute path="/riffs/new" exact={true}>
 					<NewRiffForm />
+					<FooterSpacer />
 				</ProtectedRoute>
 				<Route path="/" exact={true}>
 					<HomePage />
+					<FooterSpacer />
 				</Route>
 			</Switch>
 			<Footer />

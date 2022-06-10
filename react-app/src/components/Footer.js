@@ -1,25 +1,10 @@
+import "./Footer.css";
+
 function Footer() {
 	return (
 		<div className="footer-backer">
 			<div className="footer">
-				<span>© 2022 Brian May</span>
-				<div>
-					<a
-						href="https://github.com/brianmay2014"
-						rel="noreferrer"
-						target="_blank"
-					>
-						Github
-					</a>
-					<a
-						href="http://www.linkedin.com/in/brian-may-6aa49172"
-						rel="noreferrer"
-						target="_blank"
-					>
-						LinkedIn
-					</a>
-				</div>
-				<div className="tech-links">
+				<div id="footer-top-row">
 					<a
 						href="https://reactjs.org/docs/getting-started.html"
 						rel="noreferrer"
@@ -104,6 +89,27 @@ function Footer() {
 					>
 						AWS S3
 					</a>
+				</div>
+				<div id="footer-bottom-row">
+						<a
+							href="https://github.com/brianmay2014"
+							rel="noreferrer"
+							target="_blank"
+							className="personal-link"
+						>
+							Github
+						</a>
+					<span>© 2022 Brian May</span>
+					
+						<a
+							href="http://www.linkedin.com/in/brian-may-6aa49172"
+							rel="noreferrer"
+							target="_blank"
+							className="personal-link"
+						>
+							LinkedIn
+						</a>
+					
 				</div>
 			</div>
 		</div>
