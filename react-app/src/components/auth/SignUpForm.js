@@ -57,7 +57,7 @@ const SignUpForm = () => {
 				<h1>riff raff</h1>
 				<h3>Sign up to start collaborating with your friends.</h3>
 			</div>
-			<div>
+			<div className='form-errors'>
 				{errors.map((error, ind) => (
 					<div key={ind}>{error}</div>
 				))}
