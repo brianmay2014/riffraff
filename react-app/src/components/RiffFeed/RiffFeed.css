@@ -89,7 +89,9 @@ span {
     /* border-right: 2px solid  */
 }
 
-
+.form-errors.comment-errors{
+    margin: 0;
+}
 
 .post-comment-button {
     background-color: transparent;

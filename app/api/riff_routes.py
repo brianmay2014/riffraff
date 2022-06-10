@@ -13,6 +13,20 @@ from app.utils.s3utils import upload_file_to_s3, allowed_file, get_unique_filena
 
 riff_routes = Blueprint('riffs', __name__)
 
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            # errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f'{error}')
+    return errorMessages
+
+
+
 # get '/riffs'
 @riff_routes.route('/')
 def riffs():
@@ -30,6 +44,9 @@ def post_comment(id):
     else:
         form = CommentForm()
         form['csrf_token'].data = request.cookies['csrf_token']
+        # print('------*-/*-/-/*-*//*-*-/-----------')
+        # print(form)
+
         if form.validate_on_submit():
             comment = Comment()
             form.populate_obj(comment)
@@ -38,36 +55,28 @@ def post_comment(id):
             
             return comment.to_dict()
         else:
-            return {"errors": form.errors}, 403
+            return {"errors": validation_errors_to_error_messages(form.errors)}, 403
 
 
 @riff_routes.route('/new', methods=["POST"])
 # @login_required
 def post_riff():
-    # print('/*-/*-/*-*-//*-*/-/*-/*-*-/-/**-/*-/*-//*-*-/*/-*-/*-/-*/*-/*-/*-/*-/*/-*-/*/-*-/*-/*-/*-/*-/-*/*-/*-/*-/in-route')
     if "link" not in request.files:
         return {"errors": "Riff file is required"}, 400
 
     link = request.files['link']
-
-    print('////////////////before///////////////////////', link)
 
     if not allowed_file(link.filename):
         return {"errors": "File type not permitted"}, 400
 
     link.filename = get_unique_filename(link.filename)
 
-    print('////////////////after///////////////////////', link)
-
     upload = upload_file_to_s3(link)
-
-    print('|||||||||||||||||||||||||||||||||||||||||', upload)
 
     if "url" not in upload:
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
         # so we send back that error message
-        print('=======upload messed up')
         return upload, 400
 
     url = upload['url']
@@ -76,10 +85,8 @@ def post_riff():
     form['csrf_token'].data = request.cookies['csrf_token']
     form['link'].data = url
 
-    print('---------------------------', form)
 
     if form.validate_on_submit():
-        print('*-//*-*/-/*-/*-*-/-/**-/*-/*-//*-*-/*/-*-*-//*-*/-/*-/*-*-/-/**-/*-/*-//*-*-/*/-*-in validated form')
         riff = Riff()
         form.populate_obj(riff)
         db.session.add(riff)
@@ -87,7 +94,7 @@ def post_riff():
         
         return riff.to_dict()
     else:
-        return {"errors": form.errors}, 403
+        return {"errors": validation_errors_to_error_messages(form.errors)}, 403
 
 
 @riff_routes.route('/<int:riff_id>/', methods=["DELETE"])
@@ -121,4 +128,4 @@ def edit_riff(riff_id):
             db.session.add(riff)
             db.session.commit()
             return riff.to_dict()
-        return {'errors': form.errors}, 403
+        return {"errors": validation_errors_to_error_messages(form.errors)}, 403

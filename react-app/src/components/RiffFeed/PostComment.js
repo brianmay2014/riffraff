@@ -26,10 +26,12 @@ const PostComment = ({ riff }) => {
             riff_id: riff.id,
             text: addText, 
         };
-        setErrors({});
+        setErrors([]);
         const comment = await dispatch(makeComment(data));
         if (comment.errors) {
             setErrors(comment.errors);
+
+			console.log(errors);
             return;
         }
         if (comment && Object.keys(errors).length === 0) {
@@ -43,7 +45,11 @@ const PostComment = ({ riff }) => {
 	}
 
 	return (
-		<div id={`${riff?.id}-post-comment`} className="post-comment" onSubmit={handleSubmit}>
+		<div
+			id={`${riff?.id}-post-comment`}
+			className="post-comment"
+			onSubmit={handleSubmit}
+		>
 			<form id={`${riff?.id}-comment-form`} className="post-comment-form">
 				<input
 					className="post-comment-input"
@@ -60,6 +66,11 @@ const PostComment = ({ riff }) => {
 					Post
 				</button>
 			</form>
+			<div className="form-errors comment-errors">
+				{errors.map((error, ind) => (
+					<div key={ind}>{error}</div>
+				))}
+			</div>
 		</div>
 	);
 };

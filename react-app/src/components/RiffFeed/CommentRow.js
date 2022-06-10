@@ -75,14 +75,16 @@ const CommentModal = ({ comment, text, setText, setShowCommentModal }) => {
 
 	const dispatch = useDispatch();
 
-	const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState([]);
 	
 	const handleEdit = async (e) => {
 		e.preventDefault();
 		const updateComment = { ...comment };
 		updateComment.text = editText;
 
-		console.log('updated comment? - - - - - - - -- -', updateComment);
+		// console.log('updated comment? - - - - - - - -- -', updateComment);
+
+		setErrors([]);
 
 		const editConfirm = await dispatch(editComment(updateComment));
 		if (editConfirm.errors) {
@@ -106,19 +108,27 @@ const CommentModal = ({ comment, text, setText, setShowCommentModal }) => {
 
 	return (
 		<form className="edit-comment-form" onSubmit={handleEdit}>
-			<h3 className='h3-edit-comment'>Edit Comment</h3>
+			<h3 className="h3-edit-comment">Edit Comment</h3>
 			<textarea
-			className='edit-comment-input'
+				className="edit-comment-input"
 				type="text"
 				value={editText}
 				required
 				onChange={(e) => setEditText(e.target.value)}
 			/>
+			<div className="form-errors">
+				{errors.map((error, ind) => (
+					<div key={ind}>{error}</div>
+				))}
+			</div>
 			<div className="comment-modal-buttons">
 				<button type="submit" className="comment-edit edit-modal-btn">
 					Update Comment
 				</button>
-				<button onClick={handleDelete} className="comment-delete edit-modal-btn">
+				<button
+					onClick={handleDelete}
+					className="comment-delete edit-modal-btn"
+				>
 					Delete Comment
 				</button>
 			</div>

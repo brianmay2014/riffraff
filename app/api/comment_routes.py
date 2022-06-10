@@ -11,6 +11,20 @@ from app.forms.comment_form import CommentForm
 
 comment_routes = Blueprint('comments', __name__)
 
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            # errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f'{error}')
+    return errorMessages
+
+
+
 # get '/riffs'
 @comment_routes.route('/')
 def comments():
@@ -34,11 +48,6 @@ def edit_comment(id):
     """
     Edits a comment
     """
-
-
-
-
-
     comment = Comment.query.get(id)
     if not comment:
         return {"errors": f"No comment with id {id} exists"}, 404
@@ -52,4 +61,4 @@ def edit_comment(id):
             db.session.add(comment)
             db.session.commit()
             return comment.to_dict()
-        return {'errors': form.errors}, 403
+        return {"errors": validation_errors_to_error_messages(form.errors)}, 403
