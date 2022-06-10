@@ -11,6 +11,7 @@ import HomePage from './components/auth/HomePage';
 import RiffFeed from './components/RiffFeed/RiffFeed';
 import NewRiffForm from './components/NewRiff/NewRiffForm'
 import { authenticate } from './store/session';
+import Footer from './components/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,6 +54,7 @@ function App() {
 					<HomePage />
 				</Route>
 			</Switch>
+			<Footer />
 		</BrowserRouter>
   );
 }
