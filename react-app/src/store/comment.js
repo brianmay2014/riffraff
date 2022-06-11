@@ -56,6 +56,8 @@ export const editComment = (comment) => async (dispatch) => {
         body: form,
     });
     const commentData = await response.json();
+
+    console.log('*/-/*-/*-/*-/*-*/-/*--*/*-/*/-', commentData);
     dispatch(addComment(commentData))
     return { ...commentData }
 }

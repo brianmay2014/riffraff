@@ -102,7 +102,7 @@ const RiffModal = ({ riff, setShowRiffModal }) => {
 
 	const dispatch = useDispatch();
 
-	const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState([]);
 
 	const handleEdit = async (e) => {
 		e.preventDefault();
@@ -113,8 +113,10 @@ const RiffModal = ({ riff, setShowRiffModal }) => {
 		updateRiff.title = title;
 		updateRiff.note = note;
 
-		console.log("updated comment? - - - - - - - -- -", updateRiff);
+		// console.log("updated comment? - - - - - - - -- -", updateRiff);
 
+		setErrors([]);
+		
 		const editRiffConfirm = await dispatch(editRiff(updateRiff));
 		if (editRiffConfirm.errors) {
 			setErrors(editRiffConfirm.errors);
