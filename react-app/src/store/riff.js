@@ -76,7 +76,7 @@ export const makeRiff = (riff, link) => async (dispatch) => {
 export const deleteRiff = (riff) => async (dispatch) => {
     // const { id } = riff;
 
-    const response = await fetch(`api/riffs/${riff.id}/`, {
+    const response = await fetch(`/api/riffs/${riff.id}/`, {
         method: "DELETE",
         body: JSON.stringify({ riff_id: riff.id })
     });
@@ -99,9 +99,16 @@ export const editRiff = (riff) => async (dispatch) => {
     const riffData = await response.json();
     
     console.log('*-//*-*-/-/**-/*/-', riffData);
-
     dispatch(addRiff(riffData))
     return { ...riffData }
+
+
+    // if (response.ok) {
+	// 	dispatch(addRiff(riffData));
+	// 	return { ...riffData }
+	// } else {
+    //     return { ...riffData };
+    // }
 }
 
 const riffReducer = (state = {}, action) => {

@@ -13,6 +13,7 @@ import NewRiffForm from './components/NewRiff/NewRiffForm'
 import { authenticate } from './store/session';
 import Footer from './components/Footer';
 import FooterSpacer from './components/FooterSpacer'
+import SingleRiff from './components/SingleRiff/SingleRiff';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -57,6 +58,10 @@ function App() {
 					<NewRiffForm />
 					<FooterSpacer />
 				</ProtectedRoute>
+				{/* <ProtectedRoute path="/riffs/:riffId" exact={true}>
+					<SingleRiff />
+					<FooterSpacer />
+				</ProtectedRoute> */}
 				<Route path="/" exact={true}>
 					<HomePage />
 					<FooterSpacer />

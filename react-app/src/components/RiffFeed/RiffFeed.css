@@ -93,6 +93,23 @@ span {
     margin: 0;
 }
 
+span.required {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--required);
+}
+
+span.optional {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--medslate);
+}
+
+.edit-riff-labels{
+    font-size: 14px;
+    margin-left: 30px;
+}
+
 .post-comment-button {
     background-color: transparent;
     color: var(--lightestslate);
@@ -182,9 +199,23 @@ button.comment-delete{
     color: var(--error);
 }
 
+.comment-edit.edit-modal-btn:hover{
+    background-color: transparent;
+    transition: 0.3s;
+}
 
+.comment-edit.edit-modal-btn:hover{
+    background-color: var(--blackpurple);
+}
 
+.comment-delete.edit-modal-btn:hover{
+    background-color: transparent;
+    transition: 0.3s;
+}
 
+.comment-delete.edit-modal-btn:hover{
+    background-color: var(--bgred);
+}
 
 
 

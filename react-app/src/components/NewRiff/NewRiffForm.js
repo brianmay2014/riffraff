@@ -39,14 +39,14 @@ const LoginForm = () => {
 			return;
 		}
 		if (riff && Object.keys(errors).length === 0) {
-			setLink('');
-			setTitle('');
-			setNote('');
+			setLink("");
+			setTitle("");
+			setNote("");
 			setLinkLoading(false);
 
 			// route to newly created riff?
-			history.push('/');
-
+			history.push(`/`);
+			// history.push(`/riffs/${riff.id}`);
 		}
 	};
 	
@@ -79,7 +79,7 @@ const LoginForm = () => {
 			</div>
 			<div className="riff-fields">
 				<div className="required-input-header">
-					<label for="file-input">Title</label>
+					<label htmlFor="file-input">Title</label>
 					<span className="required">required</span>
 				</div>
 				<input
@@ -103,7 +103,7 @@ const LoginForm = () => {
 			</div>
 			<div className="s3-song-upload riff-fields">
 				<div className="required-input-header">
-					<label for="file-input">Upload Riff</label>
+					<label htmlFor="file-input">Upload Riff</label>
 					<span className="required">required</span>
 				</div>
 				<input
