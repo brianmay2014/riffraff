@@ -29,7 +29,7 @@ const CommentDisplay = ({ riff }) => {
 	// const commentArr = Object.values(comments);
 
 	let riffComments = [];
-	riff?.comment_ids.forEach((comment_id) => {
+	riff?.comment_ids?.forEach((comment_id) => {
 		riffComments.push(comments[comment_id]);
 	});
 

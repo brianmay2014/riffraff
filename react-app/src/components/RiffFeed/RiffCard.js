@@ -102,7 +102,7 @@ const RiffModal = ({ riff, setShowRiffModal }) => {
 
 	const dispatch = useDispatch();
 
-	const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState([]);
 
 	const handleEdit = async (e) => {
 		e.preventDefault();
@@ -113,9 +113,13 @@ const RiffModal = ({ riff, setShowRiffModal }) => {
 		updateRiff.title = title;
 		updateRiff.note = note;
 
-		console.log("updated comment? - - - - - - - -- -", updateRiff);
+		// console.log("updated comment? - - - - - - - -- -", updateRiff);
+
+		setErrors([]);
 
 		const editRiffConfirm = await dispatch(editRiff(updateRiff));
+		console.log(editRiffConfirm.errors);
+
 		if (editRiffConfirm.errors) {
 			setErrors(editRiffConfirm.errors);
 			return;
@@ -143,7 +147,15 @@ const RiffModal = ({ riff, setShowRiffModal }) => {
 	return (
 		<form className="edit-comment-form" onSubmit={handleEdit}>
 			<h3 className="h3-edit-comment">Edit Riff</h3>
-			<label>Title</label>
+			<div className="form-errors">
+				{errors.map((error, ind) => (
+					<div key={ind}>{error}</div>
+				))}
+			</div>
+			<div className="required-input-header">
+				<label className="edit-riff-labels">Title</label>
+				<span className="required">required</span>
+			</div>
 			<input
 				className="edit-comment-input"
 				type="text"
@@ -151,7 +163,10 @@ const RiffModal = ({ riff, setShowRiffModal }) => {
 				required
 				onChange={(e) => setTitle(e.target.value)}
 			/>
-			<label>Note</label>
+			<div className="required-input-header">
+				<label className="edit-riff-labels">Note</label>
+				<span className="optional">(optional)</span>
+			</div>
 			<textarea
 				className="edit-comment-input"
 				type="text"

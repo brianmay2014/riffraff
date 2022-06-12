@@ -4,6 +4,7 @@ const LOAD_COMMENTS = 'comments/loadComments';
 const CLEAR_COMMENTS = 'comments/clearComments';
 
 const addComment = (comment) => {
+    console.log('inside action');
     return {
         type: ADD_COMMENT,
         payload: comment,
@@ -51,11 +52,13 @@ export const editComment = (comment) => async (dispatch) => {
     const form = new FormData();
     form.append("text", text);
 
-    const response = await fetch(`api/comments/${id}`, {
+    const response = await fetch(`/api/comments/${id}`, {
         method: "PATCH",
         body: form,
     });
     const commentData = await response.json();
+
+    console.log('*/-/*-/*-/*-/*-*/-/*--*/*-/*/-', commentData);
     dispatch(addComment(commentData))
     return { ...commentData }
 }
@@ -65,7 +68,7 @@ export const editComment = (comment) => async (dispatch) => {
 export const deleteComment = (comment) => async (dispatch) => {
     const {id} = comment;
 
-    const response = await fetch(`api/comments/${id}`, {
+    const response = await fetch(`/api/comments/${id}`, {
         method: "DELETE",
         body: JSON.stringify({ comment_id: comment.id })
     });

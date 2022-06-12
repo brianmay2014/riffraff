@@ -8,27 +8,7 @@
     justify-content: center;
     flex-direction: column;
 }
-/* 
-#home-body {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 0 auto;
-} */
-/* 
-#splash-auth-links {
-    background-color: var(--darkestpurple);
-    border: var(--medpurple) 1px solid;
-    border-radius: 2px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-} */
 
-/* #splash-logo, #splash-auth-links {
-    width: 350px;
-    height: 520px;
-} */
 
 
 .new-riff-header {
@@ -36,8 +16,8 @@
     text-align: center;
 }
 
-.riff-submit{
-    margin-top: 18px;
+.riff-submit.btn{
+    margin-bottom: 18px;
 }
 
 input, textarea {
@@ -76,6 +56,11 @@ input:focus, textarea:focus{
 .riff-fields label {
     font-size: 12px;
 }
+.riff-fields span.required {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--required);
+}
 
 .new-riff-submit-container{
     margin: 0 auto;
@@ -85,4 +70,22 @@ input:focus, textarea:focus{
 .new-riff-submit-container button {
     margin-left: 20px;
     margin-right: 20px;
+}
+
+input[type=file]::file-selector-button {
+    background-color: var(--medgreen);
+    color: var(--lightestgreen);
+    padding: 5px;
+    border-radius: 2px;
+    border: 2px solid var(--darkgreen);
+    transition: all 0.3s;
+}
+
+
+
+input[type=file]::file-selector-button:hover {
+    background-color: var(--lightgreen);
+    border: 2px solid var(--medgreen);
+    box-shadow: 0 0 8px var(--lightgreen);
+    color: var(--darkgreen);
 }

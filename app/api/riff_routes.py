@@ -4,7 +4,7 @@ from app.models import db, Riff, Comment
 from app.utils.validutils import validation_errors_to_error_messages
 from app.forms.comment_form import CommentForm
 from app.forms.riff_form import RiffForm
-from app.utils.s3utils import upload_file_to_s3, allowed_file, get_unique_filename
+from app.utils.s3utils import upload_file_to_s3, allowed_riff_file, get_unique_filename
 
 # will need to import forms
 # from app.forms.yadayada
@@ -12,6 +12,20 @@ from app.utils.s3utils import upload_file_to_s3, allowed_file, get_unique_filena
 # from ..utils.s3utils import  upload_file_to_s3, allowed_file, get_unique_filename
 
 riff_routes = Blueprint('riffs', __name__)
+
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            # errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f'{error}')
+    return errorMessages
+
+
 
 # get '/riffs'
 @riff_routes.route('/')
@@ -30,6 +44,9 @@ def post_comment(id):
     else:
         form = CommentForm()
         form['csrf_token'].data = request.cookies['csrf_token']
+        # print('------*-/*-/-/*-*//*-*-/-----------')
+        # print(form)
+
         if form.validate_on_submit():
             comment = Comment()
             form.populate_obj(comment)
@@ -38,36 +55,31 @@ def post_comment(id):
             
             return comment.to_dict()
         else:
-            return {"errors": form.errors}, 403
+            # print('-------*-*/-/*-*/-*/-*/-----/*/-*-/*-*/-*/-*/', form.errors)
+            return {"errors": validation_errors_to_error_messages(form.errors)}, 403
 
 
 @riff_routes.route('/new', methods=["POST"])
 # @login_required
 def post_riff():
-    # print('/*-/*-/*-*-//*-*/-/*-/*-*-/-/**-/*-/*-//*-*-/*/-*-/*-/-*/*-/*-/*-/*-/*/-*-/*/-*-/*-/*-/*-/*-/-*/*-/*-/*-/in-route')
     if "link" not in request.files:
-        return {"errors": "Riff file is required"}, 400
+        return {"errors": validation_errors_to_error_messages({'link.file': ["Riff file is required"]})}, 400
+        # return {"errors": "Riff file is required"}, 400
 
     link = request.files['link']
 
-    print('////////////////before///////////////////////', link)
-
-    if not allowed_file(link.filename):
-        return {"errors": "File type not permitted"}, 400
+    if not allowed_riff_file(link.filename):
+        return {"errors": validation_errors_to_error_messages({'link.filename': ["File type not permitted"]})}, 400
+        # return {"errors": "File type not permitted"}, 400
 
     link.filename = get_unique_filename(link.filename)
 
-    print('////////////////after///////////////////////', link)
-
     upload = upload_file_to_s3(link)
-
-    print('|||||||||||||||||||||||||||||||||||||||||', upload)
 
     if "url" not in upload:
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
         # so we send back that error message
-        print('=======upload messed up')
         return upload, 400
 
     url = upload['url']
@@ -76,10 +88,8 @@ def post_riff():
     form['csrf_token'].data = request.cookies['csrf_token']
     form['link'].data = url
 
-    print('---------------------------', form)
 
     if form.validate_on_submit():
-        print('*-//*-*/-/*-/*-*-/-/**-/*-/*-//*-*-/*/-*-*-//*-*/-/*-/*-*-/-/**-/*-/*-//*-*-/*/-*-in validated form')
         riff = Riff()
         form.populate_obj(riff)
         db.session.add(riff)
@@ -87,7 +97,7 @@ def post_riff():
         
         return riff.to_dict()
     else:
-        return {"errors": form.errors}, 403
+        return {"errors": validation_errors_to_error_messages(form.errors)}, 403
 
 
 @riff_routes.route('/<int:riff_id>/', methods=["DELETE"])
@@ -110,15 +120,26 @@ def edit_riff(riff_id):
     """
     riff = Riff.query.get(riff_id)
     if not riff:
-        return {"errors": f"No riff with is {riff_id} exists"}, 404
+        return {"errors": f"No riff with id {riff_id} exists"}, 404
     else:
         form = RiffForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         form['user_id'].data = riff.user_id
         form['link'].data = riff.link
+        print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form)
+        print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.data)
         if form.validate_on_submit():
+            print('---*-*--a-sdf--*-*-**-asd*f*-/*-/asdfa/*-dsf*-/asdf/*-asd-f*asd*f*/-asdfa/*sdf-*/adsf')
             form.populate_obj(riff)
             db.session.add(riff)
             db.session.commit()
             return riff.to_dict()
-        return {'errors': form.errors}, 403
+        print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.data)
+        print('errors-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.errors)
+        return {"errors": validation_errors_to_error_messages(form.errors)}, 403
+
+@riff_routes.route('/<int:riff_id>')
+@login_required
+def user(riff_id):
+    riff = Riff.query.get(riff_id)
+    return riff.to_dict()
