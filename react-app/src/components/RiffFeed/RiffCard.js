@@ -6,6 +6,7 @@ import CommentDisplay from "./CommentDisplay";
 import { Modal } from "../context/Modal";
 import { deleteRiff, editRiff } from "../../store/riff";
 import RiffPlayer from "./RiffPlayer";
+import WaveForm from '../WaveForm/WaveForm';
 
 import AudioPlayer from 'react-h5-audio-player'
 
@@ -76,10 +77,11 @@ const RiffCard = ( {riff} ) => {
 			<div className="riff-player">
 				{riff?.title}
 				{/* {riff && <RiffPlayer riff={riff} />} */}
-				{riff && <AudioPlayer 
+				{/* {riff && <AudioPlayer 
 							src={riff.link}
 							onPlay={e => console.log("onPlay")}
-							/>}
+							/>} */}
+				{riff && <WaveForm audio={riff.link} riffId={riff.id} />}
 			</div>
 			<div className="card-caption">
 				<span className="authorname"> {riff.author_username}</span>

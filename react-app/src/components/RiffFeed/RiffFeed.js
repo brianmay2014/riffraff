@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { Redirect, useHistory } from "react-router-dom";
 // import { login } from "../../store/session";
@@ -11,7 +11,7 @@ const RiffFeed = () => {
 	// const user = useSelector((state) => state.session.user);
 	// const [errors, setErrors] = useState([]);
     const riffs = useSelector((state) => state.riffs);
-	const comments = useSelector((state) => state.comments);
+	// const comments = useSelector((state) => state.comments);
 
 
 	const dispatch = useDispatch();
@@ -61,9 +61,9 @@ const RiffFeed = () => {
 		
 		return (
 			<div id="feed-body">
-			    {riffArr.map((riff) => {
+			    {riffArr && (riffArr.map((riff) => {
 				        return <RiffCard key={`key-${riff?.id}`} riff={riff}/>;
-				    })}
+				    }))}
 			</div>
 				
 	);

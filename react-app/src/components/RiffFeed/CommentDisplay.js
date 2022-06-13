@@ -16,7 +16,7 @@ const CommentDisplay = ({ riff }) => {
 	const dispatch = useDispatch();
 
 	const comments = useSelector((state) => state.comments);
-	console.log(Object.keys(comments).length);
+	// console.log(Object.keys(comments).length);
 	const riffs = useSelector((state) => state.riffs);
 
 	useEffect(() => {

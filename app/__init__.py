@@ -39,7 +39,8 @@ db.init_app(app)
 Migrate(app, db)
 
 # Application Security
-CORS(app)
+# CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 # Since we are deploying with Docker and Flask,
@@ -74,3 +75,36 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
+# @app.route("https://riff-raff.s3.us-west-1.amazonaws.com/", methods=["GET"])
+# def get_song():
+#     """
+#     Get song link for waveform
+#     """
+
+#     response = jsonify(message='Simple server is running')
+
+#     response.headers.add("Access-Control-Allow-Origin", "*")
+#     return response
+
+# @app.route("http://riff-raff.s3.us-west-1.amazonaws.com/", methods=["GET"])
+# def get_song():
+#     """
+#     Get song link for waveform
+#     """
+
+#     response = jsonify(message='Simple server is running')
+
+#     response.headers.add("Access-Control-Allow-Origin", "*")
+#     return response
+
+# @app.route("/", methods=["GET"])
+# def get_song():
+#     """
+#     Get song link for waveform
+#     """
+
+#     response = jsonify(message='Simple server is running')
+
+#     response.headers.add("Access-Control-Allow-Origin", "*")
+#     return response
