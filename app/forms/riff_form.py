@@ -5,8 +5,8 @@ from wtforms.validators import DataRequired, ValidationError
 def title_length(form, field):
     # Checking if username is already in use
     title = field.data
-    if len(title) > 100:
-        raise ValidationError('The riff title needs to be less than 100 characters.')
+    if len(title) > 40:
+        raise ValidationError('The riff title needs to be less than 40 characters.')
 
 def note_length(form, field):
     # Checking if username is already in use
