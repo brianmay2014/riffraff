@@ -26,6 +26,10 @@ login.login_view = 'auth.unauthorized'
 def load_user(id):
     return User.query.get(int(id))
 
+# Application Security
+# CORS(app)
+# CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 
 # Tell flask about our seed commands
 app.cli.add_command(seed_commands)
@@ -39,8 +43,8 @@ db.init_app(app)
 Migrate(app, db)
 
 # Application Security
-# CORS(app)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app)
+# CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 # Since we are deploying with Docker and Flask,
@@ -66,6 +70,13 @@ def inject_csrf_token(response):
         samesite='Strict' if os.environ.get(
             'FLASK_ENV') == 'production' else None,
         httponly=True)
+    print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response)
+    print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.headers)
+    # print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.mode)
+    # response.headers.add("Access-Control-Allow-Origin", "*")
+    # response['mode']='no-cors'
+    print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.headers)
+    # print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.mode)
     return response
 
 
