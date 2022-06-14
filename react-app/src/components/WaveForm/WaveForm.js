@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import PropTypes from 'prop-types';
 import WaveSurfer from "wavesurfer.js";
+// import MediaElement from "wavesurfer.js/src/mediaelement";
 
 function WaveForm( { audio, riffId } ) {
 
@@ -20,13 +21,27 @@ function WaveForm( { audio, riffId } ) {
     useEffect(() => {
         waveSurferRef.current = WaveSurfer.create({
 			container: containerRef.current,
-            waveColor: 'white',
-            progressColor: '#f50',
-            cursorColor: '#f50',
-            barWidth: 2,
-            height: 85,
-            minPxPerSec: 2,
-            hideScrollbar: true,
+			waveColor: "#7B95AD",
+			progressColor: "#7B95AD",
+			cursorColor: "#616185",
+            cursorWidth: 3,
+			backend: "MediaElement",
+            // fillParent: false,
+            // audioRate: 1.25,
+			backgroundColor: "#141422",
+			barRadius: 10,
+            barMinHeight: 1,
+            barHeight: 4,
+            drawingContextAttributes: {desynchronized: false},
+            // minPxPerSec: 20,
+            normalize: true,
+            // mediaControls: true,
+            // forceDecode: true,
+            // partialRender: true,
+            pixelRatio: 1,
+            barWidth: 10,
+			height: 85,
+			// hideScrollbar: true,
 			xhr: {
 				cache: "default",
 				mode: "no-cors",
@@ -39,16 +54,18 @@ function WaveForm( { audio, riffId } ) {
 			},
 		});
         waveSurferRef.current.load(audio)
-        console.log(audio);
+        // console.log(audio);
         waveSurferRef.current.on('ready', () => {
-            console.log(waveSurferRef.current);
+            // console.log(waveSurferRef.current);
             // waveSurferRef.current = waveSurfer
-            waveSurferRef.pause()
+            waveSurferRef.current.pause()
         })
 
         console.log(waveSurferRef.current.isReady);
         return () => {
-            waveSurferRef.current.destroy()
+            waveSurferRef.current.stop();
+            waveSurferRef.current.destroy();
+            toggleIsPlaying(false);
         }
     }, [audio])
 
@@ -58,15 +75,16 @@ function WaveForm( { audio, riffId } ) {
         <>
         <button
         onClick={() => {
-            console.log(waveSurferRef);
+            // console.log(waveSurferRef);
             waveSurferRef.current.playPause()
             toggleIsPlaying(waveSurferRef.current.isPlaying())
+            // console.log(waveSurferRef.current.exportImage())
         }} type='button'
         >
             {isPlaying ? 'pause' : 'play'}
         </button>
 		<div ref={containerRef}>
-            Riff ID: {riffId} with link {audio}
+            {/* Riff ID: {riffId} with link {audio} */}
             </div>
         </>
 	);

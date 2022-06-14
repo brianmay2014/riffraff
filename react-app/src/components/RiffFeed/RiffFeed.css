@@ -45,7 +45,7 @@
 .riff-player{
     background-color: var(--darkestslate);
     width: 100%;
-    height: 140px;
+    height: 75px;
     border-top: 2px solid var(--darkpurple);
     border-bottom: 2px solid var(--darkpurple);
 }
