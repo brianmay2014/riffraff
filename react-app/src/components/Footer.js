@@ -91,25 +91,24 @@ function Footer() {
 					</a>
 				</div>
 				<div id="footer-bottom-row">
-						<a
-							href="https://github.com/brianmay2014"
-							rel="noreferrer"
-							target="_blank"
-							className="personal-link"
-						>
-							Github
-						</a>
+					<a
+						href="https://github.com/brianmay2014/riffraff"
+						rel="noreferrer"
+						target="_blank"
+						className="personal-link"
+					>
+						Github
+					</a>
 					<span>© 2022 Brian May</span>
-					
-						<a
-							href="http://www.linkedin.com/in/brian-may-6aa49172"
-							rel="noreferrer"
-							target="_blank"
-							className="personal-link"
-						>
-							LinkedIn
-						</a>
-					
+
+					<a
+						href="http://www.linkedin.com/in/brian-may-6aa49172"
+						rel="noreferrer"
+						target="_blank"
+						className="personal-link"
+					>
+						LinkedIn
+					</a>
 				</div>
 			</div>
 		</div>

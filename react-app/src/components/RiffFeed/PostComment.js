@@ -67,6 +67,7 @@ const PostComment = ({ riff }) => {
 					type="text"
 					placeholder="Add a comment"
 					value={addText}
+					autocomplete="off"
 					onChange={(e) => setAddText(e.target.value)}
 				></input>
 				<button

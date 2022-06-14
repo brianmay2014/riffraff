@@ -86,7 +86,7 @@ const RiffCard = ( {riff} ) => {
 				{/* {riff && <RiffPlayer riff={riff} />} */}
 				{riff && <AudioPlayer 
 							src={riff.link}
-							onPlay={e => console.log("onPlay")}
+							// onPlay={e => console.log("onPlay")}
 							/>}
 				{/* <button onClick={(e) => setShowWave(true)}>click em!</button> */}
 				{/* {riff && <WaveForm audio={riff.link} riffId={riff.id} />} */}

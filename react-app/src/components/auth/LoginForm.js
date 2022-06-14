@@ -57,22 +57,30 @@ const LoginForm = () => {
 				))}
 			</div>
 			<div className="auth-fields">
-				<label htmlFor="email">Email</label>
+				<div className="required-input-header">
+					<label htmlFor="email">Email</label>
+					<span className="required">required</span>
+				</div>
 				<input
 					name="email"
 					type="text"
 					placeholder="Email"
 					value={email}
+					autocomplete="off"
 					onChange={updateEmail}
 				/>
 			</div>
 			<div className="auth-fields">
-				<label htmlFor="password">Password</label>
+				<div className="required-input-header">
+					<label htmlFor="password">Password</label>
+					<span className="required">required</span>
+				</div>
 				<input
 					name="password"
 					type="password"
 					placeholder="Password"
 					value={password}
+					autocomplete="off"
 					onChange={updatePassword}
 				/>
 			</div>

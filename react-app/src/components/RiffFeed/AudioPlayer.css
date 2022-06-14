@@ -104,6 +104,7 @@
 
 .rhap_progress-bar-show-download {
   background-color: rgba(221, 221, 221, 0.5);
+  background-color: var(--medslate);
 }
 
 .rhap_download-progress {

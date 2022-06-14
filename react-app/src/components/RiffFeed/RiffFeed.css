@@ -57,7 +57,7 @@
 .riff-player{
     background-color: var(--darkestslate);
     width: 100%;
-    height: 75px;
+    height: 85px;
     border-top: 2px solid var(--darkpurple);
     border-bottom: 2px solid var(--darkpurple);
 }
@@ -166,9 +166,13 @@ span.optional {
 }
 
 .riff-card-title {
-    margin: 0 auto;
-    padding: 0;
+    margin: 5px auto;
+    padding: 0 0 5px 0 ;
+    width: fit-content;
     text-align: center;
+    color: var(--lightpurple);
+    border-bottom: 1.5px solid var(--medpurple);
+    font-weight: 700;
 }
 
 
