@@ -6,14 +6,19 @@ import CommentDisplay from "./CommentDisplay";
 import { Modal } from "../context/Modal";
 import { deleteRiff, editRiff } from "../../store/riff";
 import RiffPlayer from "./RiffPlayer";
+import WaveForm from '../WaveForm/WaveForm';
+// import { AudioVisualizer } from "../WaveForm/AudioVisualizer";
+import "react-h5-audio-player/lib/styles.css";
 
 import AudioPlayer from 'react-h5-audio-player'
+import './AudioPlayer.css';
 
 const RiffCard = ( {riff} ) => {
 	const user = useSelector((state) => state.session.user);
 	// const [errors, setErrors] = useState([]);
 
 	const [showRiffModal, setShowRiffModal] = useState(false);
+	const [showWave, setShowWave] = useState(false);
 
 	
 
@@ -74,12 +79,17 @@ const RiffCard = ( {riff} ) => {
 				</div>
 			</div>
 			<div className="riff-player">
-				{riff?.title}
+				<p className='riff-card-title'>
+					{riff?.title}
+					</p>
 				{/* {riff && <RiffPlayer riff={riff} />} */}
 				{riff && <AudioPlayer 
 							src={riff.link}
 							onPlay={e => console.log("onPlay")}
 							/>}
+				{/* <button onClick={(e) => setShowWave(true)}>click em!</button> */}
+				{/* {riff && <WaveForm audio={riff.link} riffId={riff.id} />} */}
+				{/* {riff && <AudioVisualizer audio={riff.link} riffId={riff.id} />} */}
 			</div>
 			<div className="card-caption">
 				<span className="authorname"> {riff.author_username}</span>

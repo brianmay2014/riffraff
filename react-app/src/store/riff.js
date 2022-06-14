@@ -36,8 +36,11 @@ const loadRiffs = (riffs) => {
 export const genRiffs = () => async (dispatch) => {
     //open to adding more types of responses later
     const [riffsResponse] = await Promise.all([
-        fetch("/api/riffs/"),
-    ]);
+		fetch("/api/riffs/", {
+            mode: "no-cors",
+			headers: { "Access-Control-Allow-Origin": "*"},
+		}),
+	]);
     const [riffs] = await Promise.all([
         riffsResponse.json(),
     ]);

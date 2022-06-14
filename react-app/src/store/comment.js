@@ -81,8 +81,11 @@ export const genComments = () => async (dispatch) => {
     // can add more types of responses later
     
     const [commentsResponse] = await Promise.all([
-        fetch(`/api/comments/`),
-    ]);
+		fetch(`/api/comments/`, {
+			mode: "no-cors",
+			headers: { "Access-Control-Allow-Origin": "*" },
+		}),
+	]);
 
     const [comments] = await Promise.all([commentsResponse.json()]);
 

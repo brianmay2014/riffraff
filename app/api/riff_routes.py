@@ -31,7 +31,8 @@ def validation_errors_to_error_messages(validation_errors):
 @riff_routes.route('/')
 def riffs():
     all_riffs = Riff.query.all()
-    print(all_riffs)
+    
+    # print(all_riffs)
     return {'riffs': [riff.to_dict() for riff in all_riffs]}
 
 

@@ -26,6 +26,10 @@ login.login_view = 'auth.unauthorized'
 def load_user(id):
     return User.query.get(int(id))
 
+# Application Security
+# CORS(app)
+# CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 
 # Tell flask about our seed commands
 app.cli.add_command(seed_commands)
@@ -40,6 +44,7 @@ Migrate(app, db)
 
 # Application Security
 CORS(app)
+# CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 # Since we are deploying with Docker and Flask,
@@ -65,6 +70,13 @@ def inject_csrf_token(response):
         samesite='Strict' if os.environ.get(
             'FLASK_ENV') == 'production' else None,
         httponly=True)
+    print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response)
+    print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.headers)
+    # print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.mode)
+    # response.headers.add("Access-Control-Allow-Origin", "*")
+    # response['mode']='no-cors'
+    print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.headers)
+    # print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.mode)
     return response
 
 
@@ -74,3 +86,36 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
+# @app.route("https://riff-raff.s3.us-west-1.amazonaws.com/", methods=["GET"])
+# def get_song():
+#     """
+#     Get song link for waveform
+#     """
+
+#     response = jsonify(message='Simple server is running')
+
+#     response.headers.add("Access-Control-Allow-Origin", "*")
+#     return response
+
+# @app.route("http://riff-raff.s3.us-west-1.amazonaws.com/", methods=["GET"])
+# def get_song():
+#     """
+#     Get song link for waveform
+#     """
+
+#     response = jsonify(message='Simple server is running')
+
+#     response.headers.add("Access-Control-Allow-Origin", "*")
+#     return response
+
+# @app.route("/", methods=["GET"])
+# def get_song():
+#     """
+#     Get song link for waveform
+#     """
+
+#     response = jsonify(message='Simple server is running')
+
+#     response.headers.add("Access-Control-Allow-Origin", "*")
+#     return response
