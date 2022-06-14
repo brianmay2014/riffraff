@@ -5,7 +5,7 @@ import { makeRiff } from "../../store/riff";
 import "./NewRiffForm.css";
 // import UploadSong from "./UploadSong";
 
-const LoginForm = () => {
+const NewRiffForm = () => {
 	const [errors, setErrors] = useState([]);
 
 	const [link, setLink] = useState('');
@@ -38,7 +38,7 @@ const LoginForm = () => {
 			setLinkLoading(false);
 			return;
 		}
-		if (riff && Object.keys(errors).length === 0) {
+		// if (riff && Object.keys(errors).length === 0) {
 			setLink("");
 			setTitle("");
 			setNote("");
@@ -47,7 +47,7 @@ const LoginForm = () => {
 			// route to newly created riff?
 			history.push(`/`);
 			// history.push(`/riffs/${riff.id}`);
-		}
+		// }
 	};
 	
 	if (!user) {
@@ -87,6 +87,7 @@ const LoginForm = () => {
 					type="text"
 					placeholder="Title"
 					value={title}
+					autocomplete="off"
 					required
 					onChange={(e) => setTitle(e.target.value)}
 				/>
@@ -97,6 +98,7 @@ const LoginForm = () => {
 					name="note"
 					type="text"
 					placeholder="Add Note (optional)"
+					autocomplete="off"
 					value={note}
 					onChange={(e) => setNote(e.target.value)}
 				/>
@@ -127,4 +129,4 @@ const LoginForm = () => {
 	);
 };
 
-export default LoginForm;
+export default NewRiffForm;

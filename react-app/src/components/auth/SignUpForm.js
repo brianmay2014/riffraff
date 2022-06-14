@@ -57,48 +57,66 @@ const SignUpForm = () => {
 				<h1>riff raff</h1>
 				<h3>Sign up to start collaborating with your friends.</h3>
 			</div>
-			<div className='form-errors'>
+			<div className="form-errors">
 				{errors.map((error, ind) => (
 					<div key={ind}>{error}</div>
 				))}
 			</div>
 			<div className="auth-fields">
-				<label>User Name</label>
+				<div className="required-input-header">
+					<label>User Name</label>
+					<span className="required">required</span>
+				</div>
 				<input
 					type="text"
 					name="username"
 					onChange={updateUsername}
 					placeholder="Username"
+					autocomplete="off"
 					value={username}
 				></input>
 			</div>
 			<div className="auth-fields">
-				<label>Email</label>
+				<div className="required-input-header">
+					<label>Email</label>
+					<span className="required">required</span>
+				</div>
+
 				<input
 					type="text"
 					name="email"
 					placeholder="Email"
 					onChange={updateEmail}
+					autocomplete="off"
 					value={email}
 				></input>
 			</div>
 			<div className="auth-fields">
+				<div className="required-input-header">
 				<label>Password</label>
+					<span className="required">required</span>
+				</div>
+
 				<input
 					type="password"
 					name="password"
 					placeholder="Password"
 					onChange={updatePassword}
+					autocomplete="off"
 					value={password}
 				></input>
 			</div>
 			<div className="auth-fields">
+				<div className="required-input-header">
 				<label>Confirm Password</label>
+					<span className="required">required</span>
+				</div>
 				<input
 					type="password"
 					name="repeat_password"
 					placeholder="Confirm Password"
 					onChange={updateRepeatPassword}
+					autocomplete="off"
 					value={repeatPassword}
 					required={true}
 				></input>
@@ -108,12 +126,16 @@ const SignUpForm = () => {
 					Sign Up
 				</button>
 			</div>
-      <div className='auth-page-links'>
-			<p>Already have an account?</p>
-			<button id="to-log-in" className="btn-auth-link" onClick={toLogin}>
-				Log in!
-			</button>
-      </div>
+			<div className="auth-page-links">
+				<p>Already have an account?</p>
+				<button
+					id="to-log-in"
+					className="btn-auth-link"
+					onClick={toLogin}
+				>
+					Log in!
+				</button>
+			</div>
 		</form>
   );
 };

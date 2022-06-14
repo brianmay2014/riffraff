@@ -61,7 +61,7 @@ const CommentRow = ({ comment, text, setText }) => {
 			</div>
 			<div className="comment-text">
 				<span className="authorname"> {comment?.author_username}</span>
-				<span>{comment?.text}</span>
+				<p className='comment-text-display'>{comment?.text}</p>
 			</div>
 		</div>
 	);

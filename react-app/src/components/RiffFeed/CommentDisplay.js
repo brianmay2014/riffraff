@@ -42,7 +42,7 @@ const CommentDisplay = ({ riff }) => {
 
 	return (
 		<div id={`${riff?.id}-comments`} className="comment-display-container">
-			<p>{commentCount} comments</p>
+			<p className='comment-count-number'>{commentCount} comments</p>
 			{riffComments.map((comment) => {
 				return (
 					<CommentRow

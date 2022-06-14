@@ -28,15 +28,10 @@ const RiffFeed = () => {
     } 		
 		// console.log(riffs);
 		const riffArr = Object.values(riffs)
-		//sort by id
-		// console.log(riffArr);
+		//sort by id - to show newest created at the top
 		riffArr.sort((a, b) => {
 			return b.id - a.id;
 		});
-
-		// console.log(riffArr);
-
-		// console.log(riffArr);
 		
 		return (
 			<div id="feed-body">

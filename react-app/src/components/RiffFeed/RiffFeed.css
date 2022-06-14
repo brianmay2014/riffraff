@@ -29,6 +29,18 @@
     margin-left: 15px;
 }
 
+.comment-text {
+    display:flex;
+    margin-top: 3px;
+}
+
+.comment-text-display {
+    padding:0 0 0 18px;
+    margin: 0;
+    font-size: 0.8em;
+    color: var(--lightslate);
+}
+
 .card-header-left{
     width: 93%;
     display: flex;
@@ -45,7 +57,7 @@
 .riff-player{
     background-color: var(--darkestslate);
     width: 100%;
-    height: 75px;
+    height: 85px;
     border-top: 2px solid var(--darkpurple);
     border-bottom: 2px solid var(--darkpurple);
 }
@@ -74,6 +86,9 @@ span {
     background-color: var(--blackpurple);
 }
 
+.comment-count-number{
+    padding-left: 28px;
+}
 .post-comment-form {
     width: 100%;
     background-color: var(--darkestslate);
@@ -151,9 +166,13 @@ span.optional {
 }
 
 .riff-card-title {
-    margin: 0 auto;
-    padding: 0;
+    margin: 5px auto;
+    padding: 0 0 5px 0 ;
+    width: fit-content;
     text-align: center;
+    color: var(--lightpurple);
+    border-bottom: 1.5px solid var(--medpurple);
+    font-weight: 700;
 }
 
 
