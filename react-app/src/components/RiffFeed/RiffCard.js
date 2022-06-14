@@ -35,45 +35,46 @@ const RiffCard = ( {riff} ) => {
     // null before riffs / riff prop loads from the store
     if (!riff) {
         return null;
-    }
+    } else {
 
-	// if (riff.author_img === '') {
-	// 	riff.author_img =
-	// 		"https://images.pexels.com/photos/7899456/pexels-photo-7899456.png?auto=compress&cs=tinysrgb&w=126&h=75&dpr=1";
-	// }
-
-	return (
-		<div id={`riff-card-${riff.id}`} className="riff-cards">
+		
+		if (riff.author_img === '' || riff.author_img === null || riff.author_img === undefined) {
+			riff.author_img =
+			"https://images.pexels.com/photos/7899456/pexels-photo-7899456.png?auto=compress&cs=tinysrgb&w=126&h=75&dpr=1";
+		}
+		
+		return (
+			<div id={`riff-card-${riff.id}`} className="riff-cards">
 			<div className="riff-header">
 				<div className="card-header-left">
 					<img
 						className="card-user-img"
 						src={riff?.author_img}
 						alt="default-remove"
-					></img>
+						></img>
 					<p className="authorname">{riff.author_username}</p>
 				</div>
 				<div className="card-header-right">
 					{!showRiffEdit && <div className="not-current-user"></div>}
 					{showRiffEdit && (
 						<div
-							className="user-edit-icon"
-							title="Edit/Delete Riff"
-							onClick={() => setShowRiffModal(true)}
+						className="user-edit-icon"
+						title="Edit/Delete Riff"
+						onClick={() => setShowRiffModal(true)}
 						>
 							<i className="fa-solid fa-sliders"></i>
 						</div>
 					)}
 					{showRiffModal && (
 						<Modal
-							onClose={() => {
-								setShowRiffModal(false);
-							}}
+						onClose={() => {
+							setShowRiffModal(false);
+						}}
 						>
 							<RiffModal
 								riff={riff}
 								setShowRiffModal={setShowRiffModal}
-							/>
+								/>
 						</Modal>
 					)}
 				</div>
@@ -98,6 +99,7 @@ const RiffCard = ( {riff} ) => {
 			<CommentDisplay riff={riff} />
 		</div>
 	);
+}
 };
 
 /////////////
