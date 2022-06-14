@@ -13,7 +13,6 @@ const RiffFeed = () => {
     const riffs = useSelector((state) => state.riffs);
 	// const comments = useSelector((state) => state.comments);
 
-
 	const dispatch = useDispatch();
 	// const history = useHistory();
 
@@ -22,34 +21,6 @@ const RiffFeed = () => {
 		dispatch(genComments());
     }, [dispatch]);
 
-	// useEffect(() => {
-	// 	// console.log('in useEffect for generating comments');
-
-	
-	// 		dispatch(genComments());
-
-	// }, [riff, dispatch]);
-
-
-	// const toSignup = async (e) => {
-	// 	e.preventDefault();
-	// 	history.push("/signup");
-	// };
-
-	// const demoSubmit = async (e) => {
-	// 	e.preventDefault();
-	// 	const data = await dispatch(login("demo@demo.com", "password"));
-	// 	if (data) {
-	// 		setErrors(data);
-	// 	}
-	// };
-
-	// if (user) {
-	// 	return <Redirect to="/" />;
-	// }
-
-	
-
     
     // null before riffs loads from the store
     if (!riffs) {
@@ -57,6 +28,14 @@ const RiffFeed = () => {
     } 		
 		// console.log(riffs);
 		const riffArr = Object.values(riffs)
+		//sort by id
+		// console.log(riffArr);
+		riffArr.sort((a, b) => {
+			return b.id - a.id;
+		});
+
+		// console.log(riffArr);
+
 		// console.log(riffArr);
 		
 		return (

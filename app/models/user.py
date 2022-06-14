@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    pic_url = db.Column(db.String(255))
+    pic_url = db.Column(db.String(255), default='https://riff-raff.s3.us-west-1.amazonaws.com/defaultuserimage.png')
     bio = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
