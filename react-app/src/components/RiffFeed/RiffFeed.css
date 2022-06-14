@@ -150,7 +150,11 @@ span.optional {
     /* padding-top: 5px; */
 }
 
-
+.riff-card-title {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
 
 
 

@@ -79,7 +79,9 @@ const RiffCard = ( {riff} ) => {
 				</div>
 			</div>
 			<div className="riff-player">
-				{riff?.title}
+				<p className='riff-card-title'>
+					{riff?.title}
+					</p>
 				{/* {riff && <RiffPlayer riff={riff} />} */}
 				{riff && <AudioPlayer 
 							src={riff.link}
