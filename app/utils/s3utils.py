@@ -4,15 +4,18 @@ import os
 from ..config import Config
 import uuid
 
-BUCKET_NAME = os.environ.get("AWS_S3_BUCKET")
+# BUCKET_NAME = os.environ.get("AWS_S3_BUCKET")
+BUCKET_NAME = Config.AWS_S3_BUCKET
 S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
 ALLOWED_RIFF_EXTENSIONS = {'mp3', 'm4a'}
 ALLOWED_IMG_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
 s3 = boto3.client(
     "s3",
-    aws_access_key_id=os.environ.get("AWS_S3_ACCESS_KEY"),
-    aws_secret_access_key=os.environ.get("AWS_S3_SECRET_ACCESS_KEY"),
+    # aws_access_key_id=os.environ.get("AWS_S3_ACCESS_KEY"),
+    # aws_secret_access_key=os.environ.get("AWS_S3_SECRET_ACCESS_KEY"),
+    aws_access_key_id=Config.AWS_S3_ACCESS_KEY,
+    aws_secret_access_key=Config.AWS_S3_SECRET_ACCESS_KEY,
 )
 
 def allowed_riff_file(filename):
