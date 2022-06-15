@@ -14,6 +14,7 @@ import { authenticate } from './store/session';
 import Footer from './components/Footer';
 import FooterSpacer from './components/FooterSpacer'
 import SingleRiff from './components/SingleRiff/SingleRiff';
+import FourOhFour from './components/FourOhFour/FourOhFour';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -65,6 +66,9 @@ function App() {
 				<Route path="/" exact={true}>
 					<HomePage />
 					<FooterSpacer />
+				</Route>
+				<Route path=''>
+					<FourOhFour />
 				</Route>
 			</Switch>
 			<Footer />
