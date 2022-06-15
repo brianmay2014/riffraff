@@ -4,7 +4,7 @@ const LOAD_COMMENTS = 'comments/loadComments';
 const CLEAR_COMMENTS = 'comments/clearComments';
 
 const addComment = (comment) => {
-    console.log('inside action');
+    // console.log('inside action');
     return {
         type: ADD_COMMENT,
         payload: comment,
@@ -58,7 +58,7 @@ export const editComment = (comment) => async (dispatch) => {
     });
     const commentData = await response.json();
 
-    console.log('*/-/*-/*-/*-/*-*/-/*--*/*-/*/-', commentData);
+    // console.log('*/-/*-/*-/*-/*-*/-/*--*/*-/*/-', commentData);
     dispatch(addComment(commentData))
     return { ...commentData }
 }
