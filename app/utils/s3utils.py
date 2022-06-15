@@ -18,6 +18,17 @@ s3 = boto3.client(
     aws_secret_access_key=Config.AWS_S3_SECRET_ACCESS_KEY,
 )
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            # errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f'{error}')
+    return errorMessages
+
 def allowed_riff_file(filename):
     return "." in filename and \
            filename.rsplit(".", 1)[1].lower() in ALLOWED_RIFF_EXTENSIONS
@@ -46,6 +57,6 @@ def upload_file_to_s3(file, acl="public-read"):
     except Exception as e:
         # in case the our s3 upload fails
         # return {"errors": str(e)}
-        return {"errors": str(e), "bucket": str(BUCKET_NAME)}
+        return {"errors": ['Upload to S3 failed, please try again.']}
 
     return {"url": f"{S3_LOCATION}{file.filename}"}
