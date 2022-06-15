@@ -5,7 +5,7 @@ from ..config import Config
 import uuid
 
 # BUCKET_NAME = os.environ.get("AWS_S3_BUCKET")
-BUCKET_NAME = Config.AWS_S3_BUCKET
+BUCKET_NAME = riff-raff
 S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
 ALLOWED_RIFF_EXTENSIONS = {'mp3', 'm4a'}
 ALLOWED_IMG_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
