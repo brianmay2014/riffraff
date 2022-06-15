@@ -66,7 +66,7 @@ import WaveSurfer from 'wavesurfer.js';
 
 const RiffPlayer = ({ riff, riffArr }) => {
 
-	console.log(riffArr);
+	// console.log(riffArr);
 
 	const [state, setState] = useState({ playing: false})
 	const riffs = useSelector((state) => state.riffs);
@@ -75,7 +75,7 @@ const RiffPlayer = ({ riff, riffArr }) => {
 		return null;
 	}
 	
-	console.log(riffs[riff.id].link);
+	// console.log(riffs[riff.id].link);
 
 		const waveform = WaveSurfer.create({
 			barWidth: 3,

@@ -70,12 +70,12 @@ def inject_csrf_token(response):
         samesite='Strict' if os.environ.get(
             'FLASK_ENV') == 'production' else None,
         httponly=True)
-    print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response)
-    print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.headers)
+    # print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response)
+    # print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.headers)
     # print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.mode)
     # response.headers.add("Access-Control-Allow-Origin", "*")
     # response['mode']='no-cors'
-    print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.headers)
+    # print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.headers)
     # print('------*/-/*/*-*-/-*-----*//*--*//*-*-/-*/----------',response.mode)
     return response
 

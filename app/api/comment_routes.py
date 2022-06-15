@@ -56,13 +56,13 @@ def edit_comment(id):
         form['csrf_token'].data = request.cookies['csrf_token']
         form['user_id'].data = comment.user_id
         form['riff_id'].data = comment.riff_id
-        print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form)
-        print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.data)
+        # print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form)
+        # print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.data)
         if form.validate_on_submit():
             form.populate_obj(comment)
             db.session.add(comment)
             db.session.commit()
             return comment.to_dict()
-        print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.data)
-        print('errors-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.errors)
+        # print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.data)
+        # print('errors-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.errors)
         return {"errors": validation_errors_to_error_messages(form.errors)}, 403

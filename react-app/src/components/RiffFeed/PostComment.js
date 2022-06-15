@@ -21,7 +21,7 @@ const PostComment = ({ riff }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-		console.log('errors at top of handlesubmit',errors);
+		// console.log('errors at top of handlesubmit',errors);
         const data = {
             user_id: user.id,
             riff_id: riff.id,
@@ -29,17 +29,17 @@ const PostComment = ({ riff }) => {
         };
         setErrors([]);
         const comment = await dispatch(makeComment(data));
-		console.log('errors after comment dispatch',errors);
+		// console.log('errors after comment dispatch',errors);
 
-		console.log('comment.errors after dispatch',comment.errors);
-		console.log('comment after dispatch', comment);
-		console.log('object key of errors length after dispatch', Object.keys(errors).length);
+		// console.log('comment.errors after dispatch',comment.errors);
+		// console.log('comment after dispatch', comment);
+		// console.log('object key of errors length after dispatch', Object.keys(errors).length);
 
         if (comment.errors) {
             setErrors(comment.errors);
 			comment.errors = [];
 
-			console.log('errors inside if comment.errors)', errors);
+			// console.log('errors inside if comment.errors)', errors);
             return;
         }
         // if (comment && Object.keys(errors).length === 0) {
@@ -47,7 +47,7 @@ const PostComment = ({ riff }) => {
             setAddText("");
         // }
 
-		console.log('end of handle submit');
+		// console.log('end of handle submit');
     }
 
 	// null before riffs / riff prop loads from the store

@@ -29,9 +29,9 @@ function SingleRiff() {
 		dispatch(genComments());
 	}, [dispatch]);
 
-    console.log(riffs);
-    console.log(riffId);
-    console.log(riffs[riffId]);
+    // console.log(riffs);
+    // console.log(riffId);
+    // console.log(riffs[riffId]);
 
 
 
