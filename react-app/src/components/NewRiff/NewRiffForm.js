@@ -66,7 +66,7 @@ const NewRiffForm = () => {
 				<h3>Add your riffs to get collaborating</h3>
 			</div>
 			<div className="form-errors">
-				{errors.map((error, ind) => (
+				{errors && errors.map((error, ind) => (
 					<div key={ind}>{error}</div>
 				))}
 				{/* {Object.keys(errors).length > 0 && (
