@@ -11,21 +11,21 @@ Riff Raff is a full stack application that acts as a collections of pieces of so
 
 ## **_Home Page_**
 
-<img src="./readme_imgs/HomePage.png" alt='Home Page' width='650'>
+<img src="./readme_images/HomePage.png" alt='Home Page' width='650'>
 
 <br>
 
 ## **_Riff Page_**
 &emsp; The bread and butter of Riff Raff, all of the riffs are displayed for your listening and commenting pleasure.
 
-<img src="./readme_imgs/SearchPage.png" alt='Search Page' width='650'>
+<img src="./readme_images/RiffPage.gif" alt='Search Page' width='650'>
 
 <br>
 
 ## **_New Riff Page_**
 &emsp;  This page is where the user will upload their own files via AWS to Riff Raff.
 
-<img src="./readme_imgs/EstatePage.gif" alt='Estates Page' width='650'>
+<img src="./readme_images/NewRiff.png" alt='Estates Page' width='650'>
 
 <br>
 
