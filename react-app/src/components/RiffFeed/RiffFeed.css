@@ -101,6 +101,7 @@ span {
 .post-comment-input {
     width: 90%;
     border:none;
+    padding-left: 10px;
     /* border-right: 2px solid  */
 }
 
