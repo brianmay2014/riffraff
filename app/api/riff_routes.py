@@ -127,16 +127,16 @@ def edit_riff(riff_id):
         form['csrf_token'].data = request.cookies['csrf_token']
         form['user_id'].data = riff.user_id
         form['link'].data = riff.link
-        print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form)
-        print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.data)
+        # print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form)
+        # print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.data)
         if form.validate_on_submit():
-            print('---*-*--a-sdf--*-*-**-asd*f*-/*-/asdfa/*-dsf*-/asdf/*-asd-f*asd*f*/-asdfa/*sdf-*/adsf')
+            # print('---*-*--a-sdf--*-*-**-asd*f*-/*-/asdfa/*-dsf*-/asdf/*-asd-f*asd*f*/-asdfa/*sdf-*/adsf')
             form.populate_obj(riff)
             db.session.add(riff)
             db.session.commit()
             return riff.to_dict()
-        print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.data)
-        print('errors-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.errors)
+        # print('-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.data)
+        # print('errors-----**//*-*-/*-//*-/-*/*-*/-*-/*/-*/-/*---------',form.errors)
         return {"errors": validation_errors_to_error_messages(form.errors)}, 403
 
 @riff_routes.route('/<int:riff_id>')

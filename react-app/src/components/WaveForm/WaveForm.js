@@ -61,7 +61,7 @@ function WaveForm( { audio, riffId } ) {
             waveSurferRef.current.pause()
         })
 
-        console.log(waveSurferRef.current.isReady);
+        // console.log(waveSurferRef.current.isReady);
         return () => {
             waveSurferRef.current.stop();
             waveSurferRef.current.destroy();

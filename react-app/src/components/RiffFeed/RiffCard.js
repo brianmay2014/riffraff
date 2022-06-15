@@ -119,8 +119,8 @@ const RiffModal = ({ riff, setShowRiffModal }) => {
 	const handleEdit = async (e) => {
 		e.preventDefault();
 
-		console.log('title', title);
-		console.log("note", note);
+		// console.log('title', title);
+		// console.log("note", note);
 		const updateRiff = { ...riff };
 		updateRiff.title = title;
 		updateRiff.note = note;
@@ -130,7 +130,7 @@ const RiffModal = ({ riff, setShowRiffModal }) => {
 		setErrors([]);
 
 		const editRiffConfirm = await dispatch(editRiff(updateRiff));
-		console.log(editRiffConfirm.errors);
+		// console.log(editRiffConfirm.errors);
 
 		if (editRiffConfirm.errors) {
 			setErrors(editRiffConfirm.errors);
