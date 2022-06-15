@@ -4,7 +4,7 @@ const LOAD_RIFFS = 'riffs/loadRiffs';
 const UPDATE_RIFF = 'riffs/updateRiff';
 
 const addRiff = (riff) => {
-    console.log('inside action');
+    // console.log('inside action');
     return {
         type: ADD_RIFF,
         payload: riff,
@@ -52,8 +52,8 @@ export const genRiffs = () => async (dispatch) => {
 
 export const makeRiff = (riff, link) => async (dispatch) => {
 
-    console.log ('inside thunk');
-    console.log('riff', riff)
+    // console.log ('inside thunk');
+    // console.log('riff', riff)
 
     const form = new FormData();
 	form.append("link", link);
@@ -61,16 +61,16 @@ export const makeRiff = (riff, link) => async (dispatch) => {
 	form.append("title", riff.title);
 	form.append("note", riff.note);
 
-    console.log('form', form);
+    // console.log('form', form);
 
     const response = await fetch(`/api/riffs/new`,
         {method: "POST", body: form});
 
     const riffData = await response.json();
 
-    console.log('riffData', riffData);
-    console.log('response', response);
-    console.log('response.ok', response.ok);
+    // console.log('riffData', riffData);
+    // console.log('response', response);
+    // console.log('response.ok', response.ok);
 
     if (response.ok) {
         dispatch(addRiff(riffData));
@@ -105,7 +105,7 @@ export const editRiff = (riff) => async (dispatch) => {
     });
     const riffData = await response.json();
     
-    console.log('*-//*-*-/-/**-/*/-', riffData);
+    // console.log('*-//*-*-/-/**-/*/-', riffData);
     dispatch(addRiff(riffData))
     return { ...riffData }
 

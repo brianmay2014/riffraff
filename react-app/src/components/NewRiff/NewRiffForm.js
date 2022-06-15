@@ -32,9 +32,9 @@ const NewRiffForm = () => {
 		setErrors([]);
 		const riff = await dispatch(makeRiff(data, link))
 		if (riff.errors) {
-			console.log([ ...riff.errors]);
+			// console.log([ ...riff.errors]);
 			setErrors(riff.errors);
-			console.log(errors)
+			// console.log(errors)
 			setLinkLoading(false);
 			return;
 		}
