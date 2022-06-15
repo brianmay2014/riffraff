@@ -1,0 +1,8 @@
+#four04-container h2, #four04-container h3 {
+    text-align: center;
+    color: var(--medslate);
+}
+
+#four04-container a{
+    color: var(--medpurple);
+}
