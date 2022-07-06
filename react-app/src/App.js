@@ -15,6 +15,7 @@ import Footer from './components/Footer';
 import FooterSpacer from './components/FooterSpacer'
 import SingleRiff from './components/SingleRiff/SingleRiff';
 import FourOhFour from './components/FourOhFour/FourOhFour';
+import UserPage from './components/UserPage/UserPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -52,7 +53,8 @@ function App() {
 					<FooterSpacer />
 				</ProtectedRoute>
 				<ProtectedRoute path="/users/:userId" exact={true}>
-					<User />
+					{/* <User /> */}
+					<UserPage />
 					<FooterSpacer />
 				</ProtectedRoute>
 				<ProtectedRoute path="/riffs/new" exact={true}>
