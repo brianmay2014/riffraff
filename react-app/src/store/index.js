@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import riffReducer from './riff';
 import commentReducer from './comment';
+import userReducer from './user';
 
 const rootReducer = combineReducers({
   session,
   riffs: riffReducer,
   comments: commentReducer,
+  user: userReducer,
 });
 
 
