@@ -52,7 +52,11 @@ const RiffCard = ( {riff} ) => {
 						src={riff?.author_img}
 						alt="default-remove"
 						></img>
+					
+					<a href={`/users/${riff.user_id}`}>
+
 					<p className="authorname">{riff.author_username}</p>
+					</a>
 				</div>
 				<div className="card-header-right">
 					{!showRiffEdit && <div className="not-current-user"></div>}
@@ -93,7 +97,10 @@ const RiffCard = ( {riff} ) => {
 				{/* {riff && <AudioVisualizer audio={riff.link} riffId={riff.id} />} */}
 			</div>
 			<div className="card-caption">
+				<a href={`/users/${riff.user_id}`}>
+
 				<span className="authorname"> {riff.author_username}</span>
+				</a>
 				<span>{riff.note}</span>
 			</div>
 			<CommentDisplay riff={riff} />
