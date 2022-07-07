@@ -1,12 +1,48 @@
 #user-display{
+    margin: 0 auto;
     display: flex;
     width: 600px;
+    border-bottom: 2px solid var(--darkpurple);
 }
 
 #user-display-left img {
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    padding: 100px;
+    width: 75px;
+    height: 75px;
+    border: 2px solid var(--medpurple);
+    box-shadow: 2px 1px 15px var(--medpurple), -1px -1px 2px var(--medpurple);
+    border-radius: 40px;
+    margin: 50px;
 }
 
+#user-display-left {
+    display: flex;
+    align-items: center;
+}
+
+#user-display-right {
+    width: 327px;
+    margin-top: 38px;
+}
+
+#user-display-buttons {
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#edit-profile-button{
+    margin-top: 15px;
+}
+
+#riff-label {
+    margin: 20px auto;
+    width: fit-content;
+    font-weight: 500;
+}
+
+#user-bio {
+    overflow-wrap: break-word;
+    white-space: normal;
+    padding-right: 25px;
+}

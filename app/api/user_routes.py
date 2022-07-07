@@ -15,5 +15,8 @@ def users():
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
+    print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
+    print(id)
     user = User.query.get(id)
+    print(user.to_dict())
     return user.to_dict()

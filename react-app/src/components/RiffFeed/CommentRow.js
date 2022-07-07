@@ -8,7 +8,6 @@ import "./RiffFeed.css";
 // import { genRiffs } from "../../store/riff";
 
 const CommentRow = ({ comment, text, setText }) => {
-	
 	const [showCommentModal, setShowCommentModal] = useState(false);
 
 	const user = useSelector((state) => state.session.user);
@@ -25,7 +24,6 @@ const CommentRow = ({ comment, text, setText }) => {
 	// if (user) {
 	// 	return <Redirect to="/" />;
 	// }
-
 
 	// null before riffs / riff prop loads from the store
 	if (!comment) {
@@ -46,10 +44,12 @@ const CommentRow = ({ comment, text, setText }) => {
 					</div>
 				)}
 				{showCommentModal && (
-					<Modal onClose={() => {
-						setShowCommentModal(false)
-						setText('')
-					}}>
+					<Modal
+						onClose={() => {
+							setShowCommentModal(false);
+							setText("");
+						}}
+					>
 						<CommentModal
 							comment={comment}
 							text={text}
@@ -60,8 +60,13 @@ const CommentRow = ({ comment, text, setText }) => {
 				)}
 			</div>
 			<div className="comment-text">
-				<span className="authorname"> {comment?.author_username}</span>
-				<p className='comment-text-display'>{comment?.text}</p>
+				<a href={`/users/${comment.user_id}`}>
+					<span className="authorname">
+						{" "}
+						{comment?.author_username}
+					</span>
+				</a>
+				<p className="comment-text-display">{comment?.text}</p>
 			</div>
 		</div>
 	);
@@ -76,7 +81,7 @@ const CommentModal = ({ comment, text, setText, setShowCommentModal }) => {
 	const dispatch = useDispatch();
 
 	const [errors, setErrors] = useState([]);
-	
+
 	const handleEdit = async (e) => {
 		e.preventDefault();
 		const updateComment = { ...comment };
@@ -104,7 +109,7 @@ const CommentModal = ({ comment, text, setText, setShowCommentModal }) => {
 		// if (data) {
 		// 	setErrors(data)
 		// }
-	}
+	};
 
 	return (
 		<form className="edit-comment-form" onSubmit={handleEdit}>
@@ -134,6 +139,6 @@ const CommentModal = ({ comment, text, setText, setShowCommentModal }) => {
 			</div>
 		</form>
 	);
-}
+};
 
 export default CommentRow;
