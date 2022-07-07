@@ -75,7 +75,7 @@ const UserPage = () => {
 					</div>
 					<div id="user-display-right">
 						<h3>{user.username}</h3>
-						<p>{user.bio}</p>
+						<p id='user-bio'>{user.bio}</p>
 					</div>
 					<div id="user-display-buttons">
 						<button id="follow-button" className="btn">
