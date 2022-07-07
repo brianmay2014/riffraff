@@ -14,6 +14,7 @@ const UserPage = () => {
 	const currentUser = useSelector((state) => state.session.user);
 	// const [errors, setErrors] = useState([]);
     const riffs = useSelector((state) => state.riffs);
+    const user = useSelector((state) => state.user);
 	// const comments = useSelector((state) => state.comments);
 
 	const dispatch = useDispatch();
@@ -23,27 +24,29 @@ const UserPage = () => {
         dispatch(genRiffs());
 		dispatch(genComments());
         dispatch(genUser(parseInt(userId, 10)))
-    }, [dispatch]);
+    }, [dispatch, userId]);
 
 
-    const user = {id: 1,
-        "email": "demo@demo.com",
-    "username": "demoriffer",
-    "password": "password",
-    "pic_url": "",
-    "bio": "demo user for riffraff" };
+
+    // const user = {id: 1,
+    //     "email": "demo@demo.com",
+    // "username": "demoriffer",
+    // "password": "password",
+    // "pic_url": "",
+    // "bio": "demo user for riffraff" };
     
     // null before riffs loads from the store
-    if (!riffs) {
+    if (!riffs && !user) {
         return null;
      } else {
 
 
-        if (user.pic_url === '' || user.pic_url === null || user.pic_url === undefined) {
+        if (user?.pic_url === '' || user?.pic_url === null || user?.pic_url === undefined) {
 			user.pic_url =
 			"https://images.pexels.com/photos/7899456/pexels-photo-7899456.png?auto=compress&cs=tinysrgb&w=126&h=75&dpr=1";
 		}
         
+        console.log(user);
         
 		// console.log(riffs);
 		const riffArrUnfiltered = Object.values(riffs)

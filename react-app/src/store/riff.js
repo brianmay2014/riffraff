@@ -45,6 +45,8 @@ export const genRiffs = () => async (dispatch) => {
         riffsResponse.json(),
     ]);
     if (riffsResponse.ok) {
+        // console.log(riffs)
+        // console.log(riffs.riffs)
         dispatch(loadRiffs(riffs.riffs))
         return riffs;
     }

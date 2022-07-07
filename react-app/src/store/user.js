@@ -9,7 +9,7 @@ const loadUser = (user) => {
 
 export const genUser = (userId) => async (dispatch) => {
     const [userResponse] = await Promise.all([
-		fetch("/api/user/", {
+		fetch(`/api/users/${userId}`, {
 			mode: "no-cors",
 			headers: { "Access-Control-Allow-Origin": "*" },
 		}),
@@ -18,7 +18,10 @@ export const genUser = (userId) => async (dispatch) => {
         userResponse.json(),
     ]);
     if (userResponse.ok) {
-        dispatch(loadUser(user.user))
+        // console.log(userResponse);
+        // console.log(user.user);
+        // console.log(user);
+        dispatch(loadUser(user))
         return user;
     }
 }
@@ -26,13 +29,15 @@ export const genUser = (userId) => async (dispatch) => {
 const userReducer = (state = {}, action) => {
 
     switch (action.type) {
-        case LOAD_USER:
-            const userData = {};
-            userData[action.payload.id] = action.payload;
-            return { ...userData };
-        default:
-            return state;
-    }
+		case LOAD_USER:
+			// const userData = {};
+			// console.log(action);
+			// userData[action.payload.id] = action.payload;
+			// userData = {action.payload};
+			return { ...action.payload };
+		default:
+			return state;
+	}
 }
 
 export default userReducer;
