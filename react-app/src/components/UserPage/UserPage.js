@@ -77,6 +77,8 @@ const UserPage = () => {
 						<h3>{user.username}</h3>
 						<p id='user-bio'>{user.bio}</p>
 					</div>
+
+{/* FOLLOW AND EDIT BUTTONS
 					<div id="user-display-buttons">
 						<button id="follow-button" className="btn">
 							Follow
@@ -86,7 +88,9 @@ const UserPage = () => {
 								Edit Profile
 							</button>
 						)}
-						{/* {showRiffModal && (
+
+                        COMMENT ME OUT
+						{showRiffModal && (
 							<Modal
 								onClose={() => {
 									setShowRiffModal(false);
@@ -97,8 +101,12 @@ const UserPage = () => {
 									setShowRiffModal={setShowRiffModal}
 								/>
 							</Modal>
-						)} */}
+						)} COMMENT ABOVE ME
+                        
 					</div>
+FUTURE FEATURES */}
+
+
 				</div>
 				<h5 id="riff-label">{user.username}'s riffs</h5>
 
