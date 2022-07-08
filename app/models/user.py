@@ -2,6 +2,7 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
+from .riff import Riff
 
 followers = db.Table(
     'followers',
@@ -69,7 +70,31 @@ class User(db.Model, UserMixin):
     def is_following(self, user):
         return self.followed.filter(followers.c.followed_id == user.id).count() > 0
         
-    
+    def followed_riffs(self):
+        """
+        Join:
+        Invokes the join operation on the riffs table.
+        First argument is the followers association table.
+        Second argument is the join condition.
+            Followed_id must be equal to user_id of riffs table.
+        Filter:
+        Filters the items from the joined table to only contain follower_id's
+            equal to current user's id (self.id)
+        Order By:
+        Sorted by created date in a descending order. Most recent to display first.
+        """
+        # to return all other user posts
+        # return Riff.query.join(
+        #     followers, (followers.c.followed_id == Riff.user_id)).filter(
+        #         followers.c.follower_id == self.id).order_by(Riff.created_at.desc())
+        followed =  Riff.query.join(
+            followers, (followers.c.followed_id == Riff.user_id)).filter(
+                followers.c.follower_id == self.id)
+        own = Riff.query.filter_by(user_id=self.id)
+        return followed.union(own).order_by(Riff.created_at.desc())
+
+
+
     # @staticmethod
     # def seed(user_data):
     #     user = User()
