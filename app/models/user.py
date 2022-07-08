@@ -3,6 +3,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 
+followers = db.Table(
+    'followers',
+    db.Column('follower_id', db.Integer, db.ForeignKey('users.id')),
+    db.Column('followed_id', db.Integer, db.ForeignKey('users.id'))
+)
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -21,6 +26,15 @@ class User(db.Model, UserMixin):
     riffs = db.relationship("Riff", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
     # likes = db.relationship("Like", back_populates="user")
+
+    #follow
+    followed = db.relationship(
+        "User",
+        secondary=followers,
+        primaryjoin=(followers.c.follower_id == id),
+        secondaryjoin=(followers.c.followed_id == id),
+        backref=db.backref('followers', lazy='dynamic'), lazy='dynamic'
+        )
 
 
     @property
@@ -42,6 +56,19 @@ class User(db.Model, UserMixin):
             'pic_url': self.pic_url,
             'bio': self.bio
         }
+
+
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
+    
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
+
+    def is_following(self, user):
+        return self.followed.filter(followers.c.followed_id == user.id).count() > 0
+        
     
     # @staticmethod
     # def seed(user_data):
