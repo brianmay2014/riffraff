@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User
+from flask import Blueprint, jsonify, flash, redirect, url_for
+from flask_login import login_required, current_user
+from app.models import db, User
+from app.forms.follow_form import FollowForm
 
 user_routes = Blueprint('users', __name__)
 
@@ -16,7 +17,54 @@ def users():
 @login_required
 def user(id):
     print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
-    print(id)
+    # print(id)
+    print(current_user)
     user = User.query.get(id)
-    print(user.to_dict())
+    print(user)
+    print(user.username)
+    # print(user.to_dict())
     return user.to_dict()
+
+
+
+@user_routes.route('/follow/<followed_id>', methods=['POST'])
+@login_required
+def follow(followed_id):
+    form = FollowForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(id=followed_id).first()
+        if user is None:
+            flash('User {} not found.'.format(followed_id))
+            return redirect(url_for('riffs'))
+        if user == current_user:
+            flash('You cannot follow yourself!')
+            return redirect(url_for('users/{}'.format(user.id)))
+        current_user.follow(user)
+        db.session.commit()
+        flash('You are following {}'.format(user.username))
+        return redirect(url_for('users/{}'.format(user.id)))
+    else:
+        return redirect(url_for('users/{}'.format(user.id)))
+
+
+@user_routes.route('/unfollow/<followed_id>', methods=['POST'])
+@login_required
+def unfollow(followed_id):
+    form = FollowForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(id=followed_id).first()
+        if user is None:
+            flash('User {} not found.'.format(followed_id))
+            return redirect(url_for('riffs'))
+        if user == current_user:
+            flash('You cannot unfollow yourself!')
+            return redirect(url_for('users/{}'.format(user.id)))
+        current_user.unfollow(user)
+        db.session.commit()
+        flash('You are not following {}'.format(user.username))
+        return redirect(url_for('users/{}'.format(user.id)))
+    else:
+        return redirect(url_for('users/{}'.format(user.id)))
+
+
+
