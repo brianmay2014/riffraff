@@ -70,6 +70,13 @@ class User(db.Model, UserMixin):
 
     def is_following(self, user):
         return self.followed.filter(followers.c.followed_id == user.id).count() > 0
+
+    def get_following(self):
+        print('////*/-/*-*/-*/-////*-//*-/*-*/-')
+        print(self.followed.all())
+        # following_ids = [user.id for user in self.followed.all()]
+        print('////*/-/*-*/-*/-////*-//*-/*-*/-')
+        return {'following_ids': [user.id for user in self.followed.all()]}
         
     def followed_riffs(self):
         """

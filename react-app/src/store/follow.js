@@ -27,8 +27,6 @@ const loadFollows = (follows) => {
 
 export const makeFollow = (followed_id, follower_id) => async (dispatch) => {
 	
-    
-    
 	const form = new FormData();
 	// form.append("user_id", follow.user_id);
 	// form.append("riff_id", riffId);
@@ -79,6 +77,8 @@ export const genFollows = () => async (dispatch) => {
 	]);
 
 	const [follows] = await Promise.all([followsResponse.json()]);
+
+    console.log(follows)
 
 	if (followsResponse.ok) {
 		

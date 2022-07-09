@@ -8,7 +8,7 @@ import { genRiffs } from "../../store/riff";
 import { genComments } from "../../store/comment";
 import RiffCard from "../RiffFeed/RiffCard";
 import { genUser } from "../../store/user";
-import { makeFollow, deleteFollow } from "../../store/follow";
+import { makeFollow, deleteFollow, genFollows } from "../../store/follow";
 
 const UserPage = () => {
     const { userId } = useParams();
@@ -29,7 +29,7 @@ const UserPage = () => {
     }, [dispatch, userId]);
 
 
-    const FollowSubmit = async (e) => {
+    const followSubmit = async (e) => {
         e.preventDefault();
 
         const followed_id = parseInt(userId);
@@ -47,7 +47,7 @@ const UserPage = () => {
 		}
     }
 
-    const UnfollowSubmit = async (e) => {
+    const unfollowSubmit = async (e) => {
 		e.preventDefault();
 
         const followed_id = parseInt(userId);
@@ -64,6 +64,26 @@ const UserPage = () => {
             return;
         }
 	};
+
+        const generateFollows = async (e) => {
+			e.preventDefault();
+
+			// const followed_id = parseInt(userId);
+			// const follower_id = user.id;
+
+			// setErrors([]);
+
+			const genfollow = await dispatch(
+				genFollows()
+			);
+
+			if (genfollow.errors) {
+				setErrors(genfollow.errors);
+				genfollow.errors = [];
+
+				return;
+			}
+		};
 
 
     // const user = {id: 1,
@@ -113,35 +133,28 @@ const UserPage = () => {
 					</div>
 					<div id="user-display-right">
 						<h3>{user.username}</h3>
-						<p id='user-bio'>{user.bio}</p>
+						<p id="user-bio">{user.bio}</p>
 					</div>
 
-{/* FOLLOW AND EDIT BUTTONS */}
+					{/* FOLLOW AND EDIT BUTTONS */}
 					<div id="user-display-buttons">
-						<form id='follow-button' onSubmit={FollowSubmit}>
-            				<button
-			            		className="btn"
-					            type="submit"
-				            >
-					            Follow
-				            </button>
-			            </form>
-                        <form id='unfollow-button' onSubmit={UnfollowSubmit}>
-				        	<button
-					            className="btn"
-					            type="submit"
-				            >
-                                Unfollow
-                            </button>
-                        </form>
+						<form id="follow-button" onSubmit={followSubmit}>
+							<button className="btn" type="submit">
+								Follow
+							</button>
+						</form>
+						<form id="unfollow-button" onSubmit={unfollowSubmit}>
+							<button className="btn" type="submit">
+								Unfollow
+							</button>
+						</form>
+						<button className="btn" onClick={generateFollows}>
+							Check follows
+						</button>
 
-
-
-                        
-                        {/* <button id="follow-button" className="btn">
+						{/* <button id="follow-button" className="btn">
 							Follow
 						</button> */}
-
 
 						{userId == currentUser.id && (
 							<button id="edit-profile-button" className="btn">
@@ -149,7 +162,7 @@ const UserPage = () => {
 							</button>
 						)}
 
-                        {/* COMMENT ME OUT
+						{/* COMMENT ME OUT
 						{showRiffModal && (
 							<Modal
 								onClose={() => {
@@ -164,9 +177,7 @@ const UserPage = () => {
 						)} COMMENT ABOVE ME
                         
                     FUTURE FEATURES */}
-					    </div>
-
-
+					</div>
 				</div>
 				<h5 id="riff-label">{user.username}'s riffs</h5>
 
