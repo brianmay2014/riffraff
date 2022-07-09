@@ -96,11 +96,8 @@ const followReducer = (state = {}, action) => {
 			delete copyState[action.payload.id];
 			return copyState;
 		case LOAD_FOLLOWS:
-			const followData = {};
-			for (let follow of action.payload) {
-				followData[follow.id] = follow;
-			}
-			return { ...followData };
+			// const followData = {};
+			return { ...action.payload };
 		default:
 			return state;
 	}
