@@ -55,7 +55,8 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'pic_url': self.pic_url,
-            'bio': self.bio
+            'bio': self.bio,
+            # 'followed': self.followed
         }
 
 

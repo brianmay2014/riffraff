@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { Redirect, useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -8,6 +8,7 @@ import { genRiffs } from "../../store/riff";
 import { genComments } from "../../store/comment";
 import RiffCard from "../RiffFeed/RiffCard";
 import { genUser } from "../../store/user";
+import { makeFollow, deleteFollow } from "../../store/follow";
 
 const UserPage = () => {
     const { userId } = useParams();
@@ -15,6 +16,7 @@ const UserPage = () => {
 	// const [errors, setErrors] = useState([]);
     const riffs = useSelector((state) => state.riffs);
     const user = useSelector((state) => state.user);
+    const [errors, setErrors] = useState([]);
 	// const comments = useSelector((state) => state.comments);
 
 	const dispatch = useDispatch();
@@ -26,6 +28,44 @@ const UserPage = () => {
         dispatch(genUser(parseInt(userId, 10)))
     }, [dispatch, userId]);
 
+
+    const FollowSubmit = async (e) => {
+        e.preventDefault();
+
+        const followed_id = parseInt(userId);
+        const follower_id = user.id;
+
+        setErrors([]);
+
+        const follow = await dispatch(makeFollow(followed_id, follower_id))
+
+        if (follow.errors) {
+			setErrors(follow.errors);
+			follow.errors = [];
+
+			return;
+		}
+    }
+
+    const UnfollowSubmit = async (e) => {
+		e.preventDefault();
+
+                const followed_id = parseInt(userId);
+				const follower_id = user.id;
+
+				setErrors([]);
+
+				const unfollow = await dispatch(
+					deleteFollow(followed_id, follower_id)
+				);
+
+				if (unfollow.errors) {
+					setErrors(unfollow.errors);
+					unfollow.errors = [];
+
+					return;
+				}
+	};
 
 
     // const user = {id: 1,
@@ -78,18 +118,40 @@ const UserPage = () => {
 						<p id='user-bio'>{user.bio}</p>
 					</div>
 
-{/* FOLLOW AND EDIT BUTTONS
+{/* FOLLOW AND EDIT BUTTONS */}
 					<div id="user-display-buttons">
-						<button id="follow-button" className="btn">
+						<form id='follow-button' onSubmit={FollowSubmit}>
+            				<button
+			            		className="btn"
+					            type="submit"
+				            >
+					            Follow
+				            </button>
+			            </form>
+                        <form id='unfollow-button' onSubmit={UnfollowSubmit}>
+				        	<button
+					            className="btn"
+					            type="submit"
+				            >
+                                Unfollow
+                            </button>
+                        </form>
+
+
+
+                        
+                        {/* <button id="follow-button" className="btn">
 							Follow
-						</button>
+						</button> */}
+
+
 						{userId == currentUser.id && (
 							<button id="edit-profile-button" className="btn">
 								Edit Profile
 							</button>
 						)}
 
-                        COMMENT ME OUT
+                        {/* COMMENT ME OUT
 						{showRiffModal && (
 							<Modal
 								onClose={() => {
@@ -103,8 +165,8 @@ const UserPage = () => {
 							</Modal>
 						)} COMMENT ABOVE ME
                         
-					</div>
-FUTURE FEATURES */}
+                    FUTURE FEATURES */}
+					    </div>
 
 
 				</div>
