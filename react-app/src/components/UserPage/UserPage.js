@@ -50,21 +50,19 @@ const UserPage = () => {
     const UnfollowSubmit = async (e) => {
 		e.preventDefault();
 
-                const followed_id = parseInt(userId);
-				const follower_id = user.id;
+        const followed_id = parseInt(userId);
+        const follower_id = user.id;
 
-				setErrors([]);
+        setErrors([]);
 
-				const unfollow = await dispatch(
-					deleteFollow(followed_id, follower_id)
-				);
+        const unfollow = await dispatch(deleteFollow(followed_id, follower_id));
 
-				if (unfollow.errors) {
-					setErrors(unfollow.errors);
-					unfollow.errors = [];
+        if (unfollow.errors) {
+            setErrors(unfollow.errors);
+            unfollow.errors = [];
 
-					return;
-				}
+            return;
+        }
 	};
 
 
