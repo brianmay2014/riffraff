@@ -77,6 +77,13 @@ class User(db.Model, UserMixin):
         # following_ids = [user.id for user in self.followed.all()]
         # print('////*/-/*-*/-*/-////*-//*-/*-*/-')
         return {'following_ids': [user.id for user in self.followed.all()]}
+
+    def get_not_following(self):
+        # print('////*/-/*-*/-*/-////*-//*-/*-*/-')
+        print(self.followed.all())
+        # following_ids = [user.id for user in self.followed.all()]
+        # print('////*/-/*-*/-*/-////*-//*-/*-*/-')
+        return {'following_ids': [user.id for user in self.followed.all()]}
         
     def followed_riffs(self):
         """
