@@ -20,7 +20,6 @@ const UserPage = () => {
 	// const comments = useSelector((state) => state.comments);
 
 	const dispatch = useDispatch();
-	// const history = useHistory();
 
     useEffect(() => {
         dispatch(genRiffs());
