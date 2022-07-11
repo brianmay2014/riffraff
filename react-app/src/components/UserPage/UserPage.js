@@ -13,7 +13,6 @@ import { makeFollow, deleteFollow, genFollows } from "../../store/follow";
 const UserPage = () => {
     const { userId } = useParams();
 	const currentUser = useSelector((state) => state.session.user);
-	// const [errors, setErrors] = useState([]);
     const riffs = useSelector((state) => state.riffs);
     const user = useSelector((state) => state.user);
     const follows = useSelector((state) => state.follows);
@@ -57,8 +56,6 @@ const UserPage = () => {
 
 			return;
 		}
-
-
     }
 
     const unfollowSubmit = async (e) => {
@@ -89,37 +86,8 @@ const UserPage = () => {
 		}
 	};
 
-        // function for testing follow actions
-        // const generateFollows = async (e) => {
-		// 	e.preventDefault();
-
-		// 	// const followed_id = parseInt(userId);
-		// 	// const follower_id = user.id;
-
-		// 	// setErrors([]);
-
-		// 	const genfollow = await dispatch(
-		// 		genFollows()
-		// 	);
-
-		// 	if (genfollow.errors) {
-		// 		setErrors(genfollow.errors);
-		// 		genfollow.errors = [];
-
-		// 		return;
-		// 	}
-		// };
-        
-        
-        // const user = {id: 1,
-        //     "email": "demo@demo.com",
-        // "username": "demoriffer",
-        // "password": "password",
-        // "pic_url": "",
-        // "bio": "demo user for riffraff" };
-        
+        //creates array to for follow/unfollow buttons in render
         const followArr = follows[currentUser.id]
-        // console.log(followArr);
 
     // null before riffs loads from the store
     if (!riffs && !user && !followArr) {
@@ -134,21 +102,12 @@ const UserPage = () => {
 					"https://images.pexels.com/photos/7899456/pexels-photo-7899456.png?auto=compress&cs=tinysrgb&w=126&h=75&dpr=1";
 			}
 
-			console.log(user);
-
-			// console.log(riffs);
 			const riffArrUnfiltered = Object.values(riffs);
 
 			const riffArr = riffArrUnfiltered.filter((riff) => {
-				// console.log(riff)
 				return riff.user_id == userId;
 			});
-			// console.log('user.id', user.id)
-			// console.log(' type of user.id', typeof(user.id))
-			// console.log('userId', userId)
-			// console.log(' type of userId', typeof(userId))
-			// console.log(currentUser);
-			// console.log(riffArr);
+
 
 			//sort by id - to show newest created at the top
 			riffArr.sort((a, b) => {
@@ -191,13 +150,7 @@ const UserPage = () => {
 										</button>
 									</form>
 								)}
-							{/* <button className="btn" onClick={generateFollows}>
-								Check follows
-							</button> */}
 
-							{/* <button id="follow-button" className="btn">
-							Follow
-						</button> */}
 
 							{userId == currentUser.id && (
 								<button
@@ -208,7 +161,7 @@ const UserPage = () => {
 								</button>
 							)}
 
-							{/* COMMENT ME OUT
+							{/* COMMENT ME OUT - for edit profile
 						{showRiffModal && (
 							<Modal
 								onClose={() => {
