@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import db, Riff, Comment
 from app.utils.validutils import validation_errors_to_error_messages
 from app.forms.comment_form import CommentForm
@@ -31,9 +31,29 @@ def validation_errors_to_error_messages(validation_errors):
 @riff_routes.route('/')
 def riffs():
     all_riffs = Riff.query.all()
+
+    # print('***8*8*8*8*8*8*8**********************')
+    # print(all_riffs)
+    # print('***8*8*8*8*8*8*8**********************')
+
+    fol_riffs = current_user.followed_riffs()
+    # print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
+    # print('hello there from the route')
+    # print(fol_riffs)
+    # print('hello there from the route')
+    # print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
     
     # print(all_riffs)
-    return {'riffs': [riff.to_dict() for riff in all_riffs]}
+    return {'riffs': [riff.to_dict() for riff in fol_riffs]}
+
+# get "/api/riffs/followed/"
+# @riff_routes.route('/followed/')
+# def riffs():
+#     all_riffs = current_user.followed_riffs()
+#     print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
+#     print(all_riffs)
+#     print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
+#     return {'riffs': [riff.to_dict() for riff in all_riffs]}
 
 
 @riff_routes.route('/<int:id>/comments', methods=["POST"])

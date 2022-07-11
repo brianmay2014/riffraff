@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./RiffFeed.css";
 import { genRiffs } from "../../store/riff";
 import { genComments } from "../../store/comment";
+import { genFollows } from '../../store/follow';
 import RiffCard from "./RiffCard";
 
 const RiffFeed = () => {
@@ -18,6 +19,7 @@ const RiffFeed = () => {
 
     useEffect(() => {
         dispatch(genRiffs());
+		dispatch(genFollows());
 		dispatch(genComments());
     }, [dispatch]);
 
