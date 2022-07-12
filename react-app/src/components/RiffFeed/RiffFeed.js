@@ -42,14 +42,20 @@ const RiffFeed = () => {
 
 	return (
 		<div id="feed-body">
-			<div id='feed-cards'>
-
-			{riffArr &&
-				riffArr.map((riff) => {
-					return <RiffCard key={`key-${riff?.id}`} riff={riff} />;
-				})}
+			<div id="feed-cards">
+				{riffArr.length === 0 && (
+					<div id='empty-riff-feed'>
+						<p>You have no riffs to view!</p>
+						<p>Either add to the community <a href='/riffs/new'>here</a></p>
+						<p>Or start following other users!</p>
 					</div>
-				<SuggestedFollows />
+				)}
+				{riffArr &&
+					riffArr.map((riff) => {
+						return <RiffCard key={`key-${riff?.id}`} riff={riff} />;
+					})}
+			</div>
+			<SuggestedFollows />
 		</div>
 	);
 };

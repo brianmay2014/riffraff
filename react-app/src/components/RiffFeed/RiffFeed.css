@@ -242,7 +242,21 @@ button.comment-delete{
     background-color: var(--bgred);
 }
 
+#empty-riff-feed {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--darkslate);
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+    margin-top: 28px;
+}
 
+#empty-riff-feed p {
+    /* text-align: center; */
+    margin: 25px auto;
+}
 
 /* Waveform Player */
 
