@@ -52,6 +52,24 @@ export const genRiffs = () => async (dispatch) => {
     }
 };
 
+//gets all riffs for a specific user
+export const genRiffsUser = (userId) => async (dispatch) => {
+	//open to adding more types of responses later
+	const [riffsResponse] = await Promise.all([
+		fetch(`/api/riffs/users/${userId}/`, {
+			mode: "no-cors",
+			headers: { "Access-Control-Allow-Origin": "*" },
+		}),
+	]);
+	const [riffs] = await Promise.all([riffsResponse.json()]);
+	if (riffsResponse.ok) {
+		// console.log(riffs)
+		// console.log(riffs.riffs)
+		dispatch(loadRiffs(riffs.riffs));
+		return riffs;
+	}
+};
+
 export const makeRiff = (riff, link) => async (dispatch) => {
 
     // console.log ('inside thunk');
