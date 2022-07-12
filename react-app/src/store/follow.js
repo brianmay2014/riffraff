@@ -78,7 +78,7 @@ export const genFollows = () => async (dispatch) => {
 
 	const [follows] = await Promise.all([followsResponse.json()]);
 
-    console.log(follows)
+    // console.log(follows)
 
 	if (followsResponse.ok) {
 		

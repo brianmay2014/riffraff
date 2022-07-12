@@ -5,13 +5,15 @@ import riffReducer from './riff';
 import commentReducer from './comment';
 import userReducer from './user';
 import followReducer from './follow';
+import unfollowReducer from './unfollow';
 
 const rootReducer = combineReducers({
-  session,
-  riffs: riffReducer,
-  comments: commentReducer,
-  user: userReducer,
-  follows: followReducer,
+	session,
+	riffs: riffReducer,
+	comments: commentReducer,
+	user: userReducer,
+	follows: followReducer,
+	unfollows: unfollowReducer,
 });
 
 

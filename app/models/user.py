@@ -72,10 +72,17 @@ class User(db.Model, UserMixin):
         return self.followed.filter(followers.c.followed_id == user.id).count() > 0
 
     def get_following(self):
-        print('////*/-/*-*/-*/-////*-//*-/*-*/-')
+        # print('////*/-/*-*/-*/-////*-//*-/*-*/-')
         print(self.followed.all())
         # following_ids = [user.id for user in self.followed.all()]
-        print('////*/-/*-*/-*/-////*-//*-/*-*/-')
+        # print('////*/-/*-*/-*/-////*-//*-/*-*/-')
+        return {'following_ids': [user.id for user in self.followed.all()]}
+
+    def get_not_following(self):
+        # print('////*/-/*-*/-*/-////*-//*-/*-*/-')
+        print(self.followed.all())
+        # following_ids = [user.id for user in self.followed.all()]
+        # print('////*/-/*-*/-*/-////*-//*-/*-*/-')
         return {'following_ids': [user.id for user in self.followed.all()]}
         
     def followed_riffs(self):
@@ -99,7 +106,14 @@ class User(db.Model, UserMixin):
             followers, (followers.c.followed_id == Riff.user_id)).filter(
                 followers.c.follower_id == self.id)
         own = Riff.query.filter_by(user_id=self.id)
-        return followed.union(own).order_by(Riff.created_at.desc())
+
+        # print('-----------------------------------------')
+        # print('followed', followed)
+        # print('own', own)
+
+        # print('-----------------------------------------')
+
+        return list(followed.union(own).order_by(Riff.created_at.desc()))
 
 
 

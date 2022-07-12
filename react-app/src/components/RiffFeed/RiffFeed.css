@@ -276,3 +276,58 @@ button.comment-delete{
 .play-button button:hover{
     background: rgb(195, 162, 162);
 }
+
+
+
+
+/* suggested follow styling */
+
+
+
+.follow-row {
+ display: flex;
+ align-items: center;
+ margin-bottom: 18px;
+}
+
+/* .follow-row img {
+
+} */
+
+.follow-row a {
+    width: 145px;
+    margin-left: 18px;
+}
+
+/* .follow-row form {
+    
+} */
+
+
+
+.feed-follow-btn{
+    background-color: transparent;
+    color: var(--lightslate);
+    border: none;
+    font-size: 1em;
+    transition: 0.3s;
+}
+
+.feed-follow-btn:hover {
+    color: var(--medpurple);
+    border: none;
+    font-size: 1em;
+    text-shadow: var(--medpurple) 1px 0 5px;
+}
+
+#suggested-body {
+    margin-left: 38px;
+    margin-top: 12px;
+    position: sticky;
+}
+
+#feed-body {
+    display: flex;
+    justify-content: center;
+
+}
