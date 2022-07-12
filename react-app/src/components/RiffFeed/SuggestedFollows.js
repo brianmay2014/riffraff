@@ -79,6 +79,8 @@ const FollowRow = (user) => {
 
 				return;
 			}
+
+            dispatch(genUnfollows());
 		};
 
 
