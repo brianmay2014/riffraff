@@ -278,6 +278,9 @@ button.comment-delete{
 }
 
 
+#userpage-feed-body p {
+    text-align: center;
+}
 
 
 /* suggested follow styling */

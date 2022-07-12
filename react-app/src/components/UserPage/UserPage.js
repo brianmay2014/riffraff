@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 // import { login } from "../../store/session";
 import "./UserPage.css";
-import { genRiffs } from "../../store/riff";
+import { genRiffsUser } from "../../store/riff";
 import { genComments } from "../../store/comment";
 import RiffCard from "../RiffFeed/RiffCard";
 import { genUser } from "../../store/user";
@@ -22,7 +22,7 @@ const UserPage = () => {
 	const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(genRiffs());
+        dispatch(genRiffsUser(parseInt(userId, 10)));
 		dispatch(genComments());
         dispatch(genUser(parseInt(userId, 10)))
         dispatch(genFollows())
@@ -150,7 +150,6 @@ const UserPage = () => {
 									</form>
 								)}
 
-
 							{userId == currentUser.id && (
 								<button
 									id="edit-profile-button"
@@ -179,7 +178,8 @@ const UserPage = () => {
 					</div>
 					<h5 id="riff-label">{user.username}'s riffs</h5>
 
-					<div id="feed-body">
+					<div id="userpage-feed-body">
+						{riffArr.length === 0 && <p> {user.username} has not posted any riffs!</p>}
 						{riffArr &&
 							riffArr.map((riff) => {
 								return (

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { Redirect, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 // import { genComments } from "../../store/comment";
-import { genRiffs } from "../../store/riff";
+import { genRiffs, genRiffsUser } from "../../store/riff";
 import CommentRow from "./CommentRow";
 import PostComment from "./PostComment";
 // import { genRiffs } from "../../store/riff";
@@ -12,6 +13,7 @@ import "./RiffFeed.css";
 const CommentDisplay = ({ riff }) => {
 	// const user = useSelector((state) => state.session.user);
 	// const [errors, setErrors] = useState([]);
+	const { userId } = useParams();
 	const [text, setText] = useState("");
 	const dispatch = useDispatch();
 
@@ -21,7 +23,14 @@ const CommentDisplay = ({ riff }) => {
 
 	useEffect(() => {
 		if (riff) {
-			dispatch(genRiffs());
+			// updating the riff store to which page it's loaded
+			// a user page
+			if (window.location.href.includes('user')) {
+				dispatch(genRiffsUser(parseInt(userId, 10)))
+			} else {
+				//the riff feed
+				dispatch(genRiffs());
+			}
 		}
 	}, [comments, dispatch]);
 

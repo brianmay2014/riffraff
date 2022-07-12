@@ -46,6 +46,21 @@ def riffs():
     # print(all_riffs)
     return {'riffs': [riff.to_dict() for riff in fol_riffs]}
 
+
+
+# get '/riffs/users/<userId>/' all riffs for a specfic user
+@riff_routes.route('/users/<int:userId>/')
+def riffs_user(userId):
+    user_riffs = Riff.query.filter_by(user_id=userId)
+    # own = Riff.query.filter_by(user_id=self.id)
+
+    print('***8*8*8*8*8*8*8**********************')
+    print(user_riffs)
+    print('***8*8*8*8*8*8*8**********************')
+    
+    # print(all_riffs)
+    return {'riffs': [riff.to_dict() for riff in user_riffs]}
+
 # get "/api/riffs/followed/"
 # @riff_routes.route('/followed/')
 # def riffs():
