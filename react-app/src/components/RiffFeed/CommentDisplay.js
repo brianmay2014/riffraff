@@ -33,7 +33,7 @@ const CommentDisplay = ({ riff }) => {
 		riffComments.push(comments[comment_id]);
 	});
 
-	const commentCount = riffComments.length
+	const commentCount = riffComments.length;
 
 	// null before riffs / riff prop loads from the store
 	if (!riff) {
@@ -42,7 +42,15 @@ const CommentDisplay = ({ riff }) => {
 
 	return (
 		<div id={`${riff?.id}-comments`} className="comment-display-container">
-			<p className='comment-count-number'>{commentCount} comments</p>
+			{commentCount === 0 && (
+				<p className="comment-count-number"> No comments</p>
+			)}
+			{commentCount === 1 && (
+				<p className="comment-count-number"> 1 comment</p>
+			)}
+			{commentCount > 1 && (
+				<p className="comment-count-number">{commentCount} comments</p>
+			)}
 			{riffComments.map((comment) => {
 				return (
 					<CommentRow
@@ -53,7 +61,7 @@ const CommentDisplay = ({ riff }) => {
 					/>
 				);
 			})}
-			<PostComment riff={riff}/>
+			<PostComment riff={riff} />
 		</div>
 	);
 };
