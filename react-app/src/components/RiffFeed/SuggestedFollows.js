@@ -101,7 +101,7 @@ const FollowRow = (user) => {
 			{/* <p> {rowuser.pic_url} </p> */}
 			<a href={`/users/${rowuser.id}`}> {rowuser.username} </a>
 			<form id="follow-button" onSubmit={followSubmit}>
-				<button className="btn" type="submit">
+				<button className="feed-follow-btn" type="submit">
 					Follow
 				</button>
 			</form>

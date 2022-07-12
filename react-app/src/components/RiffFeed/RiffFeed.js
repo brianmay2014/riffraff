@@ -42,11 +42,14 @@ const RiffFeed = () => {
 
 	return (
 		<div id="feed-body">
-			<SuggestedFollows />
+			<div id='feed-cards'>
+
 			{riffArr &&
 				riffArr.map((riff) => {
 					return <RiffCard key={`key-${riff?.id}`} riff={riff} />;
 				})}
+					</div>
+				<SuggestedFollows />
 		</div>
 	);
 };
