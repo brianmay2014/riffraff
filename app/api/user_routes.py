@@ -79,6 +79,21 @@ def get_follows():
     # print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
     return {f'{current_user.id}': f_ids['following_ids']}
 
+# full user info for following page
+@user_routes.route('/<int:id>/follows/', methods=['GET'])
+@login_required
+def get_user_follows(id):
+    # print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
+    # user = User.query.filter_by(id=followed_id).first()
+    users = User.query.all()
+    f_ids = current_user.get_following()
+
+        #create list of users that the current user is not following
+    users_following = [x for x in users if (x.id in f_ids['following_ids'])]
+
+    # print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
+    return {'follows': [user.to_dict() for user in users_following]}
+
 
 @user_routes.route('/unfollows/', methods=['GET'])
 @login_required
