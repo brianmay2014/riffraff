@@ -96,7 +96,7 @@ const FollowingRow = (user) => {
 	}
 
 	return (
-		<div className="follow-row">
+		<div className="unfollow-row">
 			<img className="card-user-img" src={rowuser.pic_url} alt="follow" />
 			{/* <p> {rowuser.pic_url} </p> */}
 			<a href={`/users/${rowuser.id}`}> {rowuser.username} </a>
