@@ -1,5 +1,6 @@
 from ..models.db import db, auto_str
 from datetime import datetime
+from .like import likes
 
 @auto_str
 class Riff(db.Model):
@@ -19,7 +20,7 @@ class Riff(db.Model):
     
     # has many
     comments = db.relationship("Comment", back_populates='riff', cascade='all, delete-orphan', lazy='joined')
-    # likes = 
+    riff_likes = db.relationship("User", secondary=likes, back_populates="user_likes")
 
     # many to many
     # tags = 
