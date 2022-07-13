@@ -5,7 +5,6 @@ from app.models.riff import Riff
 
 def seed_likes():
 
-
     demo = User.query.get(1)
     riff7 = Riff.query.get(7)
     riff10 = Riff.query.get(10)
@@ -40,10 +39,7 @@ def seed_likes():
     
     space.user_likes.extend([riff1, riff2, riff5, riff6, riff7, riff9, riff10, riff11])
 
-    # 1-6 demo
-    # 7-9 heavy
-    # 10-12 rock
-    # 13-15 space
+
 
     db.session.commit()
 

@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .comments import seed_comments, undo_comments
 from .riffs import seed_riffs, undo_riffs
 from .likes import seed_likes, undo_likes
+from .follows import seed_follows, undo_follows
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -16,6 +17,7 @@ def seed():
     seed_riffs()
     seed_comments()
     seed_likes()
+    seed_follows()
     # Add other seed functions here
 
 
@@ -26,4 +28,5 @@ def undo():
     undo_riffs()
     undo_comments()
     undo_likes()
+    undo_follows()
     # Add other undo functions here
