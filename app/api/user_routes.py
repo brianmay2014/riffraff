@@ -16,14 +16,18 @@ def users():
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
-    print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
+    # print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
     # print(id)
-    print(current_user)
+    # print(current_user)
     user = User.query.get(id)
-    print(user)
-    print(user.username)
-    # print(user.to_dict())
-    return user.to_dict()
+
+    if not user:
+        return {'errors': f'No user with id {id} exists'}, 404
+    else:
+        # print(user)
+        # print(user.username)
+        # print(user.to_dict())
+        return user.to_dict()
 
 
 

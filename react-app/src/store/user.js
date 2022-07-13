@@ -23,7 +23,11 @@ export const genUser = (userId) => async (dispatch) => {
         // console.log(user);
         dispatch(loadUser(user))
         return user;
+    } else {
+        console.log(user);
     }
+
+
 }
 
 const userReducer = (state = {}, action) => {
