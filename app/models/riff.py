@@ -38,6 +38,7 @@ class Riff(db.Model):
             'comment_ids': [comment.id for comment in self.comments],
             'author_username': self.user.username,
             'author_img': self.user.pic_url,
+            # 'riff_likes': self.riff_likes,
             # 'comments': self.comments,
         }
 

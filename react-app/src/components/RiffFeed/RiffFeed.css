@@ -297,6 +297,11 @@ button.comment-delete{
 
 /* suggested follow styling */
 
+.no-suggestions {
+    font-size: 0.8em;
+    padding-left: 18px;
+    color: var(--lightslate);
+}
 
 
 .follow-row {

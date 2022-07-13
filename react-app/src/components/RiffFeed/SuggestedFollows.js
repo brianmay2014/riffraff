@@ -41,6 +41,7 @@ const SuggestedFollows = () => {
                 // return <p>{user.username}</p>
                 return <FollowRow key={`key-${user?.id}`} user={user} />;
             })}
+			{displayArr.length === 0 && <p className='no-suggestions'>No suggested users!</p>}
 		</div>
 	);
 };
