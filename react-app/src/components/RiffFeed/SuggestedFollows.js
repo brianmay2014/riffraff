@@ -30,12 +30,14 @@ const SuggestedFollows = () => {
 
     // console.log(unfollows);
     let unfollowArr = Object.values(unfollows);
+	let displayArr = unfollowArr.slice(0,4);
+	
     // console.log(unfollowArr)
 
 	return (
 		<div id="suggested-body">
             <p>Suggestions For You</p>
-            {unfollowArr && unfollowArr.map((user) => {
+            {displayArr && displayArr.map((user) => {
                 // return <p>{user.username}</p>
                 return <FollowRow key={`key-${user?.id}`} user={user} />;
             })}
@@ -81,6 +83,7 @@ const FollowRow = (user) => {
 			}
 
             dispatch(genUnfollows());
+			
 		};
 
 
