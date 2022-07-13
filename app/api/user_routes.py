@@ -16,14 +16,18 @@ def users():
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
-    print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
+    # print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
     # print(id)
-    print(current_user)
+    # print(current_user)
     user = User.query.get(id)
-    print(user)
-    print(user.username)
-    # print(user.to_dict())
-    return user.to_dict()
+
+    if not user:
+        return {'errors': f'No user with id {id} exists'}, 404
+    else:
+        # print(user)
+        # print(user.username)
+        # print(user.to_dict())
+        return user.to_dict()
 
 
 
@@ -78,6 +82,24 @@ def get_follows():
     f_ids = current_user.get_following()
     # print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
     return {f'{current_user.id}': f_ids['following_ids']}
+
+# full user info for following page
+@user_routes.route('/<int:id>/follows/', methods=['GET'])
+@login_required
+def get_user_follows(id):
+    # print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
+    # user = User.query.filter_by(id=followed_id).first()
+    users = User.query.all()
+
+    f_ids = User.query.get(id).get_following()
+
+    # f_ids = current_user.get_following()
+
+        #create list of users that the current user is not following
+    users_following = [x for x in users if (x.id in f_ids['following_ids'])]
+
+    # print('*****/*/-/*-/*-/*-/*-/*-*/-*/-*/-/*-/*-/*-*/-/*-*/-/*-/*-/*-/*-/*-/*-*/-/*-/*-*/-*/-*/-*/-*/-*/-*/-/*-*/-')
+    return {'follows': [user.to_dict() for user in users_following]}
 
 
 @user_routes.route('/unfollows/', methods=['GET'])

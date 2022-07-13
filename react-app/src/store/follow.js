@@ -87,6 +87,26 @@ export const genFollows = () => async (dispatch) => {
 	}
 };
 
+export const genUserFollows = (id) => async (dispatch) => {
+	// can add more types of responses later
+
+	const [followsResponse] = await Promise.all([
+		fetch(`/api/users/${id}/follows/`, {
+			mode: "no-cors",
+			headers: { "Access-Control-Allow-Origin": "*" },
+		}),
+	]);
+
+	const [follows] = await Promise.all([followsResponse.json()]);
+
+	// console.log(follows)
+
+	if (followsResponse.ok) {
+		dispatch(loadFollows(follows.follows));
+		return follows;
+	}
+};
+
 const followReducer = (state = {}, action) => {
 	switch (action.type) {
 		case ADD_FOLLOW:

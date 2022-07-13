@@ -46,3 +46,70 @@
     white-space: normal;
     padding-right: 25px;
 }
+
+
+
+
+
+
+
+
+/* suggested follow styling */
+
+
+
+.unfollow-row {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 18px;
+}
+
+/* .follow-row img {
+
+} */
+
+.unfollow-row a {
+    width: 145px;
+    margin-left: 18px;
+}
+
+/* .follow-row form {
+    
+} */
+
+
+
+.feed-unfollow-btn{
+    background-color: transparent;
+    color: var(--lightslate);
+    border: none;
+    font-size: 1em;
+    transition: 0.3s;
+}
+
+.feed-unfollow-btn:hover {
+    color: var(--medpurple);
+    border: none;
+    font-size: 1em;
+    text-shadow: var(--medpurple) 1px 0 5px;
+}
+
+#user-follows-body p {
+    text-align: center;
+    padding: 38px;
+}
+
+#user-follows-body {
+    margin: 0 auto;
+    width: 600px;
+    padding-bottom: 100px;
+
+}
+
+#user-follows-body {
+    /* display: flex;
+    justify-content: center; */
+    background: linear-gradient(var(--darkestpurple), var(--darkbg));
+    border-top: 2px solid var(--darkpurple);
+}
