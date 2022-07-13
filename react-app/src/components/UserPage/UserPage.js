@@ -27,12 +27,46 @@ const UserPage = () => {
 		dispatch(genComments());
         dispatch(genUser(parseInt(userId, 10)))
         dispatch(genFollows())
+
+		// console.log('user.id', user.id);
+		// console.log('userId', userId);
+
+		// if (user.id != userId) {
+		// 	history.push("/usernotfound");
+		// } 
+
     }, [dispatch, userId]);
 
-	if (!user.id) {
-		history.push('/usernotfound');
+
+	// useEffect(() => {
+	// 	console.log('user', user);
+
+	// 	if (user.id === undefined) {
+	// 		history.push("/usernotfound");
+	// 	}
+	// }, [user, history])
+
+	const checkValidUser = async (id) => {
+
+		const check = await dispatch(genUser(id));
+
+		console.log(check);
+		user.check = check;
+
 	}
 
+
+	console.log(user);
+
+	if (!user?.check) {
+		if (!user.id) {
+			checkValidUser(parseInt(userId, 10));
+		}
+
+	}	else if (user?.check.errors) {
+		history.push('/usernotfound');
+	}
+	
 
     const followSubmit = async (e) => {
         e.preventDefault();
@@ -112,12 +146,10 @@ const UserPage = () => {
 				return riff.user_id == userId;
 			});
 
-
 			//sort by id - to show newest created at the top
 			riffArr.sort((a, b) => {
 				return b.id - a.id;
 			});
-
 
 			return (
 				<div id="user-page">
@@ -184,7 +216,9 @@ const UserPage = () => {
 					<h5 id="riff-label">{user.username}'s riffs</h5>
 
 					<div id="userpage-feed-body">
-						{riffArr.length === 0 && <p> {user.username} has not posted any riffs!</p>}
+						{riffArr.length === 0 && (
+							<p className='empty-riff-header'> {user.username} has not posted any riffs!</p>
+						)}
 						{riffArr &&
 							riffArr.map((riff) => {
 								return (
