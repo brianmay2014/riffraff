@@ -102,7 +102,7 @@ export const genUserFollows = (id) => async (dispatch) => {
 	// console.log(follows)
 
 	if (followsResponse.ok) {
-		dispatch(loadFollows(follows));
+		dispatch(loadFollows(follows.follows));
 		return follows;
 	}
 };
