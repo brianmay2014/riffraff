@@ -187,6 +187,7 @@ const UserPage = () => {
 									</form>
 								)}
 
+							{/* remove dead link for now
 							{userId == currentUser.id && (
 								<button
 									id="edit-profile-button"
@@ -194,7 +195,7 @@ const UserPage = () => {
 								>
 									Edit Profile
 								</button>
-							)}
+							)} */}
 
 							{/* COMMENT ME OUT - for edit profile
 						{showRiffModal && (
