@@ -25,6 +25,10 @@ const RiffFeed = () => {
 		dispatch(genComments());
 	}, [dispatch]);
 
+	useEffect(() => {
+		dispatch(genRiffs());
+	}, [follows])
+
 	//creates array to for follow/unfollow buttons in render
 	const followArr = follows[currentUser.id];
 
