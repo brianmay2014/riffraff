@@ -24,7 +24,8 @@ export const genUser = (userId) => async (dispatch) => {
         dispatch(loadUser(user))
         return user;
     } else {
-        console.log(user);
+        // console.log(user);
+        return user;
     }
 
 
