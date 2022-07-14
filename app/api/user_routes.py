@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, flash, redirect, url_for, request
 from flask_login import login_required, current_user
-from app.models import db, User
+from app.models import db, User, Riff
 from app.forms.follow_form import FollowForm
 
 user_routes = Blueprint('users', __name__)
@@ -128,3 +128,21 @@ def get_unfollows():
     
     return {'unfollows': [user.to_dict() for user in return_unf]}
     # return {f'{current_user.id}': [user.to_dict() for user in return_unf]}
+
+
+# @user_routes.route('/like/<int:riff_id>/')
+# @login_required
+# def like(riff_id):
+#     riff = Riff.query.get(riff_id)
+#     current_user.user_likes.append(riff)
+#     db.session.commit()
+#     return {'user_likes': [user.id for user in self.riff_likes]}
+
+
+# @user_routes.route('/unlike/<int:riff_id>/')
+# @login_required
+# def unlike(riff_id):
+#     riff = Riff.query.get(riff_id)
+#     current_user.user_likes.remove(riff)
+#     db.session.commit()
+#     return {'user_likes': [user.id for user in self.riff_likes]}

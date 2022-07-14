@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { Redirect, useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
-// import { genComments } from "../../store/comment";
-import { genRiffs } from "../../store/riff";
-// import { genRiffs } from "../../store/riff";
-// import { login } from "../../store/session";
+import { genRiffs, likeRiff, unlikeRiff } from "../../store/riff";
+
 import "./RiffFeed.css";
 
 const LikeContainer = ({ riff }) => {
@@ -22,6 +20,9 @@ const LikeContainer = ({ riff }) => {
 
         console.log('trying to like this')
 
+        dispatch(likeRiff(riff.id));
+
+
     }
 
     const submitUnlike = async (e) => {
@@ -30,6 +31,7 @@ const LikeContainer = ({ riff }) => {
 		// dispatch(unlikeRiff(user.id, riff.id))
 
 		console.log("trying to NOT like this");
+        dispatch(unlikeRiff(riff.id));
 	};
 
 	// null before riffs / riff prop loads from the store
