@@ -46,7 +46,7 @@ const CommentDisplay = ({ riff }) => {
 			return a.created_at - b.created_at;
 		});
 
-		console.log(riffComments);
+		// console.log(riffComments);
 
 	const commentCount = riffComments.length;
 
