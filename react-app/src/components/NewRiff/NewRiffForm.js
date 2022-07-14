@@ -87,7 +87,7 @@ const NewRiffForm = () => {
 					type="text"
 					placeholder="Title"
 					value={title}
-					autocomplete="off"
+					autoComplete="off"
 					required
 					onChange={(e) => setTitle(e.target.value)}
 				/>
@@ -98,7 +98,7 @@ const NewRiffForm = () => {
 					name="note"
 					type="text"
 					placeholder="Add Note (optional)"
-					autocomplete="off"
+					autoComplete="off"
 					value={note}
 					onChange={(e) => setNote(e.target.value)}
 				/>

@@ -179,3 +179,23 @@ def edit_riff(riff_id):
 def user(riff_id):
     riff = Riff.query.get(riff_id)
     return riff.to_dict()
+
+
+
+@riff_routes.route('/like/<int:riff_id>/', methods=["PATCH"])
+@login_required
+def like(riff_id):
+    riff = Riff.query.get(riff_id)
+    riff.riff_likes.append(current_user)
+    db.session.commit()
+    return riff.to_dict()
+
+
+
+@riff_routes.route('/unlike/<int:riff_id>/', methods=["PATCH"])
+@login_required
+def unlike(riff_id):
+    riff = Riff.query.get(riff_id)
+    riff.riff_likes.remove(current_user)
+    db.session.commit()
+    return riff.to_dict()

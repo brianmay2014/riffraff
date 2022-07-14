@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 from .riff import Riff
+from .like import likes
 
 followers = db.Table(
     'followers',
@@ -26,7 +27,7 @@ class User(db.Model, UserMixin):
     # has many
     riffs = db.relationship("Riff", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
-    # likes = db.relationship("Like", back_populates="user")
+    user_likes = db.relationship("Riff", secondary=likes, back_populates="riff_likes")
 
     #follow
     followed = db.relationship(

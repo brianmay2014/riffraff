@@ -297,6 +297,11 @@ button.comment-delete{
 
 /* suggested follow styling */
 
+.no-suggestions {
+    font-size: 0.8em;
+    padding-left: 18px;
+    color: var(--lightslate);
+}
 
 
 .follow-row {
@@ -345,4 +350,35 @@ button.comment-delete{
     display: flex;
     justify-content: center;
 
+}
+
+
+/* like containers css */
+
+.like-button{
+    border: transparent;
+    background: transparent;
+    margin: 0 0 8px 23px;
+
+}
+
+.fa-solid.fa-heart {
+    color: var(--miderror);
+}
+.fa-regular.fa-heart {
+    color: white;
+}
+
+.fa-heart {
+    font-size: 1.5em;
+}
+
+.like-display-container {
+    display: flex;
+    height: 32px;
+}
+.like-text {
+    padding-left: 5px;
+    padding-top: 1px;
+    margin: 0;
 }

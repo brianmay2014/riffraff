@@ -138,6 +138,26 @@ export const editRiff = (riff) => async (dispatch) => {
     // }
 }
 
+export const likeRiff = (riff_id) => async (dispatch) => {
+
+    const response = await fetch(`/api/riffs/like/${riff_id}/`, {
+        method: "PATCH",
+    });
+    const riffData = await response.json();
+
+    dispatch(addRiff(riffData))
+    return { ...riffData }
+}
+export const unlikeRiff = (riff_id) => async (dispatch) => {
+	const response = await fetch(`/api/riffs/unlike/${riff_id}/`, {
+		method: "PATCH",
+	});
+	const riffData = await response.json();
+
+	dispatch(addRiff(riffData));
+	return { ...riffData };
+};
+
 const riffReducer = (state = {}, action) => {
 
     switch (action.type) {

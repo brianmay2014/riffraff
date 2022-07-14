@@ -72,7 +72,7 @@ const SignUpForm = () => {
 					name="username"
 					onChange={updateUsername}
 					placeholder="Username"
-					autocomplete="off"
+					autoComplete="off"
 					value={username}
 				></input>
 			</div>
@@ -87,7 +87,7 @@ const SignUpForm = () => {
 					name="email"
 					placeholder="Email"
 					onChange={updateEmail}
-					autocomplete="off"
+					autoComplete="off"
 					value={email}
 				></input>
 			</div>
@@ -102,7 +102,7 @@ const SignUpForm = () => {
 					name="password"
 					placeholder="Password"
 					onChange={updatePassword}
-					autocomplete="off"
+					autoComplete="off"
 					value={password}
 				></input>
 			</div>
@@ -116,7 +116,7 @@ const SignUpForm = () => {
 					name="repeat_password"
 					placeholder="Confirm Password"
 					onChange={updateRepeatPassword}
-					autocomplete="off"
+					autoComplete="off"
 					value={repeatPassword}
 					required={true}
 				></input>

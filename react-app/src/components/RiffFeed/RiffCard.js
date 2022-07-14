@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./RiffFeed.css";
 // import { genRiffs } from "../../store/riff";
 import CommentDisplay from "./CommentDisplay";
+import LikeContainer from "./LikeContainer";
 import { Modal } from "../context/Modal";
 import { deleteRiff, editRiff } from "../../store/riff";
 import RiffPlayer from "./RiffPlayer";
@@ -103,6 +104,7 @@ const RiffCard = ( {riff} ) => {
 				</a>
 				<span>{riff.note}</span>
 			</div>
+			<LikeContainer riff={riff} />
 			<CommentDisplay riff={riff} />
 		</div>
 	);
