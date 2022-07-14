@@ -52,9 +52,9 @@ const LikeContainer = ({ riff }) => {
 					<i className="fa-solid fa-heart"></i>
 				</button>
 			)}
-			{likeCount === 0 && <p>No likes</p>}
-			{likeCount === 1 && <p>1 like</p>}
-			{likeCount > 1 && <p>{likeCount} likes</p>}
+			{likeCount === 0 && <p className='like-text'>No likes</p>}
+			{likeCount === 1 && <p className='like-text'>1 like</p>}
+			{likeCount > 1 && <p className='like-text'>{likeCount} likes</p>}
 		</div>
 	);
 };

@@ -375,4 +375,10 @@ button.comment-delete{
 
 .like-display-container {
     display: flex;
+    height: 32px;
+}
+.like-text {
+    padding-left: 5px;
+    padding-top: 1px;
+    margin: 0;
 }
