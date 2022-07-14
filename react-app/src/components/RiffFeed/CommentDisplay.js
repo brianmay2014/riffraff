@@ -43,8 +43,10 @@ const CommentDisplay = ({ riff }) => {
 	});
 
 		riffComments.sort((a, b) => {
-			return a.id - b.id;
+			return a.created_at - b.created_at;
 		});
+
+		// console.log(riffComments);
 
 	const commentCount = riffComments.length;
 
