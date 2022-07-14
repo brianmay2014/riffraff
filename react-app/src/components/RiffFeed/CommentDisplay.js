@@ -19,7 +19,7 @@ const CommentDisplay = ({ riff }) => {
 
 	const comments = useSelector((state) => state.comments);
 	// console.log(Object.keys(comments).length);
-	const riffs = useSelector((state) => state.riffs);
+	// const riffs = useSelector((state) => state.riffs);
 
 	useEffect(() => {
 		if (riff) {
@@ -42,11 +42,16 @@ const CommentDisplay = ({ riff }) => {
 		riffComments.push(comments[comment_id]);
 	});
 
+		// if seeded with different times
+		// riffComments.sort((a, b) => {
+		// 	return a.created_at - b.created_at;
+		// });
+
 		riffComments.sort((a, b) => {
-			return a.created_at - b.created_at;
+			return a.id - b.id;
 		});
 
-		// console.log(riffComments);
+		console.log(riffComments);
 
 	const commentCount = riffComments.length;
 
