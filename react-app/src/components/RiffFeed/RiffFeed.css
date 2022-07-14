@@ -351,3 +351,24 @@ button.comment-delete{
     justify-content: center;
 
 }
+
+
+/* like containers css */
+
+.like-button{
+    border: transparent;
+    background: transparent;
+    margin: 0 0 8px 23px;
+
+}
+
+.fa-solid.fa-heart {
+    color: var(--miderror);
+}
+.fa-regular.fa-heart {
+    color: white;
+}
+
+.fa-heart {
+    font-size: 1.5em;
+}

@@ -27,6 +27,7 @@ class Riff(db.Model):
 
 
     def to_dict(self):
+
         return {
             'id': self.id,
             'link': self.link,
@@ -38,7 +39,7 @@ class Riff(db.Model):
             'comment_ids': [comment.id for comment in self.comments],
             'author_username': self.user.username,
             'author_img': self.user.pic_url,
-            # 'riff_likes': self.riff_likes,
+            'user_likes': [user.id for user in self.riff_likes],
             # 'comments': self.comments,
         }
 
