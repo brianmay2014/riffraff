@@ -42,6 +42,10 @@ const CommentDisplay = ({ riff }) => {
 		riffComments.push(comments[comment_id]);
 	});
 
+		riffComments.sort((a, b) => {
+			return a.id - b.id;
+		});
+
 	const commentCount = riffComments.length;
 
 	// null before riffs / riff prop loads from the store
