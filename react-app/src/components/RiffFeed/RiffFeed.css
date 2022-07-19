@@ -141,8 +141,8 @@ span.optional {
 }
 
 .not-current-user, .user-edit-icon {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
 }
 
 .user-edit-icon {
@@ -155,7 +155,7 @@ span.optional {
     align-items:center;
     border-radius: 18px;
     transition: 0.3s;
-    /* box-shadow: 0px 0px 8px var(--lightslate); */
+    box-shadow: 0px 0px 8px var(--lightpurple);
 }
 
 .user-edit-icon:hover{
@@ -381,4 +381,8 @@ button.comment-delete{
     padding-left: 5px;
     padding-top: 1px;
     margin: 0;
+}
+
+#add-riff-link {
+    padding-left: 49px;
 }

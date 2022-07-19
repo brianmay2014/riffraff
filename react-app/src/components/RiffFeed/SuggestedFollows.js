@@ -42,6 +42,10 @@ const SuggestedFollows = () => {
                 return <FollowRow key={`key-${user?.id}`} user={user} />;
             })}
 			{displayArr.length === 0 && <p className='no-suggestions'>No suggested users!</p>}
+			<div id='add-riff-link'>
+				<p>Feed feeling empty?</p>
+				<a href='/riffs/new'>Add a riff!</a>
+			</div>
 		</div>
 	);
 };

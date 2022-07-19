@@ -25,6 +25,10 @@
 	/* border: white 1px solid; */
 }
 
+#new-riff-icon i{
+    color: var(--lightslate);
+}
+
 .nav-left-logo, .nav-right-btn-menu{
     width: 150px;
     height: 40px;
