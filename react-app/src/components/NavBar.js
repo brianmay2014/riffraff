@@ -60,7 +60,7 @@ const NavBar = () => {
 					</button>
 				</li> */}
 				{user && (<li>
-					<button className="nav-bar-button" title='New Riff'>
+					<button className="nav-bar-button" id='new-riff-icon' title='New Riff'>
 						<NavLink
 							to="/riffs/new"
 							exact={true}

@@ -51,7 +51,7 @@ const CommentDisplay = ({ riff }) => {
 			return a.id - b.id;
 		});
 
-		// console.log(riffComments);
+		// console.log(rif	fComments);
 
 	const commentCount = riffComments.length;
 

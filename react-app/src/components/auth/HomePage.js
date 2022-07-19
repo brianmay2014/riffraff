@@ -44,7 +44,9 @@ const HomePage = () => {
 					<div className="auth-header">
 						<h1>riff raff</h1>
 						<h3>A community for songwriters.</h3>
-						<h4>It all starts with one riff.</h4>
+						<p className='home-smaller'>Members can share riffs.</p>
+						<p className='home-smaller'>Members can share suggestions for backing chords, or accompanying riffs.</p>
+						<h4>Building songs together, one riff at a time.</h4>
 					</div>
 					<div className="auth-page-links">
 						<p>Already have an account?</p>
@@ -80,15 +82,14 @@ const HomePage = () => {
 					</button>
 				</div>
 			</div>
-			<div id='home-description'>
+			{/* <div id="home-description">
+				<h3>riff raff is an online community to share riffs</h3>
 				<h3>
-					riff raff is an online community to share riffs
-					</h3>
-				<h3>					
-					members can share their suggestions for backing chords, or accompanying riffs
+					members can share their suggestions for backing chords, or
+					accompanying riffs
 				</h3>
 				<h3>building songs together, one riff at a time</h3>
-			</div>
+			</div> */}
 		</div>
 	);
 };

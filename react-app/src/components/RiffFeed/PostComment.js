@@ -73,7 +73,7 @@ const PostComment = ({ riff }) => {
 				<button
 					className="post-comment-button"
 					type="submit"
-					// disabled={disabled}
+					disabled={disabled}
 				>
 					Post
 				</button>
