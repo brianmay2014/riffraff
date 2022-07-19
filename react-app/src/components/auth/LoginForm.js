@@ -11,11 +11,19 @@ const LoginForm = () => {
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const [hideReqEmail, setHideReqEmail] =  useState(true);
+	const [hideReqPassword, setHideReqPassword] = useState(true);
+
 
 	const onLogin = async (e) => {
 		e.preventDefault();
+		setHideReqEmail(true);
+		setHideReqPassword(true);
+
 		const data = await dispatch(login(email, password));
 		if (data) {
+			if (email === '') setHideReqEmail(false);
+			if (password === "") setHideReqPassword(false);
 			setErrors(data);
 		}
 	};
@@ -59,7 +67,7 @@ const LoginForm = () => {
 			<div className="auth-fields">
 				<div className="required-input-header">
 					<label htmlFor="email">Email</label>
-					<span className="required">required</span>
+					<span className="required" hidden={hideReqEmail}>required</span>
 				</div>
 				<input
 					name="email"
@@ -73,7 +81,7 @@ const LoginForm = () => {
 			<div className="auth-fields">
 				<div className="required-input-header">
 					<label htmlFor="password">Password</label>
-					<span className="required">required</span>
+					<span className="required" hidden={hideReqPassword}>required</span>
 				</div>
 				<input
 					name="password"
