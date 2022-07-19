@@ -12,6 +12,8 @@ const NewRiffForm = () => {
 	const [title, setTitle] = useState("");
 	const [note, setNote] = useState("");
 	const [linkLoading, setLinkLoading] = useState(false);
+	const [hideReqTitle, setHideReqTitle] = useState(true);
+	const [hideReqLink, setHideReqLink] = useState(true);
 
 	const user = useSelector((state) => state.session.user);
 
@@ -20,6 +22,9 @@ const NewRiffForm = () => {
 
 	const newRiffSubmit = async (e) => {
 		e.preventDefault();
+
+		setHideReqLink(true);
+		setHideReqTitle(true);
 
 		const data = {
 			title: title,
@@ -32,9 +37,11 @@ const NewRiffForm = () => {
 		setErrors([]);
 		const riff = await dispatch(makeRiff(data, link))
 		if (riff.errors) {
-			// console.log([ ...riff.errors]);
+			if (title === '') setHideReqTitle(false);
+			if (link === '') setHideReqLink(false);
+
 			setErrors(riff.errors);
-			// console.log(errors)
+			
 			setLinkLoading(false);
 			return;
 		}
@@ -80,7 +87,7 @@ const NewRiffForm = () => {
 			<div className="riff-fields">
 				<div className="required-input-header">
 					<label htmlFor="file-input">Title</label>
-					<span className="required">required</span>
+					<span className="required" hidden={hideReqTitle}>required</span>
 				</div>
 				<input
 					name="title"
@@ -88,7 +95,7 @@ const NewRiffForm = () => {
 					placeholder="Title"
 					value={title}
 					autoComplete="off"
-					required
+					// required
 					onChange={(e) => setTitle(e.target.value)}
 				/>
 			</div>
@@ -106,7 +113,7 @@ const NewRiffForm = () => {
 			<div className="s3-song-upload riff-fields">
 				<div className="required-input-header">
 					<label htmlFor="file-input">Upload Riff</label>
-					<span className="required">required</span>
+					<span className="required" hidden={hideReqLink}>required</span>
 				</div>
 				<input
 					type="file"

@@ -98,8 +98,16 @@ def post_comment(id):
 @riff_routes.route('/new', methods=["POST"])
 # @login_required
 def post_riff():
+    # print('*/-/*-/*-*/-*/-*-/*/-/*-/*-*-/*/-*-/*/-*-/*-/*-/*/-*/-*/-')
+    # print(request.form.get('title'))
+    # print('*/-/*-/*-*/-*/-*-/*/-/*-/*-*-/*/-*-/*/-*-/*-/*-/*/-*/-*/-')
+
+
     if "link" not in request.files:
-        return {"errors": validation_errors_to_error_messages({'link.file': ["Riff file is required"]})}, 400
+        if request.form.get('title') is '':
+            return {"errors": validation_errors_to_error_messages({'link.file': ["Title is required", "Riff file is required"]})}, 400    
+        else: 
+            return {"errors": validation_errors_to_error_messages({'link.file': ["Riff file is required"]})}, 400
         # return {"errors": "Riff file is required"}, 400
 
     link = request.files['link']
