@@ -13,16 +13,29 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  const [hideReqEmail, setHideReqEmail] = useState(true);
+  const [hideReqUsername, setHideReqUsername] = useState(true);
+  const [hideReqPassword, setHideReqPassword] = useState(true);
+  const [hideReqRepeatPassword, setHideReqRepeatPassword] = useState(true);
 
   const onSignUp = async (e) => {
     e.preventDefault();
+	setHideReqEmail(true);
+	setHideReqUsername(true);
+	setHideReqPassword(true);
+	setHideReqRepeatPassword(true);
+
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
-        setErrors(data)
-      }
+			if (email === '') setHideReqEmail(false);
+			if (username === '') setHideReqUsername(false);
+        	setErrors(data)
+		}
     } else {
-      setErrors(['Both passwords must match to create an account, please try again'])
+		if (password === '') setHideReqPassword(false);
+		if (repeatPassword === '') setHideReqRepeatPassword(false);
+		setErrors(['Both passwords must match to create an account, please try again'])
     }
   };
 
@@ -65,7 +78,7 @@ const SignUpForm = () => {
 			<div className="auth-fields">
 				<div className="required-input-header">
 					<label>User Name</label>
-					<span className="required">required</span>
+					<span className="required" hidden={hideReqUsername}>required</span>
 				</div>
 				<input
 					type="text"
@@ -79,7 +92,7 @@ const SignUpForm = () => {
 			<div className="auth-fields">
 				<div className="required-input-header">
 					<label>Email</label>
-					<span className="required">required</span>
+					<span className="required" hidden={hideReqEmail}>required</span>
 				</div>
 
 				<input
@@ -94,7 +107,7 @@ const SignUpForm = () => {
 			<div className="auth-fields">
 				<div className="required-input-header">
 				<label>Password</label>
-					<span className="required">required</span>
+					<span className="required" hidden={hideReqPassword}>required</span>
 				</div>
 
 				<input
@@ -109,7 +122,7 @@ const SignUpForm = () => {
 			<div className="auth-fields">
 				<div className="required-input-header">
 				<label>Confirm Password</label>
-					<span className="required">required</span>
+					<span className="required" hidden={hideReqRepeatPassword}>required</span>
 				</div>
 				<input
 					type="password"
