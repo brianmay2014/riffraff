@@ -50,13 +50,13 @@ const UserPage = () => {
 
 		const check = await dispatch(genUser(id));
 
-		console.log(check);
+		// console.log(check);
 		user.check = check;
 
 	}
 
 
-	console.log(user);
+	// console.log(user);
 
 	if (!user?.check) {
 		if (!user.id) {
@@ -141,21 +141,32 @@ const UserPage = () => {
 			}
 
 			const riffArrUnfiltered = Object.values(riffs);
-
+			
 			const riffArr = riffArrUnfiltered.filter((riff) => {
 				return riff.user_id == userId;
 			});
-
+			
 			//sort by id - to show newest created at the top
 			riffArr.sort((a, b) => {
 				return b.id - a.id;
 			});
-
+			
 			return (
 				<div id="user-page">
 					<div id="user-display">
 						<div id="user-display-left">
+					<div id='left-inner-user-menu'>
+
 							<img src={user.pic_url}></img>
+					{userId == currentUser.id && (
+						<a
+						id="current-user-follows"
+						href={`/users/${currentUser.id}/follows`}
+						>
+							Users you follow
+						</a>
+					)}
+					</div>
 						</div>
 						<div id="user-display-right">
 							<h3>{user.username}</h3>
@@ -212,13 +223,17 @@ const UserPage = () => {
 						)} COMMENT ABOVE ME
                         
                     FUTURE FEATURES */}
+							
 						</div>
 					</div>
 					<h5 id="riff-label">{user.username}'s riffs</h5>
 
 					<div id="userpage-feed-body">
 						{riffArr.length === 0 && (
-							<p className='empty-riff-header'> {user.username} has not posted any riffs!</p>
+							<p className="empty-riff-header">
+								{" "}
+								{user.username} has not posted any riffs!
+							</p>
 						)}
 						{riffArr &&
 							riffArr.map((riff) => {
