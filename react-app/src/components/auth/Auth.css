@@ -57,7 +57,7 @@
 }
 
 .auth-header {
-    margin: 18px 24px;
+    margin: 8px 24px 8px;
     text-align: center;
 }
 
@@ -66,7 +66,7 @@
 }
 
 .auth-page-links{
-    margin: 12px auto 38px ;
+    margin: 0 auto 18px ;
     text-align: center;
 }
 
@@ -136,4 +136,8 @@ input:focus {
 #splash-logo p{
     font-size:100px;
     color: var(--blackpurple);
+}
+
+.home-smaller {
+    font-size: 0.8em;
 }
