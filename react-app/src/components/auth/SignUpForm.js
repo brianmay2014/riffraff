@@ -30,12 +30,38 @@ const SignUpForm = () => {
       if (data) {
 			if (email === '') setHideReqEmail(false);
 			if (username === '') setHideReqUsername(false);
+			if (password === "") setHideReqPassword(false);
+			if (repeatPassword === "") setHideReqRepeatPassword(false);
         	setErrors(data)
 		}
     } else {
 		if (password === '') setHideReqPassword(false);
 		if (repeatPassword === '') setHideReqRepeatPassword(false);
+		// console.log('here');
 		setErrors(['Both passwords must match to create an account, please try again'])
+		if (email === "" && username === '') {
+			setHideReqEmail(false);
+			setHideReqUsername(false);
+			setErrors([
+				"Username is a required field.",
+				"Email is a required field.",
+				"Both passwords must match to create an account, please try again",
+			]);
+		}
+		else if (email === "") {
+			setHideReqEmail(false);
+			setErrors([
+				"Email is a required field.",
+				"Both passwords must match to create an account, please try again",
+			]);
+		}
+		else if (username === "") {
+			setHideReqUsername(false);
+			setErrors([
+				"Username is a required field.",
+				"Both passwords must match to create an account, please try again",
+			]);
+		}
     }
   };
 
@@ -131,7 +157,7 @@ const SignUpForm = () => {
 					onChange={updateRepeatPassword}
 					autoComplete="off"
 					value={repeatPassword}
-					required={true}
+					// required={true}
 				></input>
 			</div>
 			<div id="signup-button">
