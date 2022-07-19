@@ -9,6 +9,10 @@
     flex-direction: column;
 }
 
+.hidden-text {
+    display: none;
+}
+
 #home-guts {
     display: flex;
     flex-direction: row;
