@@ -104,7 +104,8 @@ def post_riff():
 
 
     if "link" not in request.files:
-        if request.form.get('title') is '':
+        # if request.form.get('title') is '':
+        if request.form.get('title') == '':
             return {"errors": validation_errors_to_error_messages({'link.file': ["Title is required", "Riff file is required"]})}, 400    
         else: 
             return {"errors": validation_errors_to_error_messages({'link.file': ["Riff file is required"]})}, 400
