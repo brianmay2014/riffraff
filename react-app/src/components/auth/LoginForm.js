@@ -14,7 +14,6 @@ const LoginForm = () => {
 	const [hideReqEmail, setHideReqEmail] =  useState(true);
 	const [hideReqPassword, setHideReqPassword] = useState(true);
 
-
 	const onLogin = async (e) => {
 		e.preventDefault();
 		setHideReqEmail(true);
