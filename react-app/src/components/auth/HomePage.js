@@ -82,14 +82,6 @@ const HomePage = () => {
 					</button>
 				</div>
 			</div>
-			{/* <div id="home-description">
-				<h3>riff raff is an online community to share riffs</h3>
-				<h3>
-					members can share their suggestions for backing chords, or
-					accompanying riffs
-				</h3>
-				<h3>building songs together, one riff at a time</h3>
-			</div> */}
 		</div>
 	);
 };

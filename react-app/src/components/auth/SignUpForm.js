@@ -37,7 +37,6 @@ const SignUpForm = () => {
     } else {
 		if (password === '') setHideReqPassword(false);
 		if (repeatPassword === '') setHideReqRepeatPassword(false);
-		// console.log('here');
 		setErrors(['Both passwords must match to create an account, please try again'])
 		if (email === "" && username === '') {
 			setHideReqEmail(false);
@@ -157,7 +156,6 @@ const SignUpForm = () => {
 					onChange={updateRepeatPassword}
 					autoComplete="off"
 					value={repeatPassword}
-					// required={true}
 				></input>
 			</div>
 			<div id="signup-button">
